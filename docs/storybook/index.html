@@ -1,0 +1,39 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@nx-template/storybook</title><meta name="description" content="Documentation for @nx-template/storybook"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@nx-template/storybook</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@nx-template/storybook </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#storybook" id="storybook" style="color: inherit; text-decoration: none;">
+  <h1>storybook</h1>
+</a>
+<p>This library will be used to run/develop storybook. It will provide
+basic examples on how to write stories, and main setup code.</p>
+<p>Other libs will be leveraged with storybook via <a href="https://nx.dev/storybook/storybook-composition-setup">composition</a>.</p>
+
+<a href="#running-unit-tests" id="running-unit-tests" style="color: inherit; text-decoration: none;">
+  <h2>Running unit tests</h2>
+</a>
+<p>Run <code>nx test storybook</code> to execute the unit tests via <a href="https://jestjs.io">Jest</a>.</p>
+
+<a href="#running-storybook" id="running-storybook" style="color: inherit; text-decoration: none;">
+  <h2>Running storybook</h2>
+</a>
+<p>Run <code>nx run storybook:storybook</code> to execute the local storybook project.</p>
+
+<a href="#running-all-storybooks-locally" id="running-all-storybooks-locally" style="color: inherit; text-decoration: none;">
+  <h3>Running all storybooks locally</h3>
+</a>
+<p>This library is primarily used as the main storybook project, which uses storybook composition to
+host/serve all storybooks within the project. These are built and combined within github-actions
+and deployed to github pages.</p>
+<p>To replicate this behavior locally run the follow commands:</p>
+<pre><code><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">nx</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1">-</span><span class="hl-0">many</span><span class="hl-1"> --</span><span class="hl-0">target</span><span class="hl-1">=</span><span class="hl-0">build</span><span class="hl-1">-</span><span class="hl-0">storybook</span><span class="hl-1"> --</span><span class="hl-0">all</span><br/><span class="hl-0">mv</span><span class="hl-1"> </span><span class="hl-0">dist</span><span class="hl-1">/</span><span class="hl-0">storybook</span><span class="hl-1">/</span><span class="hl-0">storybook</span><span class="hl-2">/** dist/storybook/</span><br/><span class="hl-2">npx http-server dist/storybook</span>
+</code></pre>
+
+<a href="#adding-a-new-sub-storybook" id="adding-a-new-sub-storybook" style="color: inherit; text-decoration: none;">
+  <h3>Adding a new sub-storybook</h3>
+</a>
+<p>Storybooks will be generated, but wont be automatically linked without updating
+the <code>./storybook/main.js</code> file within <strong>this</strong> project.</p>
+<p>For example:</p>
+<pre><code><span class="hl-3">module</span><span class="hl-1">.</span><span class="hl-0">export</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-2">//...</span><br/><span class="hl-1">  </span><span class="hl-0">refs:</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">// other refs...</span><br/><span class="hl-1">    </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-0">:</span><span class="hl-1"> {</span><br/><span class="hl-1">      </span><span class="hl-0">title:</span><span class="hl-1"> </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">      </span><span class="hl-0">url:</span><span class="hl-1"> </span><span class="hl-4">&#39;my-new-lib/&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">  }</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>This will make it appear within the gh-page automatically. Otherwise to run individual storybooks,
+see the project&#39;s docs.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-interface"><a href="interfaces/StorybookLandingProps.html" class="tsd-kind-icon">Storybook<wbr/>Landing<wbr/>Props</a></li><li class="tsd-kind-function"><a href="modules.html#StorybookLanding" class="tsd-kind-icon">Storybook<wbr/>Landing</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
