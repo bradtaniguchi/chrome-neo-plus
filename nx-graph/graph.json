@@ -100,12 +100,12 @@
               "options": {
                 "commands": [
                   {
-                    "command": "mkdir dist/apps/internal-client/exported/nx-template",
+                    "command": "mkdir dist/apps/internal-client/exported/chrome-neo-plus",
                     "description": "Make missing directories"
                   },
                   {
-                    "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/nx-template/",
-                    "description": "Copy files into nx-template sub-folder for testing"
+                    "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/chrome-neo-plus/",
+                    "description": "Copy files into chrome-neo-plus sub-folder for testing"
                   },
                   {
                     "command": "npx lhci autorun --config=./.lighthouse/lighthouserc.js --collect.staticDistDir=./dist/apps/internal-client/exported",
@@ -147,7 +147,7 @@
             },
             {
               "file": "apps/internal-client/components/dashboard-page/dashboard-page-config.tsx",
-              "hash": "5862a41728313fc7573282a40d857e753b74ce17",
+              "hash": "ca34dc589035ef6845362c2a45e05e31bfe7528c",
               "deps": [
                 "common-react",
                 "npm:flowbite-react",
@@ -173,7 +173,7 @@
             },
             {
               "file": "apps/internal-client/components/dashboard-page/dashboard-page.tsx",
-              "hash": "53f34d2f136403e57434e5941141320d5630fab3",
+              "hash": "a0212abfea52a7c5cfd16d99472d8b84196d4af3",
               "deps": [
                 "common-react"
               ]
@@ -192,7 +192,7 @@
             },
             {
               "file": "apps/internal-client/next.config.js",
-              "hash": "3bc2cfa5a70b63eb2382f3aa3a469d4840b90811",
+              "hash": "4b60fc810f25d33c06a039688d54fe7c5b22d2df",
               "deps": [
                 "npm:@nrwl/next",
                 "npm:@sentry/nextjs",
@@ -201,7 +201,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "09c20e8d428982852ff7855a5e49c23acb4cb232",
+              "hash": "927c111f10d0c0ba554241198b633e403a041b89",
               "deps": [
                 "common-react",
                 "npm:flowbite-react",
@@ -210,7 +210,7 @@
             },
             {
               "file": "apps/internal-client/pages/_document.tsx",
-              "hash": "432b7539389a8bb4c067a2d78708bbec21a5b21a",
+              "hash": "7e1d6809e4f9d072c6641f0242f45ed1bb298c59",
               "deps": [
                 "npm:react",
                 "npm:next",
@@ -235,7 +235,7 @@
             },
             {
               "file": "apps/internal-client/pages/index.tsx",
-              "hash": "b9c8af09492a6118d3433ae7adc688dcfc8461c5",
+              "hash": "91f42f4d65324f5d672eed5ac480e005537ba541",
               "deps": [
                 "common-react",
                 "npm:next"
@@ -251,7 +251,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "74f8db571729917935d96c8d1c77b9ff4ad72e4c"
+              "hash": "c136b4d474ad6b345730055051c71d96d08f8670"
             },
             {
               "file": "apps/internal-client/public/.gitkeep",
@@ -310,7 +310,7 @@
             },
             {
               "file": "apps/internal-client/utils/load-nx-graph.ts",
-              "hash": "a38f998ff52a8b230adae9a2f9093bca963f56ae",
+              "hash": "2bb053b1e1581c310a726aca923a13da62c9eb61",
               "deps": [
                 "common",
                 "npm:util",
@@ -468,7 +468,7 @@
             },
             {
               "file": "libs/common-react/package.json",
-              "hash": "2dd5d55d0b94246e35c02731745fcaab54edf696"
+              "hash": "ed719279901add78918764ca6e682e5347ae0276"
             },
             {
               "file": "libs/common-react/postcss.config.js",
@@ -518,7 +518,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-logger.ts",
-              "hash": "31617d5cfb427b7c7d227c3cd06719fb9b595901",
+              "hash": "57a7c60f6e58bf0609eb673c61a1f5c3b910e408",
               "deps": [
                 "common",
                 "npm:react"
@@ -770,7 +770,7 @@
             },
             {
               "file": "libs/storybook/package.json",
-              "hash": "e11efb1c82d82a7f137a0585c943452d65202408"
+              "hash": "1f030c64f2bf441f12bd8b21015a4b4936dfb101"
             },
             {
               "file": "libs/storybook/postcss.config.js",
@@ -924,7 +924,7 @@
             },
             {
               "file": "libs/common/package.json",
-              "hash": "36788b226c6c19d105c48c4e931beea1759afc5c"
+              "hash": "70aa3200c7a1912fb5fc6eab339e824c2a8d9dd5"
             },
             {
               "file": "libs/common/project.json",
