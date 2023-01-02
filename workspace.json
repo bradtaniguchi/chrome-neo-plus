@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "apod": "libs/apod",
     "chrome-extension": "apps/chrome-extension",
     "common": "libs/common",
     "common-react": "libs/common-react",
