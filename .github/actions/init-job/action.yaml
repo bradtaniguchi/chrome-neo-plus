@@ -1,0 +1,18 @@
+name: init-job
+description: Setups up common node, and caches node-modules
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.10.0'
+        cache: 'npm'
+    - uses: actions/cache@v2
+      id: cache
+      with:
+        path: ./node_modules
+        key: modules-${{ hashFiles('package-lock.json') }}
+    - run: npm ci --ignore-scripts
+      shell: bash
+      if: steps.cache.outputs.cache-hit != 'true'

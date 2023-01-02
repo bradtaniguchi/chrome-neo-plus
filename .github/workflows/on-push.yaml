@@ -1,0 +1,194 @@
+name: on-push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: lint
+          parallel: 3
+
+  test-all:
+    runs-on: ubuntu-latest
+    needs:
+      - lint-all
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: test
+          parallel: 3
+
+  build-all:
+    runs-on: ubuntu-latest
+    needs:
+      - lint-all
+      - test-all
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: build
+          parallel: 3
+
+  internal-client:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      # directly call, as we don't care about leveraging NX here. We always
+      # run these targets
+      - run: npx nx run internal-client:lint
+      - run: npx nx run internal-client:export
+      - run: npx nx run internal-client:lighthouse
+      - run: npx nx run internal-client:analyze
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-client
+          path: dist/apps/internal-client/exported
+          retention-days: 3
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-client-analyze
+          path: dist/apps/internal-client/.next/analyze
+          retention-days: 1
+
+  # Job that generates the storybook configuration for all projects that have it,
+  # where the `storybook`` library will be built and manage ALL the projects.
+  # together via composition. Or at least thats the plan.
+  # All of these together will be deployed within the gh-page job.
+  internal-storybooks:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: build-storybook
+          all: true
+          parallel: 3
+      - run: mv dist/storybook/storybook/** dist/storybook/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-storybooks
+          path: dist/storybook
+          retention-days: 3
+
+  # Job that generates things based on internal tooling.
+  # Deployed with the storybook project to gh-pages.
+  internal-tools:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/init-job
+      - run: npx nx graph --file=dist/nx-graph/index.html
+      - run: npx nx graph --file=dist/nx-graph/graph.json
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-nx-graph
+          path: dist/nx-graph
+          retention-days: 3
+      - uses: mansagroup/nrwl-nx-action@v3
+        with:
+          targets: typedoc
+          all: true
+          parallel: 3
+      - uses: actions/upload-artifact@v2
+        with:
+          name: internal-docs
+          path: dist/docs
+          retention-days: 3
+      - run: npm run build:config
+      - uses: actions/upload-artifact@v2
+        with:
+          name: config
+          path: dist/config.json
+          retention-days: 3
+
+  # Job that deploys all the "internal" information that is generated within:
+  # internal-client
+  # internal-storybooks
+  # internal-tools
+  #
+  # If we are on the main branch, then this job will execute to gather and deploy all
+  # of the static contents to the local github page.
+  gh-pages:
+    timeout-minutes: 5
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs:
+      - internal-client
+      - internal-storybooks
+      - internal-tools
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/init-job
+      - run: mkdir dist
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-client
+          # This gets moved to the top-level dist, as it will
+          # manage all the other contents.
+          path: dist
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-client-analyze
+          # This gets moved to the top-level dist, as it will
+          # manage all the other contents.
+          path: dist/analyze/internal-client
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-storybooks
+          # This gets changed to be plural for a cleaner URL
+          path: dist/storybooks
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-nx-graph
+          path: dist/nx-graph
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-docs
+          path: dist/docs
+      - uses: actions/download-artifact@v2
+        with:
+          name: config
+          # should make config.json available
+          path: dist
+      # DEBUG build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gh-pages-dist
+          path: dist
+          retention-days: 1
+      - uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: github.ref == 'refs/heads/main'
+        with:
+          branch: gh-pages
+          folder: dist

@@ -1,0 +1,56 @@
+# List of labels that will be supported
+# all other labels will be removed
+
+# issue template types
+- name: bug
+  description: Something isn't working
+  color: 'd73a4a'
+
+- name: feature
+  description: A new feature to add
+  color: '0052cc'
+
+- name: enhancement
+  description: Update an existing feature
+  color: 'a2eeef'
+
+- name: documentation
+  description: Something related to documentation
+  color: '0075ca'
+
+- name: chore
+  description: A non-code related task
+  color: 'ffffff'
+
+# realms
+- name: realm:API
+  description: Issue representing changes to an api
+  color: 'f9f9c5'
+
+- name: realm:code
+  description: Issue representing a code task
+  color: '4245f5'
+
+- name: realm:DB
+  description: Issue representing changes to the database
+  color: 'c5f9ed'
+
+- name: realm:UI/UX
+  description: Issue representing changes to the UI/UX
+  color: 'c5d5f9'
+
+- name: realm:infra
+  description: Issue representing changes to infrastructure
+  color: 'dec5f9'
+
+- name: realm:ops
+  description: Issue representing changes to operations
+  color: 'f9e2c5'
+
+- name: realm:security
+  description: Issue representing changes to security
+  color: 'f9c5dd'
+
+- name: realm:PM
+  description: Issue representing project management changes
+  color: 'dcc5f9'

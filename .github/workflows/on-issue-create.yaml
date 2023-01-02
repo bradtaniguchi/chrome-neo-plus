@@ -1,0 +1,17 @@
+# Workflow that auto adds any issues created to
+# the corresponding project board
+
+name: on-issue-create
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v0.1.0
+        with:
+          project-url: https://github.com/users/bradtaniguchi/projects/5
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
