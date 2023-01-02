@@ -1,4 +1,4 @@
-import { BaseConfig, getProjectsByTarget } from '@nx-template/common-react';
+import { BaseConfig, getProjectsByTarget } from '@chrome-neo-plus/common-react';
 import { GetStaticPropsResult } from 'next';
 import {
   DashboardPage,

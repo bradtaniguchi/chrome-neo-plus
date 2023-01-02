@@ -1,4 +1,4 @@
-import { useTheme } from '@nx-template/common-react';
+import { useTheme } from '@chrome-neo-plus/common-react';
 import { Button, Navbar } from 'flowbite-react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -44,7 +44,7 @@ function App({ Component, pageProps }: AppProps) {
             <div className="flex w-full justify-between">
               <div>
                 <Link href="/" className="text-lg dark:text-white">
-                  nx-template
+                  chrome-neo-plus
                 </Link>
               </div>
               <div className="dark:hover:text-white">

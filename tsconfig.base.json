@@ -15,9 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-template/common": ["libs/common/src/index.ts"],
-      "@nx-template/common-react": ["libs/common-react/src/index.ts"],
-      "@nx-template/storybook": ["libs/storybook/src/index.ts"]
+      "@chrome-neo-plus/common": ["libs/common/src/index.ts"],
+      "@chrome-neo-plus/common-react": ["libs/common-react/src/index.ts"],
+      "@chrome-neo-plus/storybook": ["libs/storybook/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

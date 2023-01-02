@@ -1,4 +1,4 @@
-import { BaseConfig } from '@nx-template/common-react';
+import { BaseConfig } from '@chrome-neo-plus/common-react';
 import { DashboardPageConfig } from './dashboard-page-config';
 import { DashboardPageLinks } from './dashboard-page-links';
 import { DashboardPageProjects } from './dashboard-page-projects';

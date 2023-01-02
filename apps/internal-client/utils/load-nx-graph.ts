@@ -1,4 +1,4 @@
-import { CommonLogger } from '@nx-template/common';
+import { CommonLogger } from '@chrome-neo-plus/common';
 import { promises as fsPromises } from 'fs';
 import * as child_process from 'child_process';
 const { stat, mkdir } = fsPromises;

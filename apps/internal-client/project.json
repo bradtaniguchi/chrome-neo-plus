@@ -69,12 +69,12 @@
       "options": {
         "commands": [
           {
-            "command": "mkdir dist/apps/internal-client/exported/nx-template",
+            "command": "mkdir dist/apps/internal-client/exported/chrome-neo-plus",
             "description": "Make missing directories"
           },
           {
-            "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/nx-template/",
-            "description": "Copy files into nx-template sub-folder for testing"
+            "command": "cp -r dist/apps/internal-client/exported/_next dist/apps/internal-client/exported/chrome-neo-plus/",
+            "description": "Copy files into chrome-neo-plus sub-folder for testing"
           },
           {
             "command": "npx lhci autorun --config=./.lighthouse/lighthouserc.js --collect.staticDistDir=./dist/apps/internal-client/exported",

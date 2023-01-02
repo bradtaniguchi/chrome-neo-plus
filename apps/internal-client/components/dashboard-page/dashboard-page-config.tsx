@@ -1,4 +1,4 @@
-import { BaseConfig } from '@nx-template/common-react';
+import { BaseConfig } from '@chrome-neo-plus/common-react';
 import { Card } from 'flowbite-react';
 import { memo } from 'react';
 

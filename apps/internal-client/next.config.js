@@ -34,8 +34,8 @@ module.exports = (() => {
   if (isAnalyze)
     return {
       ...withBundleAnalyzer(nextConfig),
-      basePath: '/nx-template',
-      assetPrefix: '/nx-template',
+      basePath: '/chrome-neo-plus',
+      assetPrefix: '/chrome-neo-plus',
     };
 
   if (isProd)
@@ -47,8 +47,8 @@ module.exports = (() => {
           org: process.env.SENTRY_ORG,
         })
       ),
-      basePath: '/nx-template',
-      assetPrefix: '/nx-template',
+      basePath: '/chrome-neo-plus',
+      assetPrefix: '/chrome-neo-plus',
     };
 
   return withNx(nextConfig);
