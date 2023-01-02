@@ -8,6 +8,7 @@
     "common-react": "libs/common-react",
     "internal-client": "apps/internal-client",
     "neows": "libs/neows",
+    "nivl": "libs/nivl",
     "storybook": "libs/storybook"
   }
 }
