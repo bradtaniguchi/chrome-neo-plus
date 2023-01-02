@@ -22,6 +22,7 @@
     "@nrwl/react": {
       "application": {
         "style": "scss",
+        "unitTestRunner": "jest",
         "linter": "eslint",
         "babel": true,
         "strict": true,
@@ -31,8 +32,9 @@
         "style": "scss"
       },
       "library": {
-        "linter": "eslint",
+        "style": "scss",
         "unitTestRunner": "jest",
+        "linter": "eslint",
         "strict": true,
         "standaloneConfig": true,
         "buildable": true,
