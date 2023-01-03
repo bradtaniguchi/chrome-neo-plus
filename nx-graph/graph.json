@@ -1,6 +1,219 @@
 {
   "graph": {
     "nodes": {
+      "chrome-extension": {
+        "name": "chrome-extension",
+        "type": "app",
+        "data": {
+          "root": "apps/chrome-extension",
+          "name": "chrome-extension",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/chrome-extension/src",
+          "projectType": "application",
+          "targets": {
+            "build": {
+              "executor": "@nrwl/webpack:webpack",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "defaultConfiguration": "production",
+              "options": {
+                "compiler": "babel",
+                "outputPath": "dist/apps/chrome-extension",
+                "index": "apps/chrome-extension/src/index.html",
+                "baseHref": "/",
+                "main": "apps/chrome-extension/src/main.tsx",
+                "polyfills": "apps/chrome-extension/src/polyfills.ts",
+                "tsConfig": "apps/chrome-extension/tsconfig.app.json",
+                "assets": [
+                  "apps/chrome-extension/src/favicon.ico",
+                  "apps/chrome-extension/src/assets"
+                ],
+                "styles": [
+                  "apps/chrome-extension/src/styles.scss"
+                ],
+                "scripts": [],
+                "webpackConfig": "@nrwl/react/plugins/webpack"
+              },
+              "configurations": {
+                "development": {
+                  "extractLicenses": false,
+                  "optimization": false,
+                  "sourceMap": true,
+                  "vendorChunk": true
+                },
+                "production": {
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/chrome-extension/src/environments/environment.ts",
+                      "with": "apps/chrome-extension/src/environments/environment.prod.ts"
+                    }
+                  ],
+                  "optimization": true,
+                  "outputHashing": "all",
+                  "sourceMap": false,
+                  "namedChunks": false,
+                  "extractLicenses": true,
+                  "vendorChunk": false
+                }
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "serve": {
+              "executor": "@nrwl/webpack:dev-server",
+              "defaultConfiguration": "development",
+              "options": {
+                "buildTarget": "chrome-extension:build",
+                "hmr": true
+              },
+              "configurations": {
+                "development": {
+                  "buildTarget": "chrome-extension:build:development"
+                },
+                "production": {
+                  "buildTarget": "chrome-extension:build:production",
+                  "hmr": false
+                }
+              }
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "apps/chrome-extension/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "apps/chrome-extension/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/chrome-extension/.babelrc",
+              "hash": "61641ec8ac3659e204441c80bb06defe323e3110"
+            },
+            {
+              "file": "apps/chrome-extension/.browserslistrc",
+              "hash": "f1d12df4faa25ab7f0f03196105e957395f609af"
+            },
+            {
+              "file": "apps/chrome-extension/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "apps/chrome-extension/jest.config.ts",
+              "hash": "3cdfa7458c33dd575690b0944f8f8350744de5d2"
+            },
+            {
+              "file": "apps/chrome-extension/project.json",
+              "hash": "63ca173d45e31ed65f834d6f60718feddd155ed4"
+            },
+            {
+              "file": "apps/chrome-extension/src/app/app.module.scss",
+              "hash": "7b88fbabf87b258bc8a0cc5b78800551134ca195"
+            },
+            {
+              "file": "apps/chrome-extension/src/app/app.spec.tsx",
+              "hash": "be228de0897370344b16fc34da274db8857718be",
+              "deps": [
+                "npm:@testing-library/react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/src/app/app.tsx",
+              "hash": "ec569dc3a7f546a9aec4d8246ad67607f4b802cf",
+              "deps": [
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/src/app/nx-welcome.tsx",
+              "hash": "3c1a440fef7147891180472f7f3175967cf4a8ec"
+            },
+            {
+              "file": "apps/chrome-extension/src/assets/.gitkeep",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/chrome-extension/src/environments/environment.prod.ts",
+              "hash": "c9669790be176ac85a5d8c11278875c2f52dc507"
+            },
+            {
+              "file": "apps/chrome-extension/src/environments/environment.ts",
+              "hash": "7ed83767fff25adfed19d52b2821a432f8ed18b1"
+            },
+            {
+              "file": "apps/chrome-extension/src/favicon.ico",
+              "hash": "317ebcb2336e0833a22dddf0ab287849f26fda57"
+            },
+            {
+              "file": "apps/chrome-extension/src/index.html",
+              "hash": "98393225b4b151d9d791b16d140c54ba6bef07c1"
+            },
+            {
+              "file": "apps/chrome-extension/src/main.tsx",
+              "hash": "563fabfe03cb3108ae64f0fa4de55e0ba4557b68",
+              "deps": [
+                "npm:react",
+                "npm:react-dom",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/src/polyfills.ts",
+              "hash": "2adf3d05b6fcf479dd61c74f6bda95d9edb6ac6b",
+              "deps": [
+                "npm:core-js",
+                "npm:regenerator-runtime"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/src/styles.scss",
+              "hash": "90d4ee0072ce3fc41812f8af910219f9eea3c3de"
+            },
+            {
+              "file": "apps/chrome-extension/tsconfig.app.json",
+              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+            },
+            {
+              "file": "apps/chrome-extension/tsconfig.json",
+              "hash": "9657042e495d5b69d338455a91b5fcaae1bddff3"
+            },
+            {
+              "file": "apps/chrome-extension/tsconfig.spec.json",
+              "hash": "b8a950754b6152f8b12188ac8bd1d289ccbf57ce"
+            }
+          ]
+        }
+      },
       "internal-client": {
         "name": "internal-client",
         "type": "app",
@@ -984,9 +1197,406 @@
             }
           ]
         }
+      },
+      "neows": {
+        "name": "neows",
+        "type": "lib",
+        "data": {
+          "root": "libs/neows",
+          "name": "neows",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/neows/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/neows",
+                "tsConfig": "libs/neows/tsconfig.lib.json",
+                "project": "libs/neows/package.json",
+                "entryFile": "libs/neows/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/neows/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/neows/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/neows/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            }
+          },
+          "files": [
+            {
+              "file": "libs/neows/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/neows/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/neows/jest.config.ts",
+              "hash": "023c83d7c191b6431e11bb95f8467951021f515a"
+            },
+            {
+              "file": "libs/neows/package.json",
+              "hash": "38f8b071ba70af8dc96d756d88797afda509f112"
+            },
+            {
+              "file": "libs/neows/project.json",
+              "hash": "9deb130f230d4832b1a844319df0b56dcbbc847b"
+            },
+            {
+              "file": "libs/neows/README.md",
+              "hash": "4a783fe220e3196f239872df7352e4aab148591c"
+            },
+            {
+              "file": "libs/neows/src/index.ts",
+              "hash": "54f34b17d1ea971a0bfb84916d8b43f96fa48216"
+            },
+            {
+              "file": "libs/neows/src/lib/neows.module.scss",
+              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+            },
+            {
+              "file": "libs/neows/src/lib/neows.spec.tsx",
+              "hash": "443fca6aaca29beec1a8195c144ada166be8447d",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/neows.tsx",
+              "hash": "858202c50cde198de8a7169633a862d4cd6b8809"
+            },
+            {
+              "file": "libs/neows/tsconfig.json",
+              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+            },
+            {
+              "file": "libs/neows/tsconfig.lib.json",
+              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+            },
+            {
+              "file": "libs/neows/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
+      "apod": {
+        "name": "apod",
+        "type": "lib",
+        "data": {
+          "root": "libs/apod",
+          "name": "apod",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/apod/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/apod",
+                "tsConfig": "libs/apod/tsconfig.lib.json",
+                "project": "libs/apod/package.json",
+                "entryFile": "libs/apod/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/apod/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/apod/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/apod/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            }
+          },
+          "files": [
+            {
+              "file": "libs/apod/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/apod/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/apod/jest.config.ts",
+              "hash": "2c041b0cc2dacf799654fc11f503dccb9c03c94c"
+            },
+            {
+              "file": "libs/apod/package.json",
+              "hash": "5dc173b7f4e38489ff2c972680ff79fc6701baa5"
+            },
+            {
+              "file": "libs/apod/project.json",
+              "hash": "8ed07291abacf686d1dea3e64d3a467619a92f7c"
+            },
+            {
+              "file": "libs/apod/README.md",
+              "hash": "36135f613ee3ef7b72c3feb3e496e649d20173a4"
+            },
+            {
+              "file": "libs/apod/src/index.ts",
+              "hash": "6af5b864438d6d314a706b0d7c5d1c0d4498cce0"
+            },
+            {
+              "file": "libs/apod/src/lib/apod.module.scss",
+              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+            },
+            {
+              "file": "libs/apod/src/lib/apod.spec.tsx",
+              "hash": "837b9115be1465010ef03e537d8d5e23870b269e",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/apod.tsx",
+              "hash": "f9cdd70a9d59928c14da8df0a8323ce19b4c8406"
+            },
+            {
+              "file": "libs/apod/tsconfig.json",
+              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+            },
+            {
+              "file": "libs/apod/tsconfig.lib.json",
+              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+            },
+            {
+              "file": "libs/apod/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
+      "nivl": {
+        "name": "nivl",
+        "type": "lib",
+        "data": {
+          "root": "libs/nivl",
+          "name": "nivl",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/nivl/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/nivl",
+                "tsConfig": "libs/nivl/tsconfig.lib.json",
+                "project": "libs/nivl/package.json",
+                "entryFile": "libs/nivl/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/nivl/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/nivl/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/nivl/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            }
+          },
+          "files": [
+            {
+              "file": "libs/nivl/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/nivl/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/nivl/jest.config.ts",
+              "hash": "9d1abbe666799fab6d712a17d75f5a877296b962"
+            },
+            {
+              "file": "libs/nivl/package.json",
+              "hash": "23bdaac7cf4f4fcbccad4cff06055a3c1b1be20a"
+            },
+            {
+              "file": "libs/nivl/project.json",
+              "hash": "820622bae335521fe0601b076ef11f718bb90615"
+            },
+            {
+              "file": "libs/nivl/README.md",
+              "hash": "883c0522a23592a35b258d3a72b59a93cd23d25f"
+            },
+            {
+              "file": "libs/nivl/src/index.ts",
+              "hash": "72f4c3468097c91331c9621346d5a5e930dad75d"
+            },
+            {
+              "file": "libs/nivl/src/lib/nivl.module.scss",
+              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+            },
+            {
+              "file": "libs/nivl/src/lib/nivl.spec.tsx",
+              "hash": "7e79205950f27ee669e6995ecfd1a6544b0c15a5",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/nivl/src/lib/nivl.tsx",
+              "hash": "0e67498dcedd9371f2f60e88c9a4f8c5c47ce979"
+            },
+            {
+              "file": "libs/nivl/tsconfig.json",
+              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+            },
+            {
+              "file": "libs/nivl/tsconfig.lib.json",
+              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+            },
+            {
+              "file": "libs/nivl/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
       }
     },
     "dependencies": {
+      "chrome-extension": [],
       "internal-client": [
         {
           "source": "internal-client",
@@ -1007,7 +1617,10 @@
         }
       ],
       "storybook": [],
-      "common": []
+      "common": [],
+      "neows": [],
+      "apod": [],
+      "nivl": []
     }
   },
   "affectedProjects": [],
