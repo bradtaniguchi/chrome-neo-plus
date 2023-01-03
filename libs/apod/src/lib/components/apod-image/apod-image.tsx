@@ -1,11 +1,6 @@
-import { ApodResponse } from '@chrome-neo-plus/apod';
-// import Box from '@mui/material/Box';
-// import { SxProps, Theme } from '@mui/material/styles';
+import { ApodResponse } from '../../models/apod-response';
 
-/* eslint-disable-next-line */
-export interface ApodImageProps extends Partial<ApodResponse> {
-  sx: any;
-}
+export type ApodImageProps = Partial<ApodResponse>;
 
 /**
  * Component that renders the Astronomy Picture of the Day.
@@ -13,7 +8,7 @@ export interface ApodImageProps extends Partial<ApodResponse> {
  * Browse the list of images here:
  * https://www.nasa.gov/multimedia/imagegallery/iotd.html
  *
- * @see ApodImageProps
+ * @param props component props
  */
 export function ApodImage(props: ApodImageProps) {
   return (

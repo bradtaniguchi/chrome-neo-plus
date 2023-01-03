@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react';
+import { ApodResponse } from '../../models/apod-response';
 import { ApodImage, ApodImageProps } from './apod-image';
-import { ApodResponse } from '@chrome-neo-plus/apod';
 
 export default {
   component: ApodImage,
@@ -38,9 +38,6 @@ WithoutImage.args = {};
 export const WithImage = Template.bind({});
 WithImage.args = {
   // default props
-  sx: {
-    maxWidth: '300px',
-  },
   ...EXAMPLE_IMAGE,
 };
 

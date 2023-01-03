@@ -1,4 +1,3 @@
-import { GetWithDateParams } from '@chrome-neo-plus/apod';
 // import CircularProgress from '@mui/material/CircularProgress';
 // import Link from '@mui/material/Link';
 // import Typography from '@mui/material/Typography';
@@ -7,6 +6,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import ApodImage from '../../components/apod-image/apod-image';
 import { useApod } from '../../hooks';
+import { GetWithDateParams } from '../../models/apod-request-params';
 
 export interface ApodPageProps {
   /**
@@ -19,6 +19,7 @@ export interface ApodPageProps {
 }
 
 // TODO: temp
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Box = (props: any) => <div>{props.children}</div>;
 
 /**
@@ -26,8 +27,7 @@ const Box = (props: any) => <div>{props.children}</div>;
  *
  * Works with the `ApodListPage` to display a given APOD.
  *
- * @page
- * @unstable
+ * @param props ApodPageProps
  */
 export function ApodPage(props: ApodPageProps) {
   const { date: paramDate } = useParams<Pick<GetWithDateParams, 'date'>>();
@@ -93,14 +93,12 @@ export function ApodPage(props: ApodPageProps) {
           justifyContent: 'center',
         }}
       >
-        <ApodImage
-          {...apodResponse}
-          sx={{
+        {/* style={{
             height: '100%',
             width: '100%',
             maxWidth: '300px',
-          }}
-        />
+          }} */}
+        <ApodImage {...apodResponse} />
       </Box>
       <div>
         <h3>{apodResponse.title}</h3>

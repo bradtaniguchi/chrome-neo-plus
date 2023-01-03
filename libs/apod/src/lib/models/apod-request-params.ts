@@ -24,7 +24,7 @@ export type GetWithDateParams = {
 /**
  * Type-guard for apod-request-param GetWithDate.
  *
- * @param params
+ * @param params The params to check
  * @see GetWithDateParams
  */
 export const isGetWithDate = (params: unknown): params is GetWithDateParams =>
@@ -71,7 +71,7 @@ export type GetWithCountParams = {
 /**
  * Type-guard for apod-request-param GetWithCount.
  *
- * @param params
+ * @param params The params to check
  */
 export const isGetWithCount = (params: unknown): params is GetWithCountParams =>
   !!params &&

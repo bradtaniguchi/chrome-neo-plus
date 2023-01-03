@@ -1,5 +1,12 @@
 import { ApodResponse } from '../models/apod-response';
-import { GetWithCountParams, GetWithDateParams, GetWithStartAndEndDatesParams, isGetWithCount, isGetWithDate, isGetWithStartAndEndDates } from '../models/apod-request-params';
+import {
+  GetWithCountParams,
+  GetWithDateParams,
+  GetWithStartAndEndDatesParams,
+  isGetWithCount,
+  isGetWithDate,
+  isGetWithStartAndEndDates,
+} from '../models/apod-request-params';
 import { useEffect, useState } from 'react';
 import {
   getApodForDate,
@@ -23,8 +30,7 @@ export type UseApodBaseRes = {
  * Currently directly requests the api_key, but this will be removed
  * in favor of an API call in the future.
  *
- * @param params
- * @unstable
+ * @param params The params to use for the request
  */
 export function useApod(params: GetWithDateParams): UseApodBaseRes & {
   apodResponse?: ApodResponse;
@@ -37,9 +43,10 @@ export function useApod(
 ): UseApodBaseRes & {
   apodResponse?: ApodResponse[];
 };
+
 /**
  *
- * @param params
+ * @param params The params to use for the request
  */
 export function useApod(params: object): unknown {
   const [loading, setLoading] = useState<boolean>(false);
