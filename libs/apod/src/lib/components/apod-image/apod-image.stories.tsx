@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react';
+import { Card } from 'flowbite-react';
 import { ApodResponse } from '../../models/apod-response';
 import { ApodImage, ApodImageProps } from './apod-image';
 
@@ -7,9 +8,9 @@ export default {
   title: 'components/ApodImage',
   decorators: [
     (Story) => (
-      <div className="my-2 max-w-xs overflow-hidden rounded shadow-lg">
+      <Card className="m-2">
         <Story />
-      </div>
+      </Card>
     ),
   ],
 } as Meta;
