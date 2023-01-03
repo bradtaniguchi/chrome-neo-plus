@@ -1583,6 +1583,10 @@
               "hash": "5dc173b7f4e38489ff2c972680ff79fc6701baa5"
             },
             {
+              "file": "libs/apod/postcss.config.js",
+              "hash": "2d6ed243d22b23395afa1833e840071c1ed4c935"
+            },
+            {
               "file": "libs/apod/project.json",
               "hash": "f35306404b75849ac6b434abc1bd19114a09656e"
             },
@@ -1596,9 +1600,10 @@
             },
             {
               "file": "libs/apod/src/lib/components/apod-image/apod-image.stories.tsx",
-              "hash": "413b33c43ac488cac7204066f7f2a1ae25114852",
+              "hash": "41ec72824f3c269a6adafb3f3c96e8a48326d83f",
               "deps": [
-                "npm:@storybook/react"
+                "npm:@storybook/react",
+                "npm:flowbite-react"
               ]
             },
             {
@@ -1690,6 +1695,15 @@
             {
               "file": "libs/apod/src/lib/utils/index.ts",
               "hash": "ce3e89183cc72e932ce5981ee84066c6d1ee3079"
+            },
+            {
+              "file": "libs/apod/tailwind.config.js",
+              "hash": "16c52d11fb862c82fee9c05c2e9c5baf97f007cb",
+              "deps": [
+                "npm:@nrwl/react",
+                "npm:flowbite",
+                "npm:@tailwindcss/typography"
+              ]
             },
             {
               "file": "libs/apod/tsconfig.json",
