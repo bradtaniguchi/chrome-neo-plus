@@ -48,3 +48,6 @@ Thumbs.db
 
 # Files generated from Lighthouse in WSL
 C:*
+
+# build config, used to load/use the api key.
+build-config.ts
