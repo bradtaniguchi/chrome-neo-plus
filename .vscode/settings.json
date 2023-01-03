@@ -9,6 +9,7 @@
     "commitlint",
     "cssmodule",
     "dbaeumer",
+    "diamteter",
     "eamodio",
     "esbenp",
     "eslintcache",
@@ -31,6 +32,7 @@
     "svgr",
     "tailwindcss",
     "testid",
+    "tisserand",
     "typedoc",
     "zhuangtongfa"
   ],
