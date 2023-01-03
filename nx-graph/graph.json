@@ -11,8 +11,8 @@
           "sourceRoot": "apps/chrome-extension/src",
           "projectType": "application",
           "targets": {
-            "build": {
-              "executor": "@nrwl/webpack:webpack",
+            "_build": {
+              "executor": "@nrwl/web:webpack",
               "outputs": [
                 "{options.outputPath}"
               ],
@@ -20,7 +20,7 @@
               "options": {
                 "compiler": "babel",
                 "outputPath": "dist/apps/chrome-extension",
-                "index": "apps/chrome-extension/src/index.html",
+                "index": "apps/chrome-extension/src/popup.html",
                 "baseHref": "/",
                 "main": "apps/chrome-extension/src/main.tsx",
                 "polyfills": "apps/chrome-extension/src/polyfills.ts",
@@ -56,6 +56,12 @@
                   "extractLicenses": true,
                   "vendorChunk": false
                 }
+              }
+            },
+            "build": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "node apps/chrome-extension/scripts/build.js"
               },
               "dependsOn": [
                 "^build"
@@ -66,7 +72,13 @@
               ]
             },
             "serve": {
-              "executor": "@nrwl/webpack:dev-server",
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "node apps/chrome-extension/scripts/serve.js"
+              }
+            },
+            "_serve": {
+              "executor": "@nrwl/web:dev-server",
               "defaultConfiguration": "development",
               "options": {
                 "buildTarget": "chrome-extension:build",
@@ -111,6 +123,12 @@
                 "^production",
                 "{workspaceRoot}/jest.preset.js"
               ]
+            },
+            "typedoc": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx typedoc --options apps/chrome-extension/typedoc.js"
+              }
             }
           },
           "tags": [],
@@ -133,34 +151,61 @@
             },
             {
               "file": "apps/chrome-extension/project.json",
-              "hash": "63ca173d45e31ed65f834d6f60718feddd155ed4"
+              "hash": "74518cc1cf67354a479228ea23c1212ddf81d63c"
+            },
+            {
+              "file": "apps/chrome-extension/README.md",
+              "hash": "76c572d01a2926a22f3535fb2c0f0a2343a77b7e"
+            },
+            {
+              "file": "apps/chrome-extension/scripts/.gitkeep",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/chrome-extension/scripts/build.js",
+              "hash": "a1164ad43d411be701e91d6e0b0220581448eb54",
+              "deps": [
+                "npm:util",
+                "npm:fs-extra"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/scripts/serve.js",
+              "hash": "1e95882c628aa8482de52b028754f8a1b1888693",
+              "deps": [
+                "npm:fs-extra"
+              ]
             },
             {
               "file": "apps/chrome-extension/src/app/app.module.scss",
               "hash": "7b88fbabf87b258bc8a0cc5b78800551134ca195"
             },
             {
-              "file": "apps/chrome-extension/src/app/app.spec.tsx",
-              "hash": "be228de0897370344b16fc34da274db8857718be",
-              "deps": [
-                "npm:@testing-library/react",
-                "npm:react-router-dom"
-              ]
-            },
-            {
               "file": "apps/chrome-extension/src/app/app.tsx",
-              "hash": "ec569dc3a7f546a9aec4d8246ad67607f4b802cf",
+              "hash": "f85b29aa4994fa677c88460aea6d7f4e1a147301",
               "deps": [
                 "npm:react-router-dom"
               ]
-            },
-            {
-              "file": "apps/chrome-extension/src/app/nx-welcome.tsx",
-              "hash": "3c1a440fef7147891180472f7f3175967cf4a8ec"
             },
             {
               "file": "apps/chrome-extension/src/assets/.gitkeep",
               "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/chrome-extension/src/assets/images/icon128.png",
+              "hash": "916a7adf688ebfb4e6d1ac782e42e2c71aa9b7b5"
+            },
+            {
+              "file": "apps/chrome-extension/src/assets/images/icon16.png",
+              "hash": "361b8e28faf40ea9629477db1ae0772c0c2d7c48"
+            },
+            {
+              "file": "apps/chrome-extension/src/assets/images/icon32.png",
+              "hash": "ad65ca62dafe00299953273d9bdcf9db3e4acafc"
+            },
+            {
+              "file": "apps/chrome-extension/src/assets/images/icon48.png",
+              "hash": "87463ffd6eef72f8d8fff47a99856e43c2cea901"
             },
             {
               "file": "apps/chrome-extension/src/environments/environment.prod.ts",
@@ -175,10 +220,6 @@
               "hash": "317ebcb2336e0833a22dddf0ab287849f26fda57"
             },
             {
-              "file": "apps/chrome-extension/src/index.html",
-              "hash": "98393225b4b151d9d791b16d140c54ba6bef07c1"
-            },
-            {
               "file": "apps/chrome-extension/src/main.tsx",
               "hash": "563fabfe03cb3108ae64f0fa4de55e0ba4557b68",
               "deps": [
@@ -188,12 +229,20 @@
               ]
             },
             {
+              "file": "apps/chrome-extension/src/manifest.json",
+              "hash": "ae1d6bc9075e61e50bf49b9f71ff01726c99cbe6"
+            },
+            {
               "file": "apps/chrome-extension/src/polyfills.ts",
               "hash": "2adf3d05b6fcf479dd61c74f6bda95d9edb6ac6b",
               "deps": [
                 "npm:core-js",
                 "npm:regenerator-runtime"
               ]
+            },
+            {
+              "file": "apps/chrome-extension/src/popup.html",
+              "hash": "4e9396df797d464c7ab8736797d6ec52af4ff0a3"
             },
             {
               "file": "apps/chrome-extension/src/styles.scss",
@@ -210,6 +259,10 @@
             {
               "file": "apps/chrome-extension/tsconfig.spec.json",
               "hash": "b8a950754b6152f8b12188ac8bd1d289ccbf57ce"
+            },
+            {
+              "file": "apps/chrome-extension/typedoc.js",
+              "hash": "27a8762d07bd766d5b042ca18aeda95bbe02ceee"
             }
           ]
         }
@@ -359,12 +412,26 @@
               "hash": "3b2917437a329a616ab9794f052d42499acfb142"
             },
             {
+              "file": "apps/internal-client/components/dashboard-page/dashboard-page-config.stories.tsx",
+              "hash": "a90d0ddbf66d87067c8f891399f88207d19cf9a5",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/dashboard-page/dashboard-page-config.tsx",
               "hash": "ca34dc589035ef6845362c2a45e05e31bfe7528c",
               "deps": [
                 "common-react",
                 "npm:flowbite-react",
                 "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/dashboard-page/dashboard-page-links.stories.tsx",
+              "hash": "a872e15cf97854f5faa3b7cc245ff20be19d9a0a",
+              "deps": [
+                "npm:@storybook/react"
               ]
             },
             {
@@ -376,12 +443,26 @@
               ]
             },
             {
+              "file": "apps/internal-client/components/dashboard-page/dashboard-page-projects.stories.tsx",
+              "hash": "c1bcb1cc243099c622d93affde8998f303b16ca3",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
               "file": "apps/internal-client/components/dashboard-page/dashboard-page-projects.tsx",
               "hash": "2c070ba30ef4ad5adce6f042dd189a1f70ec0efb",
               "deps": [
                 "npm:flowbite-react",
                 "npm:next",
                 "npm:react"
+              ]
+            },
+            {
+              "file": "apps/internal-client/components/dashboard-page/dashboard-page.stories.tsx",
+              "hash": "8af83e8f07866551556815f907aa426356a8e0e1",
+              "deps": [
+                "npm:@storybook/react"
               ]
             },
             {
@@ -1298,22 +1379,43 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "54f34b17d1ea971a0bfb84916d8b43f96fa48216"
+              "hash": "568a89cea132b05294f045ebec663db8501fc4fe"
             },
             {
-              "file": "libs/neows/src/lib/neows.module.scss",
-              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+              "file": "libs/neows/src/lib/models/feed-request.ts",
+              "hash": "74cf2d16338023ff42ef40dc1f39a1f465337b6e"
             },
             {
-              "file": "libs/neows/src/lib/neows.spec.tsx",
-              "hash": "443fca6aaca29beec1a8195c144ada166be8447d",
-              "deps": [
-                "npm:@testing-library/react"
-              ]
+              "file": "libs/neows/src/lib/models/feed-response.ts",
+              "hash": "aa686c26f2c3a0e24448c83e8017f2975db8b8e0"
             },
             {
-              "file": "libs/neows/src/lib/neows.tsx",
-              "hash": "858202c50cde198de8a7169633a862d4cd6b8809"
+              "file": "libs/neows/src/lib/models/index.ts",
+              "hash": "8975574edf44027a870e1abe6b826e16d617209f"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-request.ts",
+              "hash": "9cfb8fe34f6e83e0f0693d21255a4da4f1d0dfc4"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-response/index.ts",
+              "hash": "6d3526684ed429a991a10cd5d3722c04968cc349"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-response/lookup-close-approach-data.ts",
+              "hash": "71896ef0e978f65ea64a5e9e1c5c540b7e4ccdca"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-response/lookup-estimated-diameter.ts",
+              "hash": "d71be30e69c0b536712d2373cabe8fbce1c77d4b"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-response/lookup-orbital-data.ts",
+              "hash": "47130c15bdc322870b77a04a9c4ccbd56c0b52e0"
+            },
+            {
+              "file": "libs/neows/src/lib/models/lookup-response/lookup-response.ts",
+              "hash": "4b971d79791b53edd7ed8cea1fd3f179651862fb"
             },
             {
               "file": "libs/neows/tsconfig.json",
@@ -1401,6 +1503,50 @@
                 "^production",
                 "{workspaceRoot}/jest.preset.js"
               ]
+            },
+            "storybook": {
+              "executor": "@nrwl/storybook:storybook",
+              "options": {
+                "uiFramework": "@storybook/react",
+                "port": 4400,
+                "config": {
+                  "configFolder": "libs/apod/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              }
+            },
+            "build-storybook": {
+              "executor": "@nrwl/storybook:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "uiFramework": "@storybook/react",
+                "outputPath": "dist/storybook/apod",
+                "config": {
+                  "configFolder": "libs/apod/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/.storybook/**/*"
+              ]
+            },
+            "typedoc": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx typedoc --options libs/apod/typedoc.json"
+              }
             }
           },
           "files": [
@@ -1413,6 +1559,22 @@
               "hash": "734ddaceea447738208c9519158ad6b3062f3929"
             },
             {
+              "file": "libs/apod/.storybook/main.js",
+              "hash": "b17a4cd6ebe5e3b9bf8f3b47328cfa969bc0fef5"
+            },
+            {
+              "file": "libs/apod/.storybook/preview.js",
+              "hash": "8c8889d1a414d3f6aac36db631cb19fab5756751"
+            },
+            {
+              "file": "libs/apod/.storybook/tailwind-imports.css",
+              "hash": "b5c61c956711f981a41e95f7fcf0038436cfbb22"
+            },
+            {
+              "file": "libs/apod/.storybook/tsconfig.json",
+              "hash": "601ae8ff8badf6d62653645f3a6f33a425536efa"
+            },
+            {
               "file": "libs/apod/jest.config.ts",
               "hash": "2c041b0cc2dacf799654fc11f503dccb9c03c94c"
             },
@@ -1422,7 +1584,7 @@
             },
             {
               "file": "libs/apod/project.json",
-              "hash": "8ed07291abacf686d1dea3e64d3a467619a92f7c"
+              "hash": "f35306404b75849ac6b434abc1bd19114a09656e"
             },
             {
               "file": "libs/apod/README.md",
@@ -1430,34 +1592,120 @@
             },
             {
               "file": "libs/apod/src/index.ts",
-              "hash": "6af5b864438d6d314a706b0d7c5d1c0d4498cce0"
+              "hash": "b98274a223efc0795e6751659f0f0dabf0fa7061"
             },
             {
-              "file": "libs/apod/src/lib/apod.module.scss",
+              "file": "libs/apod/src/lib/components/apod-image/apod-image.stories.tsx",
+              "hash": "11101b24710e9efd7bc5f27c62554ae4bd54f966",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/components/apod-image/apod-image.tsx",
+              "hash": "cf2d22e42074a4475f2cafdadbf52e5d2271ac37"
+            },
+            {
+              "file": "libs/apod/src/lib/components/index.ts",
+              "hash": "09646fb65f37470c43e6c62496317401d3764e01"
+            },
+            {
+              "file": "libs/apod/src/lib/constants/base-url.ts",
+              "hash": "2c8ee10936ee8f5dad76f125b0f755b88811d430"
+            },
+            {
+              "file": "libs/apod/src/lib/hooks/index.ts",
+              "hash": "6c20f1d8e8def4d79efd3832f3da489f615cac6b"
+            },
+            {
+              "file": "libs/apod/src/lib/hooks/use-apod.ts",
+              "hash": "f715ef64fcb6cf5ec1b628a1ed5388356785f816",
+              "deps": [
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/models/apod-request-params.ts",
+              "hash": "e0e33e13484f896e63b6e95b933bb2a30b45ca1e"
+            },
+            {
+              "file": "libs/apod/src/lib/models/apod-response.ts",
+              "hash": "65f7600d7e83a8ebc15e52239f1483e86e10777a"
+            },
+            {
+              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.module.scss",
               "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
             },
             {
-              "file": "libs/apod/src/lib/apod.spec.tsx",
-              "hash": "837b9115be1465010ef03e537d8d5e23870b269e",
+              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.spec.tsx",
+              "hash": "433e5b7e98ccdc197767294fefa544a86a02ff07",
               "deps": [
                 "npm:@testing-library/react"
               ]
             },
             {
-              "file": "libs/apod/src/lib/apod.tsx",
-              "hash": "f9cdd70a9d59928c14da8df0a8323ce19b4c8406"
+              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.stories.tsx",
+              "hash": "d5608eb675fc4ef10d5b6860675704090bfc90b9",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.tsx",
+              "hash": "c4e3a8c92012096a1c8d3bc65aece45b819d31ff"
+            },
+            {
+              "file": "libs/apod/src/lib/pages/apod-page/apod-page.stories.tsx",
+              "hash": "be669c4b3c7cd846b367235bdd25c3f25390a934",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:storybook-addon-react-router-v6"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/pages/apod-page/apod-page.tsx",
+              "hash": "f4d177d77d3b941257e4c787ccbc92461cc7c754",
+              "deps": [
+                "npm:luxon",
+                "npm:react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/pages/index.ts",
+              "hash": "68154cc1626508007ffc44402cbec1029a1436d0"
+            },
+            {
+              "file": "libs/apod/src/lib/utils/get-apod-for-date.ts",
+              "hash": "e47ab2e9f73c53899032f5ccc007e177c4d5bf2e"
+            },
+            {
+              "file": "libs/apod/src/lib/utils/get-with-count.ts",
+              "hash": "8c895ed9447d2b2a2b3b87730dc7fa20162f4473"
+            },
+            {
+              "file": "libs/apod/src/lib/utils/get-with-start-and-end-dates.ts",
+              "hash": "a014e18e63668fb767fdcacbcb3f247f527dc8dd"
+            },
+            {
+              "file": "libs/apod/src/lib/utils/index.ts",
+              "hash": "ce3e89183cc72e932ce5981ee84066c6d1ee3079"
             },
             {
               "file": "libs/apod/tsconfig.json",
-              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+              "hash": "9fff9cc2db0cca15bc96bf1cde3e27146d3922f2"
             },
             {
               "file": "libs/apod/tsconfig.lib.json",
-              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+              "hash": "2e54c51309bc084f59acb6b55604a4803b3fb238"
             },
             {
               "file": "libs/apod/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/apod/typedoc.json",
+              "hash": "2f4b8dd78c2b286d4d1aabbd9713c35f9ac91e60"
             }
           ]
         }
