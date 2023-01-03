@@ -7,7 +7,8 @@ const Story: ComponentMeta<typeof DashboardPageLinks> = {
 };
 export default Story;
 
-const Template: ComponentStory<typeof DashboardPageLinks> = (args) => (
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Template: ComponentStory<typeof DashboardPageLinks> = (args: any) => (
   <DashboardPageLinks {...args} />
 );
 
