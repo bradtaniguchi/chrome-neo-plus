@@ -192,3 +192,73 @@ jobs:
         with:
           branch: gh-pages
           folder: dist
+
+  common:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'common') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run common:lint
+      - run: npx nx run common:test
+
+  common-react:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'common-react') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run common-react:lint
+      - run: npx nx run common-react:test
+      - run: npx nx run common-react:build # TODO: verify
+
+  apod:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'apod') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run apod:lint
+      - run: npx nx run apod:test
+
+  neows:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'neows') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run neows:lint
+      - run: npx nx run neows:test
+
+  nivl:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'nivl') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run nivl:lint
+      - run: npx nx run nivl:test
+
+  chrome-extension:
+    timeout-minutes: 5
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'chrome-extension') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run chrome-extension:lint
+      - run: npx nx run chrome-extension:test
+      - run: npx nx run chrome-extension:build
+      # **Note** Deployment will be another "release" pipeline.
