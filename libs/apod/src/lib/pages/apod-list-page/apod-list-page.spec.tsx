@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Apod from './apod';
+import ApodListPage from './apod-list-page';
 
-describe('Apod', () => {
+describe('ApodListPage', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Apod />);
+    const { baseElement } = render(<ApodListPage />);
     expect(baseElement).toBeTruthy();
   });
 });
