@@ -1,6 +1,6 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
-const { copy, rename } = require('fs-extra');
+const { copy } = require('fs-extra');
 
 /**
  * This helper script is used to build the chrome-extension for

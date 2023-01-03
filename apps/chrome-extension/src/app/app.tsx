@@ -3,6 +3,9 @@ import styles from './app.module.scss';
 
 import { Route, Routes, Link } from 'react-router-dom';
 
+/**
+ * Main app export
+ */
 export function App() {
   return (
     <>
