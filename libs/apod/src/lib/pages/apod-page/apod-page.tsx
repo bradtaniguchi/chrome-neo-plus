@@ -1,8 +1,7 @@
-import { GetWithDateParams } from '@chrome-neo-plus/apod-common';
-import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
+import { GetWithDateParams } from '@chrome-neo-plus/apod';
+// import CircularProgress from '@mui/material/CircularProgress';
+// import Link from '@mui/material/Link';
+// import Typography from '@mui/material/Typography';
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,6 +17,10 @@ export interface ApodPageProps {
    */
   date?: string;
 }
+
+// TODO: temp
+const Box = (props: any) => <div>{props.children}</div>;
+
 /**
  * Page that displays the APOD image of the day, based on the `date` route param.
  *
@@ -57,15 +60,16 @@ export function ApodPage(props: ApodPageProps) {
           justifyContent: 'center',
         }}
       >
-        <Typography variant="body1">
+        <div>
           An invalid date provided "{date}", expected format: yyyy-mm-dd
-        </Typography>
+        </div>
       </Box>
     );
   if (loading)
     return (
       <Box sx={{ display: 'flex' }}>
-        <CircularProgress />
+        {/* <CircularProgress /> */}
+        loading...
       </Box>
     );
   if (error)
@@ -99,13 +103,11 @@ export function ApodPage(props: ApodPageProps) {
         />
       </Box>
       <div>
-        <Typography variant="h3">{apodResponse.title}</Typography>
-        <Typography variant="body1">{apodResponse.explanation}</Typography>
+        <h3>{apodResponse.title}</h3>
+        <p>{apodResponse.explanation}</p>
       </div>
       <div>
-        <Link href={apodResponse.hdurl} variant="body1">
-          HD Image
-        </Link>
+        <a href={apodResponse.hdurl}>HD Image</a>
       </div>
     </Box>
   );

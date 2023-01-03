@@ -1,12 +1,5 @@
-import {
-  ApodResponse,
-  GetWithCountParams,
-  GetWithDateParams,
-  GetWithStartAndEndDatesParams,
-  isGetWithCount,
-  isGetWithDate,
-  isGetWithStartAndEndDates,
-} from '@chrome-neo-plus/apod-common';
+import { ApodResponse } from '../models/apod-response';
+import { GetWithCountParams, GetWithDateParams, GetWithStartAndEndDatesParams, isGetWithCount, isGetWithDate, isGetWithStartAndEndDates } from '../models/apod-request-params';
 import { useEffect, useState } from 'react';
 import {
   getApodForDate,

@@ -1,10 +1,10 @@
-import { ApodResponse } from '@chrome-neo-plus/apod-common';
-import Box from '@mui/material/Box';
-import { SxProps, Theme } from '@mui/material/styles';
+import { ApodResponse } from '@chrome-neo-plus/apod';
+// import Box from '@mui/material/Box';
+// import { SxProps, Theme } from '@mui/material/styles';
 
 /* eslint-disable-next-line */
 export interface ApodImageProps extends Partial<ApodResponse> {
-  sx: SxProps<Theme>;
+  sx: any;
 }
 
 /**
@@ -17,9 +17,7 @@ export interface ApodImageProps extends Partial<ApodResponse> {
  */
 export function ApodImage(props: ApodImageProps) {
   return (
-    <Box
-      sx={props.sx}
-      component="img"
+    <img
       src={props.url}
       aria-label={props.explanation}
       title={props.title}
