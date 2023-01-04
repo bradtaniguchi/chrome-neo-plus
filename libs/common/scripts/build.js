@@ -1,6 +1,7 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const { writeFile, access, F_OK } = require('fs/promises');
+const { join } = require('path');
 require('dotenv').config();
 
 /**
@@ -10,7 +11,7 @@ require('dotenv').config();
   try {
     console.log('>> running custom build script for common library');
 
-    const FILE_PATH = 'src/lib/constants/build-config.ts';
+    const FILE_PATH = '../src/lib/constants/build-config.ts';
     const hasFile = await access(FILE_PATH, F_OK)
       .then(() => true)
       .catch(() => false);
@@ -24,10 +25,13 @@ require('dotenv').config();
       if (!API_KEY) {
         throw new Error('API_KEY env variable not set');
       }
-      const config = JSON.stringify({
-        API_KEY,
-      });
-      await writeFile(FILE_PATH, config, 'utf8');
+      const config = `
+export default {
+  API_KEY: "${API_KEY}"
+};
+
+`;
+      await writeFile(join(__dirname, FILE_PATH), config, 'utf8');
     }
 
     // **Note** this is the internal nx-focus "build" command
