@@ -11,7 +11,7 @@ require('dotenv').config();
     console.log('>> running custom build script for common library');
 
     const FILE_PATH = 'src/lib/constants/build-config.ts';
-    const hasFile = access(FILE_PATH, F_OK)
+    const hasFile = await access(FILE_PATH, F_OK)
       .then(() => true)
       .catch(() => false);
     if (hasFile) {
@@ -31,7 +31,7 @@ require('dotenv').config();
     }
 
     // **Note** this is the internal nx-focus "build" command
-    await exec('nx run common:i_build:production');
+    await exec('nx run common:_build:production');
 
     console.log('>> done building common library');
 
