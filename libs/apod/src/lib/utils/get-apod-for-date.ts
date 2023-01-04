@@ -1,5 +1,6 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithDateParams } from '../models/apod-request-params';
+import { API_KEY } from '@chrome-neo-plus/common';
 
 /**
  * Returns the APOD data for the given date.
@@ -9,7 +10,9 @@ import { GetWithDateParams } from '../models/apod-request-params';
 export async function getApodForDate(
   params: GetWithDateParams
 ): Promise<ApodResponse> {
-  // TODO: Make this call the API
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return Promise.resolve({}) as any;
+  const { date } = params;
+  const url = new URL('https://api.nasa.gov/planetary/apod');
+  url.searchParams.append('api_key', API_KEY);
+  url.searchParams.append('date', date);
+  return fetch(url.toString()).then((res) => res.json());
 }
