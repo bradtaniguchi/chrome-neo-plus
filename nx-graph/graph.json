@@ -1143,7 +1143,7 @@
           "sourceRoot": "libs/common/src",
           "projectType": "library",
           "targets": {
-            "build": {
+            "_build": {
               "executor": "@nrwl/js:tsc",
               "outputs": [
                 "{options.outputPath}"
@@ -1156,6 +1156,12 @@
                 "assets": [
                   "libs/common/*.md"
                 ]
+              }
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "node libs/common/scripts/build.js"
               },
               "dependsOn": [
                 "^build"
@@ -1222,15 +1228,31 @@
             },
             {
               "file": "libs/common/project.json",
-              "hash": "636354f61aa644cadde67b2d35e6671afede7207"
+              "hash": "7b6d75cbdedea59f898d4ff6b1f29b3008987f26"
             },
             {
               "file": "libs/common/README.md",
               "hash": "0246461f2c49545e5963fdbb5798244091246ac2"
             },
             {
+              "file": "libs/common/scripts/build.js",
+              "hash": "38648b31e797c097fcd7d01434851ef8d5ff054d",
+              "deps": [
+                "npm:util",
+                "npm:dotenv"
+              ]
+            },
+            {
               "file": "libs/common/src/index.ts",
-              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
+              "hash": "099cda88e624a82a89926c3f0aac324102e3eb7d"
+            },
+            {
+              "file": "libs/common/src/lib/constants/api-key.ts",
+              "hash": "51265e91aebc51b31232f3519b716afd850d3fcc"
+            },
+            {
+              "file": "libs/common/src/lib/constants/build-config-example.ts",
+              "hash": "9de3372be4a8892f331b12d98a95ad40c9106f50"
             },
             {
               "file": "libs/common/src/lib/models/document-with-id.ts",
@@ -1661,16 +1683,18 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-page/apod-page.stories.tsx",
-              "hash": "be669c4b3c7cd846b367235bdd25c3f25390a934",
+              "hash": "f9621b03bd2551a43f683932d6fcc60ef210aa0d",
               "deps": [
                 "npm:@storybook/react",
+                "npm:luxon",
                 "npm:storybook-addon-react-router-v6"
               ]
             },
             {
               "file": "libs/apod/src/lib/pages/apod-page/apod-page.tsx",
-              "hash": "7d014ce9da22dc4f568f405261c607036fe0b028",
+              "hash": "a49f0282faf934a487415e8392695a8b9bb265db",
               "deps": [
+                "npm:flowbite-react",
                 "npm:luxon",
                 "npm:react",
                 "npm:react-router-dom"
