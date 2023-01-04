@@ -4,7 +4,7 @@
   "sourceRoot": "libs/common/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "_build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -13,6 +13,12 @@
         "packageJson": "libs/common/package.json",
         "main": "libs/common/src/index.ts",
         "assets": ["libs/common/*.md"]
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node libs/common/scripts/build.js"
       }
     },
     "lint": {

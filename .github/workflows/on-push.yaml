@@ -48,6 +48,8 @@ jobs:
         with:
           targets: build
           parallel: 3
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
 
   internal-client:
     timeout-minutes: 5
