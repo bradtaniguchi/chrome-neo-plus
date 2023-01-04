@@ -4,7 +4,7 @@
   "sourceRoot": "libs/common/src",
   "projectType": "library",
   "targets": {
-    "_build": {
+    "i_build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {

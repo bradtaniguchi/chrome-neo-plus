@@ -27,7 +27,6 @@
     "clean": "npx rimraf dist node_modules/.cache/nx *.logs .eslintcache .lighthouserc.js coverage .lighthouseci",
     "prepare": "husky install",
     "build:config": "node ./tools/build-config",
-    "prep:build-config": "node ./tools/prep-build-config",
     "build:nx-graph": "npx nx graph --file=dist/nx-graph/graph.json",
     "get:affected": "node ./tools/get-affected"
   },

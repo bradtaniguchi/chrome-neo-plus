@@ -31,7 +31,7 @@ require('dotenv').config();
     }
 
     // **Note** this is the internal nx-focus "build" command
-    await exec('nx run common:_build:production');
+    await exec('nx run common:i_build:production');
 
     console.log('>> done building common library');
 
