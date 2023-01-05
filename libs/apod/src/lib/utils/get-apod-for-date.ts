@@ -10,9 +10,12 @@ import { API_KEY } from '@chrome-neo-plus/common';
 export async function getApodForDate(
   params: GetWithDateParams
 ): Promise<ApodResponse> {
-  const { date } = params;
+  const { date, thumbs } = params;
   const url = new URL('https://api.nasa.gov/planetary/apod');
   url.searchParams.append('api_key', API_KEY);
   url.searchParams.append('date', date);
+
+  if (thumbs) url.searchParams.append('thumbs', 'true');
+
   return fetch(url.toString()).then((res) => res.json());
 }
