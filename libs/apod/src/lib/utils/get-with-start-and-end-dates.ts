@@ -21,5 +21,11 @@ export async function getWithStartAndEndDates(
   if (end_date) url.searchParams.append('end_date', end_date);
   if (thumbs) url.searchParams.append('thumbs', 'true');
 
-  return fetch(url.toString()).then((res) => res.json());
+  return fetch(url.toString())
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) return data;
+      console.log({ data });
+      throw new Error(data.msg);
+    });
 }

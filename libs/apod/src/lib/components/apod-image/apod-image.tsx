@@ -1,3 +1,4 @@
+import React from 'react';
 import { ApodResponse } from '../../models/apod-response';
 
 export type ApodImageProps = Partial<ApodResponse>;
@@ -10,13 +11,16 @@ export type ApodImageProps = Partial<ApodResponse>;
  *
  * @param props component props
  */
-export function ApodImage(props: ApodImageProps) {
+export function ApodImage(
+  props: ApodImageProps & React.HTMLAttributes<HTMLImageElement>
+) {
   return (
     <img
       src={props.url}
       aria-label={props.explanation}
       title={props.title}
       alt={props.title}
+      className="h-1/5"
     />
   );
 }
