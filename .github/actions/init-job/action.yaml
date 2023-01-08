@@ -16,3 +16,7 @@ runs:
     - run: npm ci --ignore-scripts
       shell: bash
       if: steps.cache.outputs.cache-hit != 'true'
+    - run: npx nx run common:build
+      shell: bash
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
