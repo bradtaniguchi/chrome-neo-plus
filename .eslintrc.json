@@ -26,7 +26,8 @@
       "extends": ["plugin:@nrwl/nx/typescript", "plugin:jsdoc/recommended"],
       "rules": {
         "jsdoc/require-param-type": 0,
-        "jsdoc/require-returns": 0
+        "jsdoc/require-returns": 0,
+        "jsdoc/require-returns-type": 0
       }
     },
     {
