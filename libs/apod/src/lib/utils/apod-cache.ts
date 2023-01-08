@@ -6,6 +6,36 @@ import { ApodResponse } from '../models/apod-response';
  * This extends the Map instance
  */
 export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
+  constructor(
+    entries: ReadonlyArray<readonly [ApodResponse['date'], ApodResponse]> = [],
+    private STORAGE_KEY: string
+  ) {
+    super(entries);
+  }
+
+  /**
+   * Loads the cache from local storage.
+   */
+  public loadFromCache() {
+    const cached = localStorage.getItem(this.STORAGE_KEY);
+    if (cached) {
+      const apods = JSON.parse(cached) as ApodResponse[];
+      this.setMany(apods ?? []);
+    }
+  }
+
+  private cacheToStorage() {
+    localStorage.setItem(this.STORAGE_KEY, this.values().toString());
+  }
+
+  /**
+   * Clears the local-storage and internal memory storage.
+   */
+  public override clear() {
+    super.clear();
+    this.cacheToStorage();
+  }
+
   /**
    * Adds a new element with a specified key and value to the Map.
    * If an element with the same key already exists, the element will be updated.
@@ -17,7 +47,9 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
   public override set(key: ApodResponse['date'], value: ApodResponse): this {
     if (!DateTime.fromFormat(key, 'yyyy-MM-dd').isValid)
       throw new Error('Invalid date format');
-    return super.set(key, value);
+    super.set(key, value);
+    this.cacheToStorage();
+    return this;
   }
 
   /**
@@ -28,6 +60,7 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
    */
   public setMany(res: ApodResponse[]): this {
     res.forEach((r) => this.set(r.date, r));
+    this.cacheToStorage();
     return this;
   }
 
