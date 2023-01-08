@@ -106,3 +106,8 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
     };
   }
 }
+
+/**
+ * Basic singleton cache for APOD responses.
+ */
+export const apodCache = new ApodCache([], 'APOD_CACHE');
