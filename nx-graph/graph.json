@@ -1248,7 +1248,7 @@
             },
             {
               "file": "libs/common/src/lib/constants/api-key.ts",
-              "hash": "51265e91aebc51b31232f3519b716afd850d3fcc"
+              "hash": "18c722e353d0505a75666490c7798daa458751a3"
             },
             {
               "file": "libs/common/src/lib/constants/build-config-example.ts",
@@ -1630,7 +1630,10 @@
             },
             {
               "file": "libs/apod/src/lib/components/apod-image/apod-image.tsx",
-              "hash": "0bfc7ee022be801ac7b74cab5018daf288de1f51"
+              "hash": "7025e6f8932f046fb38bc5c1328fa1f102039164",
+              "deps": [
+                "npm:react"
+              ]
             },
             {
               "file": "libs/apod/src/lib/components/index.ts",
@@ -1660,10 +1663,6 @@
               "hash": "65f7600d7e83a8ebc15e52239f1483e86e10777a"
             },
             {
-              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.module.scss",
-              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
-            },
-            {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.spec.tsx",
               "hash": "433e5b7e98ccdc197767294fefa544a86a02ff07",
               "deps": [
@@ -1672,14 +1671,22 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.stories.tsx",
-              "hash": "d5608eb675fc4ef10d5b6860675704090bfc90b9",
+              "hash": "f0b757848473b61001dd4a3b069fc73f47b9156d",
               "deps": [
-                "npm:@storybook/react"
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6"
               ]
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.tsx",
-              "hash": "72b03d02316c5accb28c249f2fbaa6825ed598f7"
+              "hash": "70437e2493e62c4ab53c3c738ecd552c8b4d5f14",
+              "deps": [
+                "npm:flowbite-react",
+                "npm:luxon",
+                "npm:react",
+                "npm:react-router-dom"
+              ]
             },
             {
               "file": "libs/apod/src/lib/pages/apod-page/apod-page.stories.tsx",
@@ -1706,15 +1713,24 @@
             },
             {
               "file": "libs/apod/src/lib/utils/get-apod-for-date.ts",
-              "hash": "b84b97d06ff15eeab2acf7a57aceb3f4b274c553"
+              "hash": "1c540b848e1de4d6d0da0e78c474bfa393a736e6",
+              "deps": [
+                "common"
+              ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-count.ts",
-              "hash": "318bc8c5e45e0dbc0d3cf02d86cc43727a950ecc"
+              "hash": "c78b4df9f68799f9c3be240cdcc426334e24ad8b",
+              "deps": [
+                "common"
+              ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-start-and-end-dates.ts",
-              "hash": "9fcdb0de5597bdebf21658b6ea2b72abe9860ffb"
+              "hash": "e0efc51166dc1f84b79e5ae7f8f5a23bb534b0c0",
+              "deps": [
+                "common"
+              ]
             },
             {
               "file": "libs/apod/src/lib/utils/index.ts",
@@ -1905,7 +1921,13 @@
       "storybook": [],
       "common": [],
       "neows": [],
-      "apod": [],
+      "apod": [
+        {
+          "source": "apod",
+          "target": "common",
+          "type": "static"
+        }
+      ],
       "nivl": []
     }
   },
