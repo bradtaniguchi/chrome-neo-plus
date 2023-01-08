@@ -49,34 +49,55 @@ export function ApodPage(props: ApodPageProps) {
 
   if (!dateTime.isValid)
     return (
-      <Card className="flex flex-col items-center justify-center">
-        <div>
-          An invalid date provided "{date}", expected format: yyyy-mm-dd
-        </div>
-      </Card>
+      <div className="flex flex-col items-center justify-center">
+        <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+          <div>
+            An invalid date provided "{date}", expected format: yyyy-mm-dd
+          </div>
+        </Card>
+      </div>
     );
   if (loading)
     return (
-      <Card className="flex flex-col items-center justify-center">
-        <Spinner color="info" aria-label="Info spinner example" />
-      </Card>
+      <div className="flex flex-col items-center justify-center">
+        <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+          <Spinner color="info" aria-label="Info spinner example" />
+        </Card>
+      </div>
     );
   if (error)
     return (
-      <div title={JSON.stringify(error, null, 2)}>Oops there was an error!</div>
+      <div className="flex flex-col items-center justify-center">
+        <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+          <div title={JSON.stringify(error, null, 2)}>
+            Oops there was an error!
+          </div>
+        </Card>
+      </div>
+      // <div title={JSON.stringify(error, null, 2)}>Oops there was an error!</div>
     );
-  if (!apodResponse) return <div>No APOD found</div>;
+  if (!apodResponse)
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+          <div>No APOD found for date "{dateTime.toFormat('yyyy-MM-dd')}"</div>
+        </Card>
+      </div>
+    );
+
   return (
-    <Card className="flex flex-col items-center justify-center">
-      <ApodImage {...apodResponse} />
-      <div>
-        <h3>{apodResponse.title}</h3>
-        <p>{apodResponse.explanation}</p>
-      </div>
-      <div>
-        <a href={apodResponse.hdurl}>HD Image</a>
-      </div>
-    </Card>
+    <div className="flex flex-col items-center justify-center">
+      <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+        <ApodImage {...apodResponse} />
+        <div>
+          <h3>{apodResponse.title}</h3>
+          <p>{apodResponse.explanation}</p>
+        </div>
+        <div>
+          <a href={apodResponse.hdurl}>HD Image</a>
+        </div>
+      </Card>
+    </div>
   );
 }
 

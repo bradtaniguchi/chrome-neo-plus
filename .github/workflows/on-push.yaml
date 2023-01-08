@@ -15,6 +15,10 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      # this needs to be ran so the build-config.ts is generated
+      - run: npx nx run common:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: lint
@@ -29,6 +33,10 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      # this needs to be ran so the build-config.ts is generated
+      - run: npx nx run common:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: test
@@ -46,6 +54,10 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      # this needs to be ran so the build-config.ts is generated
+      - run: npx nx run common:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: build
@@ -61,12 +73,12 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      # directly call, as we don't care about leveraging NX here. We always
-      # run these targets
-      - run: npx nx run internal-client:lint
       - run: npx nx run common:build
         env:
           API_KEY: ${{ secrets.API_KEY }}
+      # directly call, as we don't care about leveraging NX here. We always
+      # run these targets
+      - run: npx nx run internal-client:lint
       - run: npx nx run internal-client:export
       - run: npx nx run internal-client:lighthouse
       - run: npx nx run internal-client:analyze
