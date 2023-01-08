@@ -17,5 +17,8 @@ export async function getWithCount(
 
   if (thumbs) url.searchParams.append('thumbs', 'true');
 
-  return fetch(url.toString()).then((res) => res.json());
+  return fetch(url.toString()).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error(res.statusText);
+  });
 }

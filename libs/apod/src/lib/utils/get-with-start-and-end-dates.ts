@@ -22,7 +22,10 @@ export async function getWithStartAndEndDates(
   if (thumbs) url.searchParams.append('thumbs', 'true');
 
   return fetch(url.toString())
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.ok) return res.json();
+      throw new Error(res.statusText);
+    })
     .then((data) => {
       if (Array.isArray(data)) return data;
       console.log({ data });
