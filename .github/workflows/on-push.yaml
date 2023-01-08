@@ -15,6 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: lint
@@ -29,6 +30,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: test
@@ -46,6 +48,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: build
@@ -61,6 +64,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       # directly call, as we don't care about leveraging NX here. We always
       # run these targets
       - run: npx nx run internal-client:lint
@@ -93,6 +97,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: build-storybook
@@ -117,6 +122,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - run: npx nx run common:build
         env:
           API_KEY: ${{ secrets.API_KEY }}
@@ -162,6 +168,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/init-job
+      - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
       - run: mkdir dist
       - uses: actions/download-artifact@v2
         with:

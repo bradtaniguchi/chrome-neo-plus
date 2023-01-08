@@ -8,8 +8,6 @@ runs:
       with:
         node-version: '18.12.1'
         cache: 'npm'
-    - run: echo 'NODE_OPTIONS="--openssl-legacy-provider"' >> $GITHUB_ENV
-      shell: bash
     - uses: actions/cache@v2
       id: cache
       with:
