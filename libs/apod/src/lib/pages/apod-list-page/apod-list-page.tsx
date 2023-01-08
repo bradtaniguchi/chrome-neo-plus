@@ -67,7 +67,7 @@ export function ApodListPage(props: ApodListPageProps) {
 
   if (!startDate.isValid || !endDate.isValid)
     return (
-      <Card className="flex flex-col items-center justify-center">
+      <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
         <div>
           An invalid date provided "{startDate.toString()}", expected format:
           yyyy-mm-dd
@@ -76,7 +76,7 @@ export function ApodListPage(props: ApodListPageProps) {
     );
   if (loading)
     return (
-      <Card className="flex flex-col items-center justify-center">
+      <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
         <Spinner color="info" aria-label="Info spinner example" />
       </Card>
     );
@@ -89,7 +89,7 @@ export function ApodListPage(props: ApodListPageProps) {
     <ul className="flex flex-col items-center justify-center gap-2">
       {apodResponse.map((apod) => (
         <li key={apod.date}>
-          <Card className="flex max-w-3xl flex-col items-center justify-center">
+          <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
             <ApodImage {...apod} />
             <div>
               <h3>{apod.title}</h3>

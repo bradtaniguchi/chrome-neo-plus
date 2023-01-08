@@ -7,6 +7,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-a11y',
     'storybook-dark-mode',
+    'storybook-tailwind-dark-mode',
   ],
   features: { modernInlineRender: true, buildStoriesJson: true },
   // uncomment the property below if you want to apply some webpack config globally
