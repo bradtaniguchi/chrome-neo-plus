@@ -93,13 +93,15 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      # this needs to be ran so the build-config.ts is generated
+      - run: npx nx run common:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: build-storybook
           all: true
           parallel: 3
-        env:
-          API_KEY: ${{ secrets.API_KEY }}
       - run: mv dist/storybook/storybook/** dist/storybook/
       - uses: actions/upload-artifact@v2
         with:
