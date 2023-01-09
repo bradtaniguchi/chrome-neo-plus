@@ -1146,7 +1146,8 @@
             "_build": {
               "executor": "@nrwl/js:tsc",
               "outputs": [
-                "{options.outputPath}"
+                "{options.outputPath}",
+                "{projectRoot}/src/lib/constants/build-config.ts"
               ],
               "options": {
                 "outputPath": "dist/libs/common",
@@ -1228,7 +1229,7 @@
             },
             {
               "file": "libs/common/project.json",
-              "hash": "7b6d75cbdedea59f898d4ff6b1f29b3008987f26"
+              "hash": "3a85ef364bd785ca8c6dbcb630cbbe1cd7f77dfd"
             },
             {
               "file": "libs/common/README.md",
@@ -1614,7 +1615,7 @@
             },
             {
               "file": "libs/apod/README.md",
-              "hash": "36135f613ee3ef7b72c3feb3e496e649d20173a4"
+              "hash": "bda79abc128dd4b8a363b7ae327906a7d19a865f"
             },
             {
               "file": "libs/apod/src/index.ts",
@@ -1661,13 +1662,6 @@
             {
               "file": "libs/apod/src/lib/models/apod-response.ts",
               "hash": "65f7600d7e83a8ebc15e52239f1483e86e10777a"
-            },
-            {
-              "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.spec.tsx",
-              "hash": "433e5b7e98ccdc197767294fefa544a86a02ff07",
-              "deps": [
-                "npm:@testing-library/react"
-              ]
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.stories.tsx",
