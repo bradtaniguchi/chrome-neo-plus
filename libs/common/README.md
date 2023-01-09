@@ -9,5 +9,3 @@ Run `nx test common` to execute the unit tests via [Jest](https://jestjs.io).
 ## Running lint
 
 Run `nx lint common` to execute the lint via [ESLint](https://eslint.org/).
-
-<!-- whitespace change -->
