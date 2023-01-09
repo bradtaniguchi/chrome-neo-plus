@@ -1680,7 +1680,7 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.tsx",
-              "hash": "70437e2493e62c4ab53c3c738ecd552c8b4d5f14",
+              "hash": "da588a670e894a6786015e586ee7be0957760a08",
               "deps": [
                 "npm:flowbite-react",
                 "npm:luxon",
@@ -1699,7 +1699,7 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-page/apod-page.tsx",
-              "hash": "a49f0282faf934a487415e8392695a8b9bb265db",
+              "hash": "8d6cb85ff7ab2c6434b7f17b4d39a5ac623106d9",
               "deps": [
                 "npm:flowbite-react",
                 "npm:luxon",
@@ -1712,22 +1712,29 @@
               "hash": "68154cc1626508007ffc44402cbec1029a1436d0"
             },
             {
+              "file": "libs/apod/src/lib/utils/apod-cache.ts",
+              "hash": "c8604ae3a4ac90b760eba147bbe4bb14dc2f45f8",
+              "deps": [
+                "npm:luxon"
+              ]
+            },
+            {
               "file": "libs/apod/src/lib/utils/get-apod-for-date.ts",
-              "hash": "1c540b848e1de4d6d0da0e78c474bfa393a736e6",
+              "hash": "534cf05ca4154d29f5a901e842ca2ed93f8097ea",
               "deps": [
                 "common"
               ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-count.ts",
-              "hash": "c78b4df9f68799f9c3be240cdcc426334e24ad8b",
+              "hash": "68f303d07fd12f945b970297226afbe35d5fb353",
               "deps": [
                 "common"
               ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-start-and-end-dates.ts",
-              "hash": "e0efc51166dc1f84b79e5ae7f8f5a23bb534b0c0",
+              "hash": "2e4ce7dd48ca6fb23ff361704f94eda9a07605ce",
               "deps": [
                 "common"
               ]
