@@ -6,7 +6,10 @@
   "targets": {
     "_build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}",
+        "{projectRoot}/src/lib/constants/build-config.ts"
+      ],
       "options": {
         "outputPath": "dist/libs/common",
         "tsConfig": "libs/common/tsconfig.lib.json",
