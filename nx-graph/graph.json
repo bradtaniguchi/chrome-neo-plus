@@ -1402,11 +1402,11 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "568a89cea132b05294f045ebec663db8501fc4fe"
+              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
             },
             {
               "file": "libs/neows/src/lib/models/feed-request.ts",
-              "hash": "74cf2d16338023ff42ef40dc1f39a1f465337b6e"
+              "hash": "c88cee544ca4b236b19cbd5f4b56144169bacf5a"
             },
             {
               "file": "libs/neows/src/lib/models/feed-response.ts",
@@ -1439,6 +1439,33 @@
             {
               "file": "libs/neows/src/lib/models/lookup-response/lookup-response.ts",
               "hash": "4b971d79791b53edd7ed8cea1fd3f179651862fb"
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-neows-browse.ts",
+              "hash": "03387679f2995150c06721d7e5ff0feedd05cab2"
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
+              "hash": "4805307a37c38de53c523d356cd3fbd4b88a4598",
+              "deps": [
+                "common",
+                "npm:luxon"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-neows.ts",
+              "hash": "6e923d054a20ecf04cb6fee40a54e0709d312417",
+              "deps": [
+                "common"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/utils/index.ts",
+              "hash": "f655d51a76a03cb764ecff62b57e82efb87ee78b"
+            },
+            {
+              "file": "libs/neows/src/lib/utils/neows-cache.ts",
+              "hash": "7fe123b34a9456169abe18607532a70ce90fe702"
             },
             {
               "file": "libs/neows/tsconfig.json",
@@ -1921,7 +1948,13 @@
       ],
       "storybook": [],
       "common": [],
-      "neows": [],
+      "neows": [
+        {
+          "source": "neows",
+          "target": "common",
+          "type": "static"
+        }
+      ],
       "apod": [
         {
           "source": "apod",
