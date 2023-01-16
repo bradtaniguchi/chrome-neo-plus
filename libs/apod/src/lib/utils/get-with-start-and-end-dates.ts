@@ -1,6 +1,7 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithStartAndEndDatesParams } from '../models/apod-request-params';
 import { API_KEY } from '@chrome-neo-plus/common';
+import { apodCache } from './apod-cache';
 
 /**
  * Returns the APOD data for the given date-range.
@@ -28,7 +29,10 @@ export async function getWithStartAndEndDates(
     })
     .then((data) => {
       if (Array.isArray(data)) return data;
-      console.log({ data });
       throw new Error(data.msg);
+    })
+    .then((res) => {
+      apodCache.setMany(res);
+      return res;
     });
 }

@@ -24,6 +24,9 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
     }
   }
 
+  /**
+   * Saves the current state of values to local storage.
+   */
   private cacheToStorage() {
     localStorage.setItem(this.STORAGE_KEY, this.values().toString());
   }

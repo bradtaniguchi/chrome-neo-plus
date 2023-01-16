@@ -1,9 +1,12 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithCountParams } from '../models/apod-request-params';
 import { API_KEY } from '@chrome-neo-plus/common';
+import { apodCache } from './apod-cache';
 
 /**
- * Returns multiple APOD  for the given date range
+ * Returns multiple "random" APOD for the given date range.
+ *
+ * Does not use caching, but will save the results to the cache.
  *
  * @param params The params to use for the request
  */
@@ -17,8 +20,17 @@ export async function getWithCount(
 
   if (thumbs) url.searchParams.append('thumbs', 'true');
 
-  return fetch(url.toString()).then((res) => {
-    if (res.ok) return res.json();
-    throw new Error(res.statusText);
-  });
+  return fetch(url.toString())
+    .then((res) => {
+      if (res.ok) return res.json();
+      throw new Error(res.statusText);
+    })
+    .then((data) => {
+      if (Array.isArray(data)) return data;
+      throw new Error(data.msg);
+    })
+    .then((res) => {
+      apodCache.setMany(res);
+      return res;
+    });
 }
