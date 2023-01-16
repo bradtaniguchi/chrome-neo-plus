@@ -9,45 +9,20 @@ const Story: ComponentMeta<typeof ApodListPage> = {
   decorators: [withRouter],
   parameters: {
     reactRouter: {
-      // routePath: '/',
-      // routeParams: { startDate: '2022-05-23' },
+      // TODO: this might be incorrect and w
+      routePath: '/',
+      searchParams: {
+        start_date: DateTime.now().minus({ day: 5 }).toFormat('yyyy-MM-dd'),
+        end_date: DateTime.now().toFormat('yyyy-MM-dd'),
+      },
     },
   },
 };
 export default Story;
 
 const Template: ComponentStory<typeof ApodListPage> = (args) => (
-  <ApodListPage {...args} />
+  <ApodListPage />
 );
 
-export const ThisPastWeek = Template.bind({});
-ThisPastWeek.args = {};
-
-export const PropOverrideDates = Template.bind({});
-PropOverrideDates.args = {
-  startDate: DateTime.local().plus({ day: -3 }).toFormat('yyyy-MM-dd'),
-};
-
-export const InvalidDate = Template.bind({});
-InvalidDate.args = {
-  startDate: DateTime.fromObject({
-    year: 2023,
-    month: 1,
-    day: 1,
-  }).toFormat('MM/dd/yyyy'),
-  endDate: DateTime.fromObject({
-    year: 2023,
-    month: 1,
-    day: 1,
-  })
-    .plus({ day: 3 })
-    .toFormat('MM/dd/yyyy'),
-};
-
-export const ErrorDate = Template.bind({});
-ErrorDate.args = {
-  // Sorry developer a thousand years in the future.
-  startDate: DateTime.fromFormat('3022-01-01', 'yyyy-MM-dd').toFormat(
-    'yyyy-MM-dd'
-  ),
-};
+export const LastFiveDays = Template.bind({});
+LastFiveDays.args = {};

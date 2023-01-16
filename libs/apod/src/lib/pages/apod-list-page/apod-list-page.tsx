@@ -1,78 +1,49 @@
 import { Card, Spinner } from 'flowbite-react';
-import { DateTime } from 'luxon';
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import ApodImage from '../../components/apod-image/apod-image';
 import { useApod } from '../../hooks/use-apod';
+import { usePageDates } from '../../hooks/use-page-dates';
 import { GetWithStartAndEndDatesParams } from '../../models/apod-request-params';
-
-/**
- * The ApodListPage lists all the given APODs for the given date range.
- */
-export interface ApodListPageProps {
-  /**
-   * The starting date, can be used to override the query param.
-   */
-  startDate?: string;
-  /**
-   * The starting date, can be used to override the query param.
-   */
-  endDate?: string;
-}
 
 /**
  * Page that shows the entire list of APODs
  * If no dates are given, then this by default shows the current week's APODs.
- *
- * @param props ApodListPageProps
  */
-export function ApodListPage(props: ApodListPageProps) {
-  const { startDate: propsStartDate, endDate: propsEndDate } = props;
-  const { end_date: paramEndDate, start_date: paramStartDate } =
-    useParams<Pick<GetWithStartAndEndDatesParams, 'start_date' | 'end_date'>>();
+export function ApodListPage() {
+  const [searchParams] = useSearchParams();
+  const start_date = searchParams.get('start_date') ?? undefined;
+  const end_date = searchParams.get('end_date') ?? undefined;
 
-  const startDate = useMemo(() => {
-    const date = propsStartDate ?? paramStartDate;
-    if (!date) return DateTime.local().minus({ day: 5 });
-    const dateTime = DateTime.fromFormat(date, 'yyyy-MM-dd');
-    if (dateTime.startOf('day') <= DateTime.local().startOf('day'))
-      // if the date is in the past, return it
-      return dateTime;
-
-    // otherwise, return the current date as it can't be in the future
-    return DateTime.local();
-  }, [propsStartDate, paramStartDate]);
-
-  const endDate = useMemo(() => {
-    const date = propsEndDate ?? paramEndDate;
-    if (!date) return DateTime.local();
-    const dateTime = DateTime.fromFormat(date, 'yyyy-MM-dd');
-    if (dateTime.startOf('day') <= DateTime.local().startOf('day'))
-      // if the date is in the past, return it
-      return dateTime;
-    // otherwise, return the current date as it can't be in the future
-    return DateTime.local();
-  }, [propsEndDate, paramEndDate]);
+  const {
+    startDateTime,
+    endDateTime,
+    previousStartDate,
+    nextStartDate,
+    previousEndDate,
+    nextEndDate,
+  } = usePageDates({
+    initEndDate: end_date,
+    initStartDate: start_date,
+  });
 
   const apodRequest = useMemo(
     () =>
       ({
-        start_date: startDate.isValid
-          ? startDate.toFormat('yyyy-MM-dd')
-          : undefined,
-        end_date: endDate.isValid ? endDate.toFormat('yyyy-MM-dd') : undefined,
+        start_date: startDateTime.toFormat('yyyy-MM-dd'),
+        end_date: endDateTime.toFormat('yyyy-MM-dd'),
       } as GetWithStartAndEndDatesParams),
-    [startDate, endDate]
+    [startDateTime, endDateTime]
   );
 
   const { loading, apodResponse, error } = useApod(apodRequest);
 
-  if (!startDate.isValid || !endDate.isValid)
+  if (!startDateTime.isValid || !endDateTime.isValid)
     return (
       <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
         <div>
-          An invalid date provided "{startDate.toString()}", expected format:
-          yyyy-mm-dd
+          An invalid date provided "{startDateTime.toString()}", expected
+          format: yyyy-mm-dd
         </div>
       </Card>
     );
@@ -106,7 +77,32 @@ export function ApodListPage(props: ApodListPageProps) {
           </li>
         ))}
       </ul>
-      {/* TODO: add next week/previous week buttons */}
+      <div className="mt-2 flex flex-row justify-between">
+        <Link
+          to={(() => {
+            const newSearchParams = new URLSearchParams(
+              Array.from(searchParams.entries())
+            );
+            newSearchParams.set('start_date', previousStartDate);
+            newSearchParams.set('end_date', previousEndDate);
+            return newSearchParams.toString();
+          })()}
+        >
+          Previous
+        </Link>
+        <Link
+          to={(() => {
+            const newSearchParams = new URLSearchParams(
+              Array.from(searchParams.entries())
+            );
+            newSearchParams.set('start_date', nextStartDate);
+            newSearchParams.set('end_date', nextEndDate);
+            return newSearchParams.toString();
+          })()}
+        >
+          Next
+        </Link>
+      </div>
     </div>
   );
 }

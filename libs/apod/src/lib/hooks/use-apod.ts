@@ -45,6 +45,7 @@ export function useApod(
 };
 
 /**
+ * Custom hook that manages all the different types of apod API HTTP requests.
  *
  * @param params The params to use for the request
  */
