@@ -1465,7 +1465,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "7fe123b34a9456169abe18607532a70ce90fe702"
+              "hash": "eaf3657cc5a79e42303b5ff9716f40d689efffec"
             },
             {
               "file": "libs/neows/tsconfig.json",
@@ -1677,8 +1677,16 @@
             },
             {
               "file": "libs/apod/src/lib/hooks/use-apod.ts",
-              "hash": "39dd27a169f2c023bb5d00041d96b2db59a4ce59",
+              "hash": "9d9e8debd6d68813b24bf36652583f9e43652312",
               "deps": [
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/apod/src/lib/hooks/use-page-dates.ts",
+              "hash": "c5aa68cd67b4b3e9b56fbe9857faecc0569c7088",
+              "deps": [
+                "npm:luxon",
                 "npm:react"
               ]
             },
@@ -1692,7 +1700,7 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.stories.tsx",
-              "hash": "c5ef03a04b39fcb2f0886f7e958930772d91be0d",
+              "hash": "b72ef1667cb4e901745e9f3f7318ef4652c64374",
               "deps": [
                 "npm:@storybook/react",
                 "npm:luxon",
@@ -1701,10 +1709,9 @@
             },
             {
               "file": "libs/apod/src/lib/pages/apod-list-page/apod-list-page.tsx",
-              "hash": "d633c5f7e8eec4c58ee2dd6a81fcfed34917585b",
+              "hash": "be98f801417d0f1f4f06a229a00f0c8387d7b975",
               "deps": [
                 "npm:flowbite-react",
-                "npm:luxon",
                 "npm:react",
                 "npm:react-router-dom"
               ]
