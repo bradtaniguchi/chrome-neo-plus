@@ -21,10 +21,18 @@ and deployed to github pages.
 
 To replicate this behavior locally run the follow commands:
 
-```
+```bash
 npx nx run-many --target=build-storybook --all
 mv dist/storybook/storybook/** dist/storybook/
 npx http-server dist/storybook
+```
+
+### Generating a storybook stories for a library/app
+
+run the following:
+
+```bash
+nx g @nrwl/storybook:configuration <project-name>
 ```
 
 ### Adding a new sub-storybook
@@ -34,7 +42,7 @@ the `./storybook/main.js` file within **this** project.
 
 For example:
 
-```
+```javascript
 module.export = {
   //...
   refs: {
@@ -42,9 +50,9 @@ module.export = {
     'my-new-lib': {
       title: 'my-new-lib',
       url: 'my-new-lib/',
-    }
-  }
-}
+    },
+  },
+};
 ```
 
 This will make it appear within the gh-page automatically. Otherwise to run individual storybooks,
