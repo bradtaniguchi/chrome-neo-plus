@@ -20,8 +20,8 @@ const Template: ComponentStory<typeof ApodListPage> = (args) => (
   <ApodListPage {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const ThisPastWeek = Template.bind({});
+ThisPastWeek.args = {};
 
 export const PropOverrideDates = Template.bind({});
 PropOverrideDates.args = {

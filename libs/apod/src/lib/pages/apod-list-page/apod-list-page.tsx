@@ -21,6 +21,8 @@ export interface ApodListPageProps {
 }
 
 /**
+ * Page that shows the entire list of APODs
+ * If no dates are given, then this by default shows the current week's APODs.
  *
  * @param props ApodListPageProps
  */
@@ -86,23 +88,26 @@ export function ApodListPage(props: ApodListPageProps) {
     );
   if (!apodResponse) return <div>No APODs found</div>;
   return (
-    <ul className="flex flex-col items-center justify-center gap-2">
-      {apodResponse.map((apod) => (
-        <li key={apod.date}>
-          <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
-            <ApodImage {...apod} />
-            <div>
-              <h3>{apod.title}</h3>
-              <p>{apod.explanation}</p>
-            </div>
-            <div>
-              {/* TODO: make anchor tag */}
-              <a href={apod.hdurl}>HD Image</a>
-            </div>
-          </Card>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className="flex flex-col items-center justify-center gap-2">
+        {apodResponse.map((apod) => (
+          <li key={apod.date}>
+            <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+              <ApodImage {...apod} />
+              <div>
+                <h3>{apod.title}</h3>
+                <p>{apod.explanation}</p>
+              </div>
+              <div>
+                {/* TODO: make anchor tag */}
+                <a href={apod.hdurl}>HD Image</a>
+              </div>
+            </Card>
+          </li>
+        ))}
+      </ul>
+      {/* TODO: add next week/previous week buttons */}
+    </div>
   );
 }
 
