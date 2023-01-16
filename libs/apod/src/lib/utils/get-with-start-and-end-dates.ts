@@ -2,6 +2,7 @@ import { ApodResponse } from '../models/apod-response';
 import { GetWithStartAndEndDatesParams } from '../models/apod-request-params';
 import { API_KEY } from '@chrome-neo-plus/common';
 import { apodCache } from './apod-cache';
+import { DateTime } from 'luxon';
 
 /**
  * Returns the APOD data for the given date-range.
@@ -19,8 +20,20 @@ export async function getWithStartAndEndDates(
   url.searchParams.append('api_key', API_KEY);
   url.searchParams.append('start_date', start_date);
 
-  if (end_date) url.searchParams.append('end_date', end_date);
+  url.searchParams.append(
+    'end_date',
+    end_date ?? DateTime.now().toFormat('yyyy-MM-dd')
+  );
   if (thumbs) url.searchParams.append('thumbs', 'true');
+
+  const preExistingRange = apodCache.getRange(
+    start_date,
+    end_date ?? DateTime.now().toFormat('yyyy-MM-dd')
+  );
+
+  // if we already have this range, return it directly.
+  if (!preExistingRange.hasGaps)
+    return preExistingRange.apods as ApodResponse[];
 
   return fetch(url.toString())
     .then((res) => {
