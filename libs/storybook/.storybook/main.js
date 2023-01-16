@@ -26,5 +26,13 @@ module.exports = {
       title: 'common-react',
       url: 'common-react/',
     },
+    apod: {
+      title: 'apod',
+      url: 'apod/',
+    },
+    neows: {
+      title: 'neows',
+      url: 'neows/',
+    },
   },
 };
