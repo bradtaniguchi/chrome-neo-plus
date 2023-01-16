@@ -33,7 +33,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Nx Template</title>
+        <title>chrome-neo-plus</title>
       </Head>
       <div
         data-automation-id="theme-toggle"
