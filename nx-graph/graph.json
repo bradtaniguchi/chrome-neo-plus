@@ -495,7 +495,7 @@
             },
             {
               "file": "apps/internal-client/pages/_app.tsx",
-              "hash": "927c111f10d0c0ba554241198b633e403a041b89",
+              "hash": "9dba754e609f62bacbb9d2e5e0c3f6132e786b0a",
               "deps": [
                 "common-react",
                 "npm:flowbite-react",
@@ -1044,7 +1044,7 @@
             },
             {
               "file": "libs/storybook/.storybook/main.js",
-              "hash": "b274f2bef88b29d7aa5fc0f4b63c1fb83b8aba96"
+              "hash": "f09bd62cb5016b9dd6d4e892a647c5103dd4d8b4"
             },
             {
               "file": "libs/storybook/.storybook/preview.js",
@@ -1076,7 +1076,7 @@
             },
             {
               "file": "libs/storybook/README.md",
-              "hash": "c306e6e0eae27e2bfc81452ae718cc3303644c2f"
+              "hash": "618a7612dfc2dde5683691d3b7b3c1fc78a8da00"
             },
             {
               "file": "libs/storybook/src/index.ts",
@@ -1373,6 +1373,50 @@
                 "^production",
                 "{workspaceRoot}/jest.preset.js"
               ]
+            },
+            "storybook": {
+              "executor": "@nrwl/storybook:storybook",
+              "options": {
+                "uiFramework": "@storybook/react",
+                "port": 4400,
+                "config": {
+                  "configFolder": "libs/neows/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              }
+            },
+            "build-storybook": {
+              "executor": "@nrwl/storybook:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "uiFramework": "@storybook/react",
+                "outputPath": "dist/storybook/neows",
+                "config": {
+                  "configFolder": "libs/neows/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              },
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/.storybook/**/*"
+              ]
+            },
+            "typedoc": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx typedoc --options libs/neows/typedoc.json"
+              }
             }
           },
           "files": [
@@ -1385,6 +1429,22 @@
               "hash": "734ddaceea447738208c9519158ad6b3062f3929"
             },
             {
+              "file": "libs/neows/.storybook/main.js",
+              "hash": "b17a4cd6ebe5e3b9bf8f3b47328cfa969bc0fef5"
+            },
+            {
+              "file": "libs/neows/.storybook/preview.js",
+              "hash": "8c8889d1a414d3f6aac36db631cb19fab5756751"
+            },
+            {
+              "file": "libs/neows/.storybook/tailwind-imports.css",
+              "hash": "b5c61c956711f981a41e95f7fcf0038436cfbb22"
+            },
+            {
+              "file": "libs/neows/.storybook/tsconfig.json",
+              "hash": "601ae8ff8badf6d62653645f3a6f33a425536efa"
+            },
+            {
               "file": "libs/neows/jest.config.ts",
               "hash": "023c83d7c191b6431e11bb95f8467951021f515a"
             },
@@ -1394,7 +1454,7 @@
             },
             {
               "file": "libs/neows/project.json",
-              "hash": "9deb130f230d4832b1a844319df0b56dcbbc847b"
+              "hash": "07587ebba87699622bc9be5e2d6e6c4fbca93a16"
             },
             {
               "file": "libs/neows/README.md",
@@ -1402,7 +1462,11 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
+              "hash": "e49139b0d6898965097573ef1d7e68e34a866f73"
+            },
+            {
+              "file": "libs/neows/src/lib/components/overview.tsx",
+              "hash": "ba9d48157816e20fab5b6652cdfc13a2986d861d"
             },
             {
               "file": "libs/neows/src/lib/models/feed-request.ts",
@@ -1469,15 +1533,19 @@
             },
             {
               "file": "libs/neows/tsconfig.json",
-              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+              "hash": "9fff9cc2db0cca15bc96bf1cde3e27146d3922f2"
             },
             {
               "file": "libs/neows/tsconfig.lib.json",
-              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+              "hash": "2e54c51309bc084f59acb6b55604a4803b3fb238"
             },
             {
               "file": "libs/neows/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/neows/typedoc.json",
+              "hash": "1eae45b5e50d247f86df1011e531852527d69be5"
             }
           ]
         }
@@ -1871,6 +1939,12 @@
                 "^production",
                 "{workspaceRoot}/jest.preset.js"
               ]
+            },
+            "typedoc": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npx typedoc --options libs/nivl/typedoc.json"
+              }
             }
           },
           "files": [
@@ -1892,7 +1966,7 @@
             },
             {
               "file": "libs/nivl/project.json",
-              "hash": "820622bae335521fe0601b076ef11f718bb90615"
+              "hash": "8c353dcfce719fd4950289c60e6ea04fd9f169c8"
             },
             {
               "file": "libs/nivl/README.md",
@@ -1928,6 +2002,10 @@
             {
               "file": "libs/nivl/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/nivl/typedoc.json",
+              "hash": "7583ea97b4c360e11fa1fcca06d7f177d81f3046"
             }
           ]
         }
