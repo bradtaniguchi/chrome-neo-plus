@@ -8,7 +8,10 @@ import { LookupResponse } from './lookup-response/lookup-response';
  * ```
  */
 export interface FeedResponse {
-  links: {
+  /**
+   * This is not provided for monthly requests
+   */
+  links?: {
     /**
      * The next day chunk
      */

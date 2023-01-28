@@ -5,6 +5,7 @@ import {
   getDailyNeowsFeed,
   getMonthlyNeowsFeed,
   getThisWeekNeowsFeed,
+  neowsCache,
 } from '../utils';
 
 /**
@@ -23,6 +24,13 @@ export function useNeos(requestType: UseNeosRequestType) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
   const [neosResponse, setNeosResponse] = useState<FeedResponse>();
+
+  /**
+   * Load the cache on mount automatically.
+   */
+  useEffect(() => {
+    if (mounted) neowsCache.loadFromCache();
+  }, [mounted]);
 
   useEffect(() => {
     if (mounted) {

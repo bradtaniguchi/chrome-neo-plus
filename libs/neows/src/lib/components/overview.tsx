@@ -125,7 +125,7 @@ export function WeeklyOverview(props: OverviewProps) {
  * @param props The props for the monthly overview component.
  */
 export function MonthlyOverview(props: OverviewProps) {
-  // TODO: get a calendar component
+  const { error, loading, neosResponse } = useNeos('monthly');
   return (
     <Card>
       <div className="flex flex-row justify-between text-center">
@@ -133,10 +133,9 @@ export function MonthlyOverview(props: OverviewProps) {
           <CalendarIcon className="w-5" />
           <h3>Monthly</h3>
         </div>
-        <div>
-          {/* TODO: get dynamically */}
-          1234
-        </div>
+        <CommonValueWrapper loading={loading} error={error}>
+          <div>{neosResponse?.element_count ?? '???'}</div>
+        </CommonValueWrapper>
       </div>
     </Card>
   );
