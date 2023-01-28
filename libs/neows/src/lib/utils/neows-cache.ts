@@ -240,3 +240,14 @@ export class NeowsCache {
     return this.idCache.get(id);
   }
 }
+
+/**
+ * Singleton cache for NEO requests.
+ */
+export const neowsCache = new NeowsCache({
+  STORAGE_KEY: 'NEOWS_CACHE',
+  DAILIES_KEY: 'NEOWS_DAILIES',
+  WEEKLY_KEY: 'NEOWS_WEEKLY',
+  MONTHLY_KEY: 'NEOWS_MONTHLY',
+  ID_KEY: 'NEOWS_IDS',
+});
