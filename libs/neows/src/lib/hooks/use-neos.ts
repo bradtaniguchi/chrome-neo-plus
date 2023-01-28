@@ -1,5 +1,6 @@
 import { useHasMounted } from '@chrome-neo-plus/common-react';
 import { useEffect, useState } from 'react';
+import { FeedResponse } from '../models';
 import {
   getDailyNeowsFeed,
   getMonthlyNeowsFeed,
@@ -21,7 +22,7 @@ export function useNeos(requestType: UseNeosRequestType) {
   const mounted = useHasMounted();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
-  const [neosResponse, setNeosResponse] = useState<unknown>();
+  const [neosResponse, setNeosResponse] = useState<FeedResponse>();
 
   useEffect(() => {
     if (mounted) {
@@ -39,8 +40,17 @@ export function useNeos(requestType: UseNeosRequestType) {
   }, [mounted, requestType]);
 
   return {
+    /**
+     * If the data is being loaded
+     */
     loading,
+    /**
+     * If there was an error loading the data
+     */
     error,
+    /**
+     * The response from the NEO API
+     */
     neosResponse,
   };
 }
