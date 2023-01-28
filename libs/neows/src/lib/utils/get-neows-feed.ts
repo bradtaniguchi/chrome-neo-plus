@@ -37,26 +37,32 @@ export async function getNeowsFeed(
  * Returns the current week's feed of NEOWs.
  *
  * @param params The params to use for the request
+ * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
  */
 export async function getThisWeekNeowsFeed(params?: {
+  date?: string;
   noCache?: boolean;
 }): Promise<FeedResponse> {
-  const cachedWeekly = neowsCache.getWeekly(
-    DateTime.now().weekNumber,
-    DateTime.now().year
-  );
+  const date = params?.date;
+
+  const dateTime =
+    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
+      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+      : DateTime.now();
+
+  const cachedWeekly = neowsCache.getWeekly(dateTime.weekNumber, dateTime.year);
 
   if (cachedWeekly && !params?.noCache) return cachedWeekly;
 
   const res = await getNeowsFeed({
-    start_date: DateTime.now().startOf('week').toFormat('yyyy-MM-dd'),
-    end_date: DateTime.now().endOf('week').toFormat('yyyy-MM-dd'),
+    start_date: dateTime.startOf('week').toFormat('yyyy-MM-dd'),
+    end_date: dateTime.endOf('week').toFormat('yyyy-MM-dd'),
   });
 
   neowsCache.setWeekly({
-    week: DateTime.now().weekNumber,
-    year: DateTime.now().year,
+    week: dateTime.weekNumber,
+    year: dateTime.year,
     res,
   });
 
@@ -67,24 +73,30 @@ export async function getThisWeekNeowsFeed(params?: {
  * Returns the current day's feed of NEOWs.
  *
  * @param params The params to use for the request
+ * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
  */
 export async function getDailyNeowsFeed(params?: {
+  date?: string;
   noCache?: boolean;
 }): Promise<FeedResponse> {
-  const cachedDaily = neowsCache.getDaily(
-    DateTime.now().toFormat('yyyy-MM-dd')
-  );
+  const date = params?.date;
+  const dateTime =
+    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
+      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+      : DateTime.now();
+
+  const cachedDaily = neowsCache.getDaily(dateTime.toFormat('yyyy-MM-dd'));
 
   if (cachedDaily && !params?.noCache) return cachedDaily;
 
   const res = await getNeowsFeed({
-    start_date: DateTime.now().toFormat('yyyy-MM-dd'),
-    end_date: DateTime.now().toFormat('yyyy-MM-dd'),
+    start_date: dateTime.toFormat('yyyy-MM-dd'),
+    end_date: dateTime.toFormat('yyyy-MM-dd'),
   });
 
   neowsCache.setDaily({
-    date: DateTime.now().toFormat('yyyy-MM-dd'),
+    date: dateTime.toFormat('yyyy-MM-dd'),
     res,
   });
 
@@ -98,15 +110,20 @@ export async function getDailyNeowsFeed(params?: {
  * request calls.
  *
  * @param params The params to use for the request
+ * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
  */
 export async function getMonthlyNeowsFeed(params?: {
+  date?: string;
   noCache?: boolean;
 }): Promise<Omit<FeedResponse, 'links'>> {
-  const cachedMonthly = neowsCache.getMonthly(
-    DateTime.now().month,
-    DateTime.now().year
-  );
+  const date = params?.date;
+  const dateTime =
+    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
+      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+      : DateTime.now();
+
+  const cachedMonthly = neowsCache.getMonthly(dateTime.month, dateTime.year);
 
   if (cachedMonthly && !params?.noCache) return cachedMonthly;
 

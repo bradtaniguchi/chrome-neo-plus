@@ -16,10 +16,17 @@ export type UseNeosRequestType = 'daily' | 'weekly' | 'monthly';
 /**
  * Custom hook that loads data for different NEO scenarios.
  *
- * @param requestType The type of request to make, should be
+ * @param params The params to use for the request
+ * @param params.requestType The type of request to make, should be
  * one of the types in the UseNeosRequestType type.
+ * @param params.date The date to use for the request, if applicable. Otherwise
+ * defaults to today
  */
-export function useNeos(requestType: UseNeosRequestType) {
+export function useNeos(params: {
+  requestType: UseNeosRequestType;
+  date?: string;
+}) {
+  const { requestType, date } = params;
   const mounted = useHasMounted();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
@@ -36,16 +43,25 @@ export function useNeos(requestType: UseNeosRequestType) {
     if (mounted) {
       setLoading(true);
       (() => {
-        if (requestType === 'daily') return getDailyNeowsFeed();
-        if (requestType === 'weekly') return getThisWeekNeowsFeed();
-        if (requestType === 'monthly') return getMonthlyNeowsFeed();
+        if (requestType === 'daily')
+          return getDailyNeowsFeed({
+            date,
+          });
+        if (requestType === 'weekly')
+          return getThisWeekNeowsFeed({
+            date,
+          });
+        if (requestType === 'monthly')
+          return getMonthlyNeowsFeed({
+            date,
+          });
         return Promise.reject(new Error('Unknown request type provided'));
       })()
         .then((res) => setNeosResponse(res))
         .catch(setError)
         .finally(() => setLoading(false));
     }
-  }, [mounted, requestType]);
+  }, [mounted, requestType, date]);
 
   return {
     /**
