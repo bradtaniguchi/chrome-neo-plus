@@ -3,6 +3,8 @@ import { FeedRequest } from '../models/feed-request';
 import { FeedResponse } from '../models/feed-response';
 import { DateTime } from 'luxon';
 import { neowsCache } from './neows-cache';
+import { getWeeklyBlocks } from './get-weekly-blocks';
+import { combineMonthlyResponses } from './combine-monthy-responses';
 
 /**
  * Returns the feed of NEOWs for the given date range.
@@ -27,12 +29,12 @@ export async function getNeowsFeed(
 
   neowsCache.setMultipleById(Object.values(res.near_earth_objects).flat());
 
+  // TODO: add "period" generic request check
   return res;
 }
 
 /**
- * Returns the current week's feed of NEOWs. This should be the default data load
- * for the app.
+ * Returns the current week's feed of NEOWs.
  *
  * @param params The params to use for the request
  * @param params.noCache Whether to skip the cache and fetch from the API
@@ -92,12 +94,15 @@ export async function getDailyNeowsFeed(params?: {
 /**
  * Returns the current month's feed of NEOWs.
  *
+ * Due to the API being limited to 7 days, this will make multiple http
+ * request calls.
+ *
  * @param params The params to use for the request
  * @param params.noCache Whether to skip the cache and fetch from the API
  */
 export async function getMonthlyNeowsFeed(params?: {
   noCache?: boolean;
-}): Promise<FeedResponse> {
+}): Promise<Omit<FeedResponse, 'links'>> {
   const cachedMonthly = neowsCache.getMonthly(
     DateTime.now().month,
     DateTime.now().year
@@ -105,10 +110,18 @@ export async function getMonthlyNeowsFeed(params?: {
 
   if (cachedMonthly && !params?.noCache) return cachedMonthly;
 
-  const res = await getNeowsFeed({
-    start_date: DateTime.now().startOf('month').toFormat('yyyy-MM-dd'),
-    end_date: DateTime.now().endOf('month').toFormat('yyyy-MM-dd'),
-  });
+  const weeklyBlocks = getWeeklyBlocks(DateTime.now());
+
+  const responses = await Promise.all(
+    weeklyBlocks.map(({ start_date, end_date }) =>
+      getNeowsFeed({
+        start_date: start_date.toFormat('yyyy-MM-dd'),
+        end_date: end_date.toFormat('yyyy-MM-dd'),
+      })
+    )
+  );
+
+  const res = combineMonthlyResponses(responses);
 
   neowsCache.setMonthly({
     month: DateTime.now().month,

@@ -22,7 +22,7 @@ export class NeowsCache {
   /**
    * The public underlying data for the monthly-cache.
    */
-  public readonly monthlyCache = new Map<string, FeedResponse>();
+  public readonly monthlyCache = new Map<string, Omit<FeedResponse, 'links'>>();
   /**
    * The public underlying data for the id-cache.
    */
@@ -119,7 +119,9 @@ export class NeowsCache {
    *
    * @param res The response to flatten.
    */
-  private collapseNeowsResponse(res: FeedResponse): LookupResponse[] {
+  private collapseNeowsResponse(
+    res: Pick<FeedResponse, 'near_earth_objects'>
+  ): LookupResponse[] {
     return Object.values(res.near_earth_objects).reduce((acc, neos) => {
       neos.forEach((neo) => {
         acc.push(neo);
@@ -191,7 +193,7 @@ export class NeowsCache {
   public setMonthly(params: {
     month: number;
     year: number;
-    res: FeedResponse;
+    res: Omit<FeedResponse, 'links'>;
   }) {
     const { month, year, res } = params;
     this.monthlyCache.set(`${year}-${month}`, res);
@@ -206,7 +208,10 @@ export class NeowsCache {
    * @param month The month to load data for
    * @param year The year to load data for
    */
-  public getMonthly(month: number, year: number): FeedResponse | undefined {
+  public getMonthly(
+    month: number,
+    year: number
+  ): Omit<FeedResponse, 'links'> | undefined {
     return this.monthlyCache.get(`${year}-${month}`);
   }
 
