@@ -4,7 +4,7 @@ import { FeedResponse } from '../models/feed-response';
 import { DateTime } from 'luxon';
 import { neowsCache } from './neows-cache';
 import { getWeeklyBlocks } from './get-weekly-blocks';
-import { combineMonthlyResponses } from './combine-monthy-responses';
+import { combineMonthlyResponses } from './combine-monthly-responses';
 
 /**
  * Returns the feed of NEOWs for the given date range.
