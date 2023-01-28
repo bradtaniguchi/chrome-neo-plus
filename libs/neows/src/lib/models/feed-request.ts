@@ -18,8 +18,4 @@ export interface FeedRequest {
    * format: YYYY-MM-DD
    */
   end_date: string;
-  /**
-   * api.nasa.gov key for expanded usage
-   */
-  api_key: string;
 }

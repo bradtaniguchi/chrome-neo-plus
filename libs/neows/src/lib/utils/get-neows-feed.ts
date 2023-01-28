@@ -28,14 +28,9 @@ export async function getNeowsFeed(params: FeedRequest): Promise<FeedResponse> {
 /**
  * Returns the current week's feed of NEOWs. This should be the default data load
  * for the app.
- *
- * @param params the search param request
  */
-export async function getThisWeekNeowsFeed(
-  params: Pick<FeedRequest, 'api_key'>
-): Promise<FeedResponse> {
+export async function getThisWeekNeowsFeed(): Promise<FeedResponse> {
   return getNeowsFeed({
-    ...params,
     start_date: DateTime.now().startOf('week').toFormat('yyyy-MM-dd'),
     end_date: DateTime.now().endOf('week').toFormat('yyyy-MM-dd'),
   });
@@ -43,14 +38,9 @@ export async function getThisWeekNeowsFeed(
 
 /**
  * Returns the current day's feed of NEOWs.
- *
- * @param params the search param request
  */
-export async function getDailyNeowsFeed(
-  params: Pick<FeedRequest, 'api_key'>
-): Promise<FeedResponse> {
+export async function getDailyNeowsFeed(): Promise<FeedResponse> {
   return getNeowsFeed({
-    ...params,
     start_date: DateTime.now().toFormat('yyyy-MM-dd'),
     end_date: DateTime.now().toFormat('yyyy-MM-dd'),
   });
@@ -58,14 +48,9 @@ export async function getDailyNeowsFeed(
 
 /**
  * Returns the current month's feed of NEOWs.
- *
- * @param params the search param request
  */
-export async function getMonthlyNeowsFeed(
-  params: Pick<FeedRequest, 'api_key'>
-): Promise<FeedResponse> {
+export async function getMonthlyNeowsFeed(): Promise<FeedResponse> {
   return getNeowsFeed({
-    ...params,
     start_date: DateTime.now().startOf('month').toFormat('yyyy-MM-dd'),
     end_date: DateTime.now().endOf('month').toFormat('yyyy-MM-dd'),
   });
