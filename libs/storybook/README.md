@@ -35,6 +35,80 @@ run the following:
 nx g @nrwl/storybook:configuration <project-name>
 ```
 
+### Generating stories for a library/app
+
+To generate all stories for all components within a given library or app, run the following:
+
+```bash
+nx g @nrwl/react:stories <project-name>
+```
+
+### Adding tailwind support
+
+To add tailwind support to a storybook, perform the following:
+
+- within the `.storybook` directory of the library create a `preview.js` file
+  with the following contents:
+
+```javascript
+import './tailwind-imports.css';
+```
+
+- Within the same folder, create a `tailwind-imports.css` file with
+  the following contents:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+- Within the root folder of the library, create a `postcss.config.js` file with
+  the following contents. This file is only used for storybook development
+
+```javascript
+const { join } = require('path');
+
+/**
+ * @type {import('postcss').AcceptedPlugin}
+ */
+module.exports = {
+  plugins: {
+    tailwindcss: {
+      config: join(__dirname, 'tailwind.config.js'),
+    },
+    autoprefixer: {},
+  },
+};
+```
+
+- Within the root folder of the library, create a `tailwind.config.js` file
+  with the following contents. This file is only used for storybook development.
+
+```javascript
+const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
+const { join } = require('path');
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    join(
+      __dirname,
+      '{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}'
+    ),
+    ...createGlobPatternsForDependencies(__dirname),
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('flowbite/plugin'), require('@tailwindcss/typography')],
+};
+```
+
+**note** the `require('flowbite/plug')` line. This is required to add the
+flowbite plugin to the tailwind config.
+
 ### Adding a new sub-storybook
 
 Storybooks will be generated, but wont be automatically linked without updating
