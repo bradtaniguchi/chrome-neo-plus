@@ -1,7 +1,16 @@
+import { Card } from 'flowbite-react';
+import { Link } from 'react-router-dom';
+import {
+  ClockIcon,
+  CalendarIcon,
+  ViewColumnsIcon,
+} from '@heroicons/react/24/solid';
 export interface OverviewProps {
   /**
    * The day we are to display for. All metrics will be relative
    * to this day.
+   *
+   * Should be in format yyyy-MM-dd
    */
   day?: string;
 }
@@ -17,7 +26,7 @@ export function Overview(props: OverviewProps) {
   const { day } = props;
   return (
     <div>
-      <ul>
+      <ul className="flex flex-col gap-1">
         <li>
           <DailyOverview day={day} />
         </li>
@@ -39,7 +48,22 @@ export function Overview(props: OverviewProps) {
  * @param props The props for the daily overview component.
  */
 export function DailyOverview(props: OverviewProps) {
-  return <div></div>;
+  return (
+    <Link to={'neows/daily'}>
+      <Card>
+        <div className="flex flex-row justify-between text-center">
+          <div className="flex flex-row gap-1">
+            <ClockIcon className="w-5" />
+            <h3>Daily</h3>
+          </div>
+          <div>
+            {/* TODO: get dynamically */}
+            1234
+          </div>
+        </div>
+      </Card>
+    </Link>
+  );
 }
 
 /**
@@ -49,7 +73,21 @@ export function DailyOverview(props: OverviewProps) {
  * @param props The props for the weekly overview component.
  */
 export function WeeklyOverview(props: OverviewProps) {
-  return <div></div>;
+  // TODO: get a calendar component
+  return (
+    <Card>
+      <div className="flex flex-row justify-between text-center">
+        <div className="flex flex-row gap-1">
+          <ViewColumnsIcon className="w-5" />
+          <h3>Weekly</h3>
+        </div>
+        <div>
+          {/* TODO: get dynamically */}
+          1234
+        </div>
+      </div>
+    </Card>
+  );
 }
 
 /**
@@ -59,5 +97,19 @@ export function WeeklyOverview(props: OverviewProps) {
  * @param props The props for the monthly overview component.
  */
 export function MonthlyOverview(props: OverviewProps) {
-  return <div></div>;
+  // TODO: get a calendar component
+  return (
+    <Card>
+      <div className="flex flex-row justify-between text-center">
+        <div className="flex flex-row gap-1">
+          <CalendarIcon className="w-5" />
+          <h3>Monthly</h3>
+        </div>
+        <div>
+          {/* TODO: get dynamically */}
+          1234
+        </div>
+      </div>
+    </Card>
+  );
 }

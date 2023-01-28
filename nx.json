@@ -73,6 +73,11 @@
       "standaloneConfig": true,
       "buildable": true,
       "publishable": false
+    },
+    "@nrwl/storybook:configuration": {
+      "uiFramework": "@storybook/react",
+      "linter": "eslint",
+      "configureCypress": false
     }
   },
   "defaultProject": "internal-client",
