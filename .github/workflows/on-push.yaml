@@ -32,6 +32,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
+      - run: npx nx run common:build
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
         with:
           targets: test
