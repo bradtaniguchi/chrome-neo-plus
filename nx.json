@@ -82,6 +82,9 @@
   },
   "defaultProject": "internal-client",
   "targetDefaults": {
+    "export": {
+      "dependsOn": ["^build"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
