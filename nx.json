@@ -90,12 +90,15 @@
       "inputs": ["production", "^production"]
     },
     "test": {
+      "dependsOn": ["^build"],
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
+      "dependsOn": ["^build"],
       "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
     "build-storybook": {
+      "dependsOn": ["^build"],
       "inputs": ["default", "^production", "{workspaceRoot}/.storybook/**/*"]
     }
   },
