@@ -1,7 +1,7 @@
 import { ClockIcon } from '@heroicons/react/24/solid';
 import { Card } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import { useNeos } from '../hooks/use-neos';
+import { useNeos } from '../../hooks/use-neos';
 import { CommonValueWrapper } from './common-value-wrapper';
 
 /**
