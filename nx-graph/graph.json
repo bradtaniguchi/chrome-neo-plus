@@ -1514,10 +1514,28 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "e49139b0d6898965097573ef1d7e68e34a866f73"
+              "hash": "fa4249361deb044a6ae76ad858c115146ff63c69"
             },
             {
-              "file": "libs/neows/src/lib/components/common-value-wrapper.tsx",
+              "file": "libs/neows/src/lib/components/index.ts",
+              "hash": "30f302df810fb05da37755a83cde9950e9492bd0"
+            },
+            {
+              "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.stories.tsx",
+              "hash": "c2c11eb7f64ad99c44473b6917b8968936f152b0",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.tsx",
+              "hash": "0cab9aacd3a2cf7f4a5a3a9bdc9aed461e03c232",
+              "deps": [
+                "npm:flowbite-react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/overview/common-value-wrapper.tsx",
               "hash": "6d440da77071a360a925639485596ccdb62b36be",
               "deps": [
                 "npm:flowbite-react",
@@ -1525,8 +1543,8 @@
               ]
             },
             {
-              "file": "libs/neows/src/lib/components/daily-overview.tsx",
-              "hash": "b2364dbfca43132b5536c26cb65c8a8e8028852b",
+              "file": "libs/neows/src/lib/components/overview/daily-overview.tsx",
+              "hash": "9cdcfe13b2cad8ac5df948abd6a42f393cbd0f5d",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react",
@@ -1534,29 +1552,19 @@
               ]
             },
             {
-              "file": "libs/neows/src/lib/components/monthly-overview.tsx",
-              "hash": "fc84c9d3f96532e58098ad982ef5543de16c3991",
+              "file": "libs/neows/src/lib/components/overview/index.ts",
+              "hash": "a05b30a3031aa99debc854b1f95c07aaa55981ae"
+            },
+            {
+              "file": "libs/neows/src/lib/components/overview/monthly-overview.tsx",
+              "hash": "4f586d3ae408bad3e57486d24ef390fccbbe1caf",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react"
               ]
             },
             {
-              "file": "libs/neows/src/lib/components/neo-short-info.stories.tsx",
-              "hash": "c2c11eb7f64ad99c44473b6917b8968936f152b0",
-              "deps": [
-                "npm:@storybook/react"
-              ]
-            },
-            {
-              "file": "libs/neows/src/lib/components/neo-short-info.tsx",
-              "hash": "0cab9aacd3a2cf7f4a5a3a9bdc9aed461e03c232",
-              "deps": [
-                "npm:flowbite-react"
-              ]
-            },
-            {
-              "file": "libs/neows/src/lib/components/overview.stories.tsx",
+              "file": "libs/neows/src/lib/components/overview/overview.stories.tsx",
               "hash": "d8f1107b360617cac2c0e98357d7b18ccd157ef8",
               "deps": [
                 "npm:@storybook/react",
@@ -1565,12 +1573,12 @@
               ]
             },
             {
-              "file": "libs/neows/src/lib/components/overview.tsx",
+              "file": "libs/neows/src/lib/components/overview/overview.tsx",
               "hash": "06e99538bc0b5190a2064de99f4eb3bf3dc91a82"
             },
             {
-              "file": "libs/neows/src/lib/components/weekly-overview.tsx",
-              "hash": "8581de40df2d98cb310717a617e755df9aa3216a",
+              "file": "libs/neows/src/lib/components/overview/weekly-overview.tsx",
+              "hash": "53026d661241900f45ba64e57fee6ebb2d42bcf8",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react",
