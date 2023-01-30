@@ -1514,7 +1514,7 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "fa4249361deb044a6ae76ad858c115146ff63c69"
+              "hash": "16df04da36a0354f6a8794ad0ba8032a9b09714f"
             },
             {
               "file": "libs/neows/src/lib/components/index.ts",
@@ -1586,6 +1586,18 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/hooks/index.ts",
+              "hash": "d999b9a8015d81a487c07166efb2ec98cffec166"
+            },
+            {
+              "file": "libs/neows/src/lib/hooks/use-get-neos.ts",
+              "hash": "71d2133f7d621426a81826c56ecf99f86a0f37a2",
+              "deps": [
+                "common-react",
+                "npm:react"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/hooks/use-neos.ts",
               "hash": "4c3fda5d3fd9410360f453c4df427ff6535b41d9",
               "deps": [
@@ -1603,11 +1615,7 @@
             },
             {
               "file": "libs/neows/src/lib/models/index.ts",
-              "hash": "8975574edf44027a870e1abe6b826e16d617209f"
-            },
-            {
-              "file": "libs/neows/src/lib/models/lookup-request.ts",
-              "hash": "9cfb8fe34f6e83e0f0693d21255a4da4f1d0dfc4"
+              "hash": "b0d77d9f31522a960ef7bba4a699c78b8e765d4e"
             },
             {
               "file": "libs/neows/src/lib/models/lookup-response/index.ts",
@@ -1647,7 +1655,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows.ts",
-              "hash": "6e923d054a20ecf04cb6fee40a54e0709d312417",
+              "hash": "f4164cc63be1de96de348c7ef6c4bd3d979dd566",
               "deps": [
                 "common"
               ]
