@@ -104,6 +104,9 @@
                   "apps/chrome-extension/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -118,6 +121,9 @@
                 "jestConfig": "apps/chrome-extension/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -323,7 +329,10 @@
               "executor": "@nrwl/next:export",
               "options": {
                 "buildTarget": "internal-client:build:production"
-              }
+              },
+              "dependsOn": [
+                "^build"
+              ]
             },
             "test": {
               "executor": "@nrwl/jest:jest",
@@ -334,6 +343,9 @@
                 "jestConfig": "apps/internal-client/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -350,6 +362,9 @@
                   "apps/internal-client/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -666,6 +681,9 @@
                   "libs/common-react/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -680,6 +698,9 @@
                 "jestConfig": "libs/common-react/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -724,6 +745,9 @@
                   "quiet": true
                 }
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -968,6 +992,9 @@
                   "libs/storybook/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -982,6 +1009,9 @@
                 "jestConfig": "libs/storybook/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1020,6 +1050,9 @@
                   "quiet": true
                 }
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1076,7 +1109,7 @@
             },
             {
               "file": "libs/storybook/README.md",
-              "hash": "618a7612dfc2dde5683691d3b7b3c1fc78a8da00"
+              "hash": "b920e46b2f0e613265366e451c92f5c0f016030d"
             },
             {
               "file": "libs/storybook/src/index.ts",
@@ -1182,6 +1215,9 @@
                   "libs/common/**/*.ts"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -1196,6 +1232,9 @@
                 "jestConfig": "libs/common/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1269,7 +1308,7 @@
             },
             {
               "file": "libs/common/src/lib/utils/common-logger.ts",
-              "hash": "a25dde89fd847103b0d94b28be4352d895e629f1"
+              "hash": "0d791323ce4e5c124301b0cf238278371a7ae60a"
             },
             {
               "file": "libs/common/src/lib/utils/get-id.spec.ts",
@@ -1354,6 +1393,9 @@
                   "libs/neows/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -1368,6 +1410,9 @@
                 "jestConfig": "libs/neows/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1406,6 +1451,9 @@
                   "quiet": true
                 }
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1453,6 +1501,10 @@
               "hash": "38f8b071ba70af8dc96d756d88797afda509f112"
             },
             {
+              "file": "libs/neows/postcss.config.js",
+              "hash": "2d6ed243d22b23395afa1833e840071c1ed4c935"
+            },
+            {
               "file": "libs/neows/project.json",
               "hash": "07587ebba87699622bc9be5e2d6e6c4fbca93a16"
             },
@@ -1465,16 +1517,81 @@
               "hash": "e49139b0d6898965097573ef1d7e68e34a866f73"
             },
             {
+              "file": "libs/neows/src/lib/components/common-value-wrapper.tsx",
+              "hash": "6d440da77071a360a925639485596ccdb62b36be",
+              "deps": [
+                "npm:flowbite-react",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/daily-overview.tsx",
+              "hash": "b2364dbfca43132b5536c26cb65c8a8e8028852b",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:flowbite-react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/monthly-overview.tsx",
+              "hash": "fc84c9d3f96532e58098ad982ef5543de16c3991",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:flowbite-react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/neo-short-info.stories.tsx",
+              "hash": "c2c11eb7f64ad99c44473b6917b8968936f152b0",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/neo-short-info.tsx",
+              "hash": "0cab9aacd3a2cf7f4a5a3a9bdc9aed461e03c232",
+              "deps": [
+                "npm:flowbite-react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/overview.stories.tsx",
+              "hash": "d8f1107b360617cac2c0e98357d7b18ccd157ef8",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/components/overview.tsx",
-              "hash": "ba9d48157816e20fab5b6652cdfc13a2986d861d"
+              "hash": "06e99538bc0b5190a2064de99f4eb3bf3dc91a82"
+            },
+            {
+              "file": "libs/neows/src/lib/components/weekly-overview.tsx",
+              "hash": "8581de40df2d98cb310717a617e755df9aa3216a",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:flowbite-react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/hooks/use-neos.ts",
+              "hash": "4c3fda5d3fd9410360f453c4df427ff6535b41d9",
+              "deps": [
+                "common-react",
+                "npm:react"
+              ]
             },
             {
               "file": "libs/neows/src/lib/models/feed-request.ts",
-              "hash": "c88cee544ca4b236b19cbd5f4b56144169bacf5a"
+              "hash": "a421d5094fbb52f362f51a725fdd71e7d3350e83"
             },
             {
               "file": "libs/neows/src/lib/models/feed-response.ts",
-              "hash": "aa686c26f2c3a0e24448c83e8017f2975db8b8e0"
+              "hash": "08ec0146273de067e15ad154254746a869688bd7"
             },
             {
               "file": "libs/neows/src/lib/models/index.ts",
@@ -1505,12 +1622,16 @@
               "hash": "4b971d79791b53edd7ed8cea1fd3f179651862fb"
             },
             {
+              "file": "libs/neows/src/lib/utils/combine-monthly-responses.ts",
+              "hash": "362ecba7bc9aa07e4d0620815f99e367566a2538"
+            },
+            {
               "file": "libs/neows/src/lib/utils/get-neows-browse.ts",
               "hash": "03387679f2995150c06721d7e5ff0feedd05cab2"
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
-              "hash": "4805307a37c38de53c523d356cd3fbd4b88a4598",
+              "hash": "8bcc22ce23a920a38a9c3968293974535c67f90e",
               "deps": [
                 "common",
                 "npm:luxon"
@@ -1524,12 +1645,35 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/utils/get-weekly-blocks.spec.ts",
+              "hash": "704ffd2e556ffdd817392dddd53dc595417044d2",
+              "deps": [
+                "npm:luxon"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-weekly-blocks.ts",
+              "hash": "80e4be0770ddde2b6f2f81f6f577fcf3d9cf5cab",
+              "deps": [
+                "npm:luxon"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/utils/index.ts",
               "hash": "f655d51a76a03cb764ecff62b57e82efb87ee78b"
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "eaf3657cc5a79e42303b5ff9716f40d689efffec"
+              "hash": "32f0a97a42854fd03208b2115b5ec2acf2ff320a"
+            },
+            {
+              "file": "libs/neows/tailwind.config.js",
+              "hash": "16c52d11fb862c82fee9c05c2e9c5baf97f007cb",
+              "deps": [
+                "npm:@nrwl/react",
+                "npm:flowbite",
+                "npm:@tailwindcss/typography"
+              ]
             },
             {
               "file": "libs/neows/tsconfig.json",
@@ -1602,6 +1746,9 @@
                   "libs/apod/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -1616,6 +1763,9 @@
                 "jestConfig": "libs/apod/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1654,6 +1804,9 @@
                   "quiet": true
                 }
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -1920,6 +2073,9 @@
                   "libs/nivl/**/*.{ts,tsx,js,jsx}"
                 ]
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "{workspaceRoot}/.eslintrc.json"
@@ -1934,6 +2090,9 @@
                 "jestConfig": "libs/nivl/jest.config.ts",
                 "passWithNoTests": true
               },
+              "dependsOn": [
+                "^build"
+              ],
               "inputs": [
                 "default",
                 "^production",
@@ -2035,6 +2194,11 @@
       "storybook": [],
       "common": [],
       "neows": [
+        {
+          "source": "neows",
+          "target": "common-react",
+          "type": "static"
+        },
         {
           "source": "neows",
           "target": "common",

@@ -33,13 +33,51 @@ and deployed to github pages.</p>
 <pre><code class="language-bash"><span class="hl-0">nx g @nrwl/storybook:configuration &lt;project-name&gt;</span>
 </code></pre>
 
+<a href="#generating-stories-for-a-libraryapp" id="generating-stories-for-a-libraryapp" style="color: inherit; text-decoration: none;">
+  <h3>Generating stories for a library/app</h3>
+</a>
+<p>To generate all stories for all components within a given library or app, run the following:</p>
+<pre><code class="language-bash"><span class="hl-0">nx g @nrwl/react:stories &lt;project-name&gt;</span>
+</code></pre>
+
+<a href="#adding-tailwind-support" id="adding-tailwind-support" style="color: inherit; text-decoration: none;">
+  <h3>Adding tailwind support</h3>
+</a>
+<p>To add tailwind support to a storybook, perform the following:</p>
+<ul>
+<li>within the <code>.storybook</code> directory of the library create a <code>preview.js</code> file
+with the following contents:</li>
+</ul>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> </span><span class="hl-2">&#39;./tailwind-imports.css&#39;</span><span class="hl-0">;</span>
+</code></pre>
+<ul>
+<li>Within the same folder, create a <code>tailwind-imports.css</code> file with
+the following contents:</li>
+</ul>
+<pre><code class="language-css"><span class="hl-1">@tailwind</span><span class="hl-0"> base;</span><br/><span class="hl-1">@tailwind</span><span class="hl-0"> components;</span><br/><span class="hl-1">@tailwind</span><span class="hl-0"> utilities;</span>
+</code></pre>
+<ul>
+<li>Within the root folder of the library, create a <code>postcss.config.js</code> file with
+the following contents. This file is only used for storybook development</li>
+</ul>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> { </span><span class="hl-4">join</span><span class="hl-0"> } = </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-2">&#39;path&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-6">/**</span><br/><span class="hl-6"> * </span><span class="hl-3">@type</span><span class="hl-6"> </span><span class="hl-7">{import(&#39;postcss&#39;).AcceptedPlugin}</span><br/><span class="hl-6"> */</span><br/><span class="hl-7">module</span><span class="hl-0">.</span><span class="hl-7">exports</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-8">plugins:</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-8">tailwindcss:</span><span class="hl-0"> {</span><br/><span class="hl-0">      </span><span class="hl-8">config:</span><span class="hl-0"> </span><span class="hl-5">join</span><span class="hl-0">(</span><span class="hl-8">__dirname</span><span class="hl-0">, </span><span class="hl-2">&#39;tailwind.config.js&#39;</span><span class="hl-0">),</span><br/><span class="hl-0">    },</span><br/><span class="hl-0">    </span><span class="hl-8">autoprefixer:</span><span class="hl-0"> {},</span><br/><span class="hl-0">  },</span><br/><span class="hl-0">};</span>
+</code></pre>
+<ul>
+<li>Within the root folder of the library, create a <code>tailwind.config.js</code> file
+with the following contents. This file is only used for storybook development.</li>
+</ul>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> { </span><span class="hl-4">createGlobPatternsForDependencies</span><span class="hl-0"> } = </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-2">&#39;@nrwl/react/tailwind&#39;</span><span class="hl-0">);</span><br/><span class="hl-3">const</span><span class="hl-0"> { </span><span class="hl-4">join</span><span class="hl-0"> } = </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-2">&#39;path&#39;</span><span class="hl-0">);</span><br/><br/><span class="hl-6">/** </span><span class="hl-3">@type</span><span class="hl-6"> </span><span class="hl-7">{import(&#39;tailwindcss&#39;).Config}</span><span class="hl-6"> */</span><br/><span class="hl-7">module</span><span class="hl-0">.</span><span class="hl-7">exports</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-8">content:</span><span class="hl-0"> [</span><br/><span class="hl-0">    </span><span class="hl-5">join</span><span class="hl-0">(</span><br/><span class="hl-0">      </span><span class="hl-8">__dirname</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-2">&#39;{src,pages,components}/**/*!(*.stories|*.spec).{ts,tsx,html}&#39;</span><br/><span class="hl-0">    ),</span><br/><span class="hl-0">    ...</span><span class="hl-5">createGlobPatternsForDependencies</span><span class="hl-0">(</span><span class="hl-8">__dirname</span><span class="hl-0">),</span><br/><span class="hl-0">    </span><span class="hl-2">&#39;node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">  ],</span><br/><span class="hl-0">  </span><span class="hl-8">theme:</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-8">extend:</span><span class="hl-0"> {},</span><br/><span class="hl-0">  },</span><br/><span class="hl-0">  </span><span class="hl-8">plugins:</span><span class="hl-0"> [</span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-2">&#39;flowbite/plugin&#39;</span><span class="hl-0">), </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-2">&#39;@tailwindcss/typography&#39;</span><span class="hl-0">)],</span><br/><span class="hl-0">};</span>
+</code></pre>
+<p><strong>note</strong> the <code>require(&#39;flowbite/plug&#39;)</code> line. This is required to add the
+flowbite plugin to the tailwind config.</p>
+
 <a href="#adding-a-new-sub-storybook" id="adding-a-new-sub-storybook" style="color: inherit; text-decoration: none;">
   <h3>Adding a new sub-storybook</h3>
 </a>
 <p>Storybooks will be generated, but wont be automatically linked without updating
 the <code>./storybook/main.js</code> file within <strong>this</strong> project.</p>
 <p>For example:</p>
-<pre><code class="language-javascript"><span class="hl-1">module</span><span class="hl-0">.</span><span class="hl-2">export</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-3">//...</span><br/><span class="hl-0">  </span><span class="hl-2">refs:</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-3">// other refs...</span><br/><span class="hl-0">    </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-2">:</span><span class="hl-0"> {</span><br/><span class="hl-0">      </span><span class="hl-2">title:</span><span class="hl-0"> </span><span class="hl-4">&#39;my-new-lib&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-2">url:</span><span class="hl-0"> </span><span class="hl-4">&#39;my-new-lib/&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    },</span><br/><span class="hl-0">  },</span><br/><span class="hl-0">};</span>
+<pre><code class="language-javascript"><span class="hl-7">module</span><span class="hl-0">.</span><span class="hl-8">export</span><span class="hl-0"> = {</span><br/><span class="hl-0">  </span><span class="hl-6">//...</span><br/><span class="hl-0">  </span><span class="hl-8">refs:</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-6">// other refs...</span><br/><span class="hl-0">    </span><span class="hl-2">&#39;my-new-lib&#39;</span><span class="hl-8">:</span><span class="hl-0"> {</span><br/><span class="hl-0">      </span><span class="hl-8">title:</span><span class="hl-0"> </span><span class="hl-2">&#39;my-new-lib&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">      </span><span class="hl-8">url:</span><span class="hl-0"> </span><span class="hl-2">&#39;my-new-lib/&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    },</span><br/><span class="hl-0">  },</span><br/><span class="hl-0">};</span>
 </code></pre>
 <p>This will make it appear within the gh-page automatically. Otherwise to run individual storybooks,
 see the project&#39;s docs.</p>
