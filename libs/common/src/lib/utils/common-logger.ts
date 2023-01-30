@@ -2,6 +2,8 @@ export type CommonLoggerLogLevels = 'log' | 'debug' | 'warn' | 'error';
 
 /**
  * Configuration object for the common-logger.
+ *
+ *
  */
 export interface CommonLoggerConfig {
   /**
