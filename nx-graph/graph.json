@@ -1517,21 +1517,34 @@
               "hash": "16df04da36a0354f6a8794ad0ba8032a9b09714f"
             },
             {
+              "file": "libs/neows/src/lib/components/best-neo/best-neo.tsx",
+              "hash": "806daadc73b3adf71f827a68897f7cf66ec0569a",
+              "deps": [
+                "npm:flowbite-react",
+                "npm:react"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/components/index.ts",
-              "hash": "30f302df810fb05da37755a83cde9950e9492bd0"
+              "hash": "217f9c89da67140eb2c457fef42e1bb116ae59f8"
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.stories.tsx",
-              "hash": "c2c11eb7f64ad99c44473b6917b8968936f152b0",
+              "hash": "fea05c1bd4718c4fc9852c8cb8cbcf972d717602",
               "deps": [
-                "npm:@storybook/react"
+                "npm:@storybook/react",
+                "npm:flowbite-react",
+                "npm:storybook-addon-react-router-v6"
               ]
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.tsx",
-              "hash": "0cab9aacd3a2cf7f4a5a3a9bdc9aed461e03c232",
+              "hash": "afe65696451cc64f0b9178fb9ca36ff9c99417cf",
               "deps": [
-                "npm:flowbite-react"
+                "npm:@heroicons/react",
+                "npm:flowbite-react",
+                "npm:react",
+                "npm:react-router-dom"
               ]
             },
             {
@@ -1574,7 +1587,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/overview/overview.tsx",
-              "hash": "06e99538bc0b5190a2064de99f4eb3bf3dc91a82"
+              "hash": "9960989fd35c81ddce281505d268001dd3a820be"
             },
             {
               "file": "libs/neows/src/lib/components/overview/weekly-overview.tsx",
@@ -1623,7 +1636,7 @@
             },
             {
               "file": "libs/neows/src/lib/models/lookup-response/lookup-close-approach-data.ts",
-              "hash": "71896ef0e978f65ea64a5e9e1c5c540b7e4ccdca"
+              "hash": "be5a9e63e3ba3f8c4180af40ed73a10d03ed48cc"
             },
             {
               "file": "libs/neows/src/lib/models/lookup-response/lookup-estimated-diameter.ts",
@@ -1635,11 +1648,15 @@
             },
             {
               "file": "libs/neows/src/lib/models/lookup-response/lookup-response.ts",
-              "hash": "4b971d79791b53edd7ed8cea1fd3f179651862fb"
+              "hash": "a7ebb342140da293d884c6da51e2d18937982e20"
             },
             {
               "file": "libs/neows/src/lib/utils/combine-monthly-responses.ts",
               "hash": "362ecba7bc9aa07e4d0620815f99e367566a2538"
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-best-neo.ts",
+              "hash": "e3e05b0fa9af34fa149fc16aa9607a80b9d762e2"
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-browse.ts",
@@ -1647,7 +1664,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
-              "hash": "8bcc22ce23a920a38a9c3968293974535c67f90e",
+              "hash": "cae403e3e0609e95081806b3429184ec1cdb36de",
               "deps": [
                 "common",
                 "npm:luxon"
@@ -1676,11 +1693,11 @@
             },
             {
               "file": "libs/neows/src/lib/utils/index.ts",
-              "hash": "f655d51a76a03cb764ecff62b57e82efb87ee78b"
+              "hash": "625f9ca7471124c4266220862d590b21423ef9ed"
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "32f0a97a42854fd03208b2115b5ec2acf2ff320a"
+              "hash": "d16563162f154f5405be71d3571f0bbf9ad7a4e5"
             },
             {
               "file": "libs/neows/tailwind.config.js",
