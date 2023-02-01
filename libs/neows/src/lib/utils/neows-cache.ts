@@ -16,6 +16,11 @@ export class NeowsCache {
    */
   public readonly dailyCache = new Map<string, FeedResponse>();
   /**
+   * Currently made daily-cache request data. This is used to prevent
+   * duplicate requests from being made.
+   */
+  public readonly dailyCache$ = new Map<string, Promise<FeedResponse>>();
+  /**
    * The public underlying data for the weekly-cache.
    */
   public readonly weeklyCache = new Map<string, FeedResponse>();
@@ -152,6 +157,34 @@ export class NeowsCache {
    */
   public getDaily(date: string): FeedResponse | undefined {
     return this.dailyCache.get(date);
+  }
+
+  /**
+   * Sets data for an on-going daily request.
+   *
+   * @param params The parameters for the request.
+   * @param params.date The date of the data being cached. in format yyyy-MM-dd
+   * @param params.res The feed response data to cache into local storage.
+   */
+  public setCurrentDailyRequest(params: {
+    date: string;
+    res: Promise<FeedResponse>;
+  }) {
+    const { date, res } = params;
+    this.dailyCache$.set(date, res);
+
+    return res;
+  }
+
+  /**
+   * Gets data for the current daily requests that are in progress.
+   *
+   * @param date The date of the data that needs to be checked for
+   */
+  public getCurrentDailyRequest(
+    date: string
+  ): Promise<FeedResponse> | undefined {
+    return this.dailyCache$.get(date);
   }
 
   /**

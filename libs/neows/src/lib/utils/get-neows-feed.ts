@@ -86,17 +86,26 @@ export async function getDailyNeowsFeed(params?: {
       ? DateTime.fromFormat(date, 'yyyy-MM-dd')
       : DateTime.now();
 
-  const cachedDaily = neowsCache.getDaily(dateTime.toFormat('yyyy-MM-dd'));
+  const dateTimeStr = dateTime.toFormat('yyyy-MM-dd');
+  const cachedDaily = neowsCache.getDaily(dateTimeStr);
 
   if (cachedDaily && !params?.noCache) return cachedDaily;
 
-  const res = await getNeowsFeed({
-    start_date: dateTime.toFormat('yyyy-MM-dd'),
-    end_date: dateTime.toFormat('yyyy-MM-dd'),
-  });
+  const cachedCurrentDailyRequest =
+    neowsCache.getCurrentDailyRequest(dateTimeStr);
+
+  const res = await (cachedCurrentDailyRequest
+    ? cachedCurrentDailyRequest
+    : neowsCache.setCurrentDailyRequest({
+        date: dateTimeStr,
+        res: getNeowsFeed({
+          start_date: dateTimeStr,
+          end_date: dateTimeStr,
+        }),
+      }));
 
   neowsCache.setDaily({
-    date: dateTime.toFormat('yyyy-MM-dd'),
+    date: dateTimeStr,
     res,
   });
 
