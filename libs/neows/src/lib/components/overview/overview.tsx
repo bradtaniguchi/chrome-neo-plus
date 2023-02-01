@@ -1,3 +1,4 @@
+import { BestNeo } from '../best-neo/best-neo';
 import { DailyOverview } from './daily-overview';
 import { MonthlyOverview } from './monthly-overview';
 import { WeeklyOverview } from './weekly-overview';
@@ -13,16 +14,15 @@ export interface OverviewProps {
 }
 
 /**
- * The overview component is a "dashboard-like" component that
- * should appear within a card, and manages the main display and functionality
- * of the NEOWs application.
+ * The overview component is the main component/page that displays
+ * most of the NEOs and acts as the "homepage" of the app.
  *
  * @param props The props for the overview component.
  */
 export function Overview(props: OverviewProps) {
   const { date } = props;
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       <ul className="flex flex-col gap-1">
         <li>
           <DailyOverview date={date} />
@@ -34,6 +34,8 @@ export function Overview(props: OverviewProps) {
           <MonthlyOverview date={date} />
         </li>
       </ul>
+
+      <BestNeo date={date} />
     </div>
   );
 }

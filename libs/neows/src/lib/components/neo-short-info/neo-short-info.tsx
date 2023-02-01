@@ -1,9 +1,10 @@
 import {
   ArrowTopRightOnSquareIcon,
   BookOpenIcon,
+  ChartBarIcon,
 } from '@heroicons/react/24/solid';
-import { Button, Card } from 'flowbite-react';
-import { useMemo } from 'react';
+import { Button } from 'flowbite-react';
+import { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { LookupResponse } from '../../models';
 
@@ -24,7 +25,8 @@ export interface NeoShortInfoProps {
 }
 
 /**
- * Short info about a single NEO object.
+ * Short info about a single NEO object. This is a "dumb" component that only displays
+ * the given information as-is.
  *
  * Previous version:
  * https://github.com/bradtaniguchi/chrome-neo/blob/master/app/components/interesting-neo/interesting-neo.view.html
@@ -41,7 +43,9 @@ export interface NeoShortInfoProps {
  *
  * @param props the props for the component.
  */
-export function NeoShortInfo(props: NeoShortInfoProps) {
+export const NeoShortInfo = memo(function NeoShortInfo(
+  props: NeoShortInfoProps
+) {
   const { neo, isBookmarked, bookmarkedChanged } = props;
 
   const passDistance = neo.close_approach_data[0].miss_distance.kilometers;
@@ -66,58 +70,60 @@ export function NeoShortInfo(props: NeoShortInfoProps) {
   }, [passDistance]);
 
   return (
-    <Link to={`/neo/${neo.id}`}>
-      <Card className="dark:bg-slate-800 dark:text-white">
-        <div className="flex flex-row justify-between">
-          <h1 className="text-lg">{neo.name}</h1>
-          <div>
-            <Button
-              pill={true}
-              outline={!isBookmarked}
-              onClick={handleOnBookmark}
-            >
-              <BookOpenIcon className="w-4" />
-            </Button>
-          </div>
+    <div>
+      <div className="flex flex-row justify-between">
+        <h1 className="text-lg">{neo.name}</h1>
+        <div>
+          <Button
+            pill={true}
+            outline={!isBookmarked}
+            onClick={handleOnBookmark}
+          >
+            <BookOpenIcon className="w-4" />
+          </Button>
         </div>
-        <ul>
-          <li className="flex flex-row justify-between">
-            <div>Neo Ref ID</div>
-            <div>{neo.neo_reference_id}</div>
-          </li>
-          <li className="flex flex-row justify-between">
-            <div>Dangerous</div>
-            {/* Change to chip color? */}
-            <div className="font-bold">
-              {neo.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}
-            </div>
-          </li>
-          <li className="flex flex-row justify-between">
-            <div>Next Pass:</div>
-            <div>{neo.close_approach_data[0].close_approach_date}</div>
-          </li>
-          <li className="flex flex-row justify-between">
-            {/* TODO: change based on global values */}
-            <div>Pass Distance (km)</div>
-            <div title={passDistance.toLocaleString()}>
-              {trimmedPassDistance.toLocaleString()}
-            </div>
-          </li>
-          <li className="flex flex-row justify-end">
-            <a
-              href={neo.nasa_jpl_url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex flex-row gap-1"
-            >
-              <ArrowTopRightOnSquareIcon className="w-4" />
-              <div>JPL Link</div>
-            </a>
-          </li>
+      </div>
+      <ul>
+        <li className="flex flex-row justify-between">
+          <div>Neo Ref ID</div>
+          <div>{neo.neo_reference_id}</div>
+        </li>
+        <li className="flex flex-row justify-between">
+          <div>Dangerous</div>
+          {/* Change to chip color? */}
+          <div className="font-bold">
+            {neo.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}
+          </div>
+        </li>
+        <li className="flex flex-row justify-between">
+          <div>Next Pass:</div>
+          <div>{neo.close_approach_data[0].close_approach_date}</div>
+        </li>
+        <li className="flex flex-row justify-between">
+          {/* TODO: change based on global values */}
+          <div>Pass Distance (km)</div>
+          <div title={passDistance.toLocaleString()}>
+            {trimmedPassDistance.toLocaleString()}
+          </div>
+        </li>
+        <li className="flex flex-row justify-end gap-2">
+          <Link to={`/neo/${neo.id}`} className="flex flex-row gap-1">
+            <ChartBarIcon className="w-4" />
+            <div>detailed stats</div>
+          </Link>
+          <a
+            href={neo.nasa_jpl_url}
+            target="_blank"
+            rel="noreferrer"
+            className="flex flex-row gap-1"
+          >
+            <ArrowTopRightOnSquareIcon className="w-4" />
+            <div>JPL Link</div>
+          </a>
+        </li>
 
-          {/* TODO: add other data and links to external resources such as JPL */}
-        </ul>
-      </Card>
-    </Link>
+        {/* TODO: add other data and links to external resources such as JPL */}
+      </ul>
+    </div>
   );
-}
+});

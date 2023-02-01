@@ -1,11 +1,17 @@
 import { Meta, Story } from '@storybook/react';
+import { Card } from 'flowbite-react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { NeoShortInfo, NeoShortInfoProps } from './neo-short-info';
 
 export default {
   component: NeoShortInfo,
   title: 'components/NeoShortInfo',
-  decorators: [withRouter],
+  decorators: [
+    withRouter,
+    (Story) => (
+      <Card className="dark:bg-slate-800 dark:text-white">{Story()}</Card>
+    ),
+  ],
 } as Meta;
 
 const Template: Story<NeoShortInfoProps> = (args) => <NeoShortInfo {...args} />;
