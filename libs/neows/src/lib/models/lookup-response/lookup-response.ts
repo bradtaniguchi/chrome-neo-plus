@@ -27,7 +27,7 @@ export interface LookupResponse {
   /**
    * ???
    */
-  designation: string;
+  designation?: string;
   /**
    * tThe NASA JPL url for more information
    */
@@ -35,8 +35,8 @@ export interface LookupResponse {
   /**
    * ???
    */
-  absolute_magnitude_h: string;
-  estimated_diamteter: {
+  absolute_magnitude_h: number;
+  estimated_diameter: {
     kilometers: LookupEstimatedDiameter;
     meters: LookupEstimatedDiameter;
     miles: LookupEstimatedDiameter;
@@ -53,7 +53,7 @@ export interface LookupResponse {
   /**
    * Advanced orbital data
    */
-  orbitalData: LookupOrbitalData;
+  orbitalData?: LookupOrbitalData;
   /**
    * ???
    */

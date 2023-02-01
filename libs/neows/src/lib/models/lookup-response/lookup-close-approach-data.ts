@@ -4,16 +4,18 @@
 export interface LookupCloseApproachData {
   /**
    * The date of closest approach, in YYYY-MM-DD format
+   * example: '1900-06-01'
    */
-  close_approach_date: '1900-06-01';
+  close_approach_date: string;
   /**
    * The date and time of closest approach, in YYYY-MM-DD HH:MM format
+   * example: '1900-Jun-01 16:40'
    */
-  close_approach_date_full: '1900-Jun-01 16:40';
+  close_approach_date_full: string;
   /**
    * epoch date time of closest approach
    */
-  epoch_date_close_approach: -2195882400000;
+  epoch_date_close_approach: number;
   /**
    * Relative velocity data
    */
@@ -58,9 +60,8 @@ export interface LookupCloseApproachData {
   };
   /**
    * The orbiting body,
-   * Ex. Merc (Mercury)
+   * Ex. Merc (Mercury), 'Earth
    *
-   * TODO: Update to enum if possible
    */
-  orbiting_body: 'Merc';
+  orbiting_body: string;
 }
