@@ -1664,7 +1664,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
-              "hash": "cae403e3e0609e95081806b3429184ec1cdb36de",
+              "hash": "959abaee801b1b52f9dcbfe7ec9d5bbb105d0888",
               "deps": [
                 "common",
                 "npm:luxon"
@@ -1697,7 +1697,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "d16563162f154f5405be71d3571f0bbf9ad7a4e5"
+              "hash": "b24876f5b681ee04a3fba86ba2823f9c8898a550"
             },
             {
               "file": "libs/neows/tailwind.config.js",
