@@ -34,42 +34,6 @@ export async function getNeowsFeed(
 }
 
 /**
- * Returns the current week's feed of NEOWs.
- *
- * @param params The params to use for the request
- * @param params.date The date to fetch the feed for
- * @param params.noCache Whether to skip the cache and fetch from the API
- */
-export async function getThisWeekNeowsFeed(params?: {
-  date?: string;
-  noCache?: boolean;
-}): Promise<FeedResponse> {
-  const date = params?.date;
-
-  const dateTime =
-    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
-      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
-      : DateTime.now();
-
-  const cachedWeekly = neowsCache.getWeekly(dateTime.weekNumber, dateTime.year);
-
-  if (cachedWeekly && !params?.noCache) return cachedWeekly;
-
-  const res = await getNeowsFeed({
-    start_date: dateTime.startOf('week').toFormat('yyyy-MM-dd'),
-    end_date: dateTime.endOf('week').toFormat('yyyy-MM-dd'),
-  });
-
-  neowsCache.setWeekly({
-    week: dateTime.weekNumber,
-    year: dateTime.year,
-    res,
-  });
-
-  return res;
-}
-
-/**
  * Returns the current day's feed of NEOWs.
  *
  * @param params The params to use for the request
@@ -106,6 +70,49 @@ export async function getDailyNeowsFeed(params?: {
 
   neowsCache.setDaily({
     date: dateTimeStr,
+    res,
+  });
+
+  return res;
+}
+
+/**
+ * Returns the current week's feed of NEOWs.
+ *
+ * @param params The params to use for the request
+ * @param params.date The date to fetch the feed for
+ * @param params.noCache Whether to skip the cache and fetch from the API
+ */
+export async function getThisWeekNeowsFeed(params?: {
+  date?: string;
+  noCache?: boolean;
+}): Promise<FeedResponse> {
+  const date = params?.date;
+
+  const dateTime =
+    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
+      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+      : DateTime.now();
+
+  const cachedWeekly = neowsCache.getWeekly(dateTime.weekNumber, dateTime.year);
+
+  if (cachedWeekly && !params?.noCache) return cachedWeekly;
+
+  const cachedWeeklyRequest = neowsCache.getCurrentWeeklyRequests(
+    dateTime.weekNumber,
+    dateTime.year
+  );
+
+  const res = await (cachedWeeklyRequest
+    ? cachedWeeklyRequest
+    : getNeowsFeed({
+        start_date: dateTime.startOf('week').toFormat('yyyy-MM-dd'),
+        end_date: dateTime.endOf('week').toFormat('yyyy-MM-dd'),
+      }));
+
+  neowsCache.setWeekly({
+    week: dateTime.weekNumber,
+    year: dateTime.year,
     res,
   });
 

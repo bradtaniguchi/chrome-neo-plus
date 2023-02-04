@@ -25,6 +25,11 @@ export class NeowsCache {
    */
   public readonly weeklyCache = new Map<string, FeedResponse>();
   /**
+   * Currently made weekly-cache request data. This is used to prevent
+   * duplicate requests from being made.
+   */
+  public readonly weeklyCache$ = new Map<string, Promise<FeedResponse>>();
+  /**
    * The public underlying data for the monthly-cache.
    */
   public readonly monthlyCache = new Map<string, Omit<FeedResponse, 'links'>>();
@@ -212,6 +217,39 @@ export class NeowsCache {
    */
   public getWeekly(week: number, year: number): FeedResponse | undefined {
     return this.weeklyCache.get(`${year}-${week}`);
+  }
+
+  /**
+   * Sets data for an on-going weekly request.
+   *
+   * @param params The parameters for the request.
+   * @param params.week The week of the data being cached, should be the number of the year
+   * according to luxon.
+   * @param params.year The year of the data being cached.
+   * @param params.res The feed response data to cache into local storage.
+   */
+  public setCurrentWeeklyRequests(params: {
+    week: number;
+    year: number;
+    res: Promise<FeedResponse>;
+  }) {
+    const { year, week, res } = params;
+    this.weeklyCache$.set(`${year}-${week}`, res);
+
+    return res;
+  }
+
+  /**
+   * Gets data for the current weekly requests that are in progress.
+   *
+   * @param week The week to load data for
+   * @param year The year to load data for
+   */
+  public getCurrentWeeklyRequests(
+    week: number,
+    year: number
+  ): Promise<FeedResponse> | undefined {
+    return this.weeklyCache$.get(`${year}-${week}`);
   }
 
   /**
