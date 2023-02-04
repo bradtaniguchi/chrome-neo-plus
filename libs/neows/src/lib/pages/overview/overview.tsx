@@ -1,4 +1,4 @@
-import { BestNeo } from '../components/best-neo/best-neo';
+import { BestNeo } from '../../components/best-neo/best-neo';
 import { DailyOverview } from './daily-overview';
 import { MonthlyOverview } from './monthly-overview';
 import { WeeklyOverview } from './weekly-overview';
