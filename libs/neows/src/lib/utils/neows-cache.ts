@@ -34,6 +34,14 @@ export class NeowsCache {
    */
   public readonly monthlyCache = new Map<string, Omit<FeedResponse, 'links'>>();
   /**
+   * Currently made monthly-cache request data. This is used to prevent
+   * duplicate requests from being made.
+   */
+  public readonly monthlyCache$ = new Map<
+    string,
+    Promise<Omit<FeedResponse, 'links'>>
+  >();
+  /**
    * The public underlying data for the id-cache.
    */
   public readonly idCache = new Map<string, LookupResponse>();
@@ -284,6 +292,42 @@ export class NeowsCache {
     year: number
   ): Omit<FeedResponse, 'links'> | undefined {
     return this.monthlyCache.get(`${year}-${month}`);
+  }
+
+  /**
+   * Sets data for an on-going monthly request.
+   *
+   * @param params The parameters for the request.
+   * @param params.month The month of the data being cached, should be the number of the year
+   * according to luxon.
+   * @param params.year The year of the data being cached.
+   * @param params.res The feed response data to cache into local storage.
+   */
+  public setCurrentMonthlyRequests(params: {
+    month: number;
+    year: number;
+    res: Promise<Omit<FeedResponse, 'links'>>;
+  }) {
+    const { year, month, res } = params;
+    this.monthlyCache$.set(`${year}-${month}`, res);
+
+    return res;
+  }
+
+  /**
+   * Gets data for the current daily requests that are in progress.
+   *
+   * @param params The parameters for the request.
+   * @param params.month The month of the data being cached, should be the number of the year
+   * according to luxon.
+   * @param params.year The year of the data being cached.
+   */
+  public getCurrentMonthlyRequests(params: {
+    month: number;
+    year: number;
+  }): Promise<Omit<FeedResponse, 'links'>> | undefined {
+    const { year, month } = params;
+    return this.monthlyCache$.get(`${year}-${month}`);
   }
 
   /**

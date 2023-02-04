@@ -143,7 +143,24 @@ export async function getMonthlyNeowsFeed(params?: {
 
   if (cachedMonthly && !params?.noCache) return cachedMonthly;
 
+  const cachedMonthlyRequest = neowsCache.getCurrentMonthlyRequests({
+    month: dateTime.month,
+    year: dateTime.year,
+  });
+
   const weeklyBlocks = getWeeklyBlocks(DateTime.now());
+
+  if (cachedMonthlyRequest) {
+    const res = await cachedMonthlyRequest;
+
+    neowsCache.setMonthly({
+      month: DateTime.now().month,
+      year: DateTime.now().year,
+      res,
+    });
+
+    return res;
+  }
 
   const responses = await Promise.all(
     weeklyBlocks.map(({ start_date, end_date }) =>
