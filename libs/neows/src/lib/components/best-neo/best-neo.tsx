@@ -1,5 +1,6 @@
 import { Card } from 'flowbite-react';
 import { useMemo } from 'react';
+import { useNeoBookmark } from '../../hooks/use-neo-bookmark';
 import { useNeos } from '../../hooks/use-neos';
 import { getBestNeo } from '../../utils';
 import { NeoShortInfo } from '../neo-short-info/neo-short-info';
@@ -29,16 +30,17 @@ export function BestNeo(props: BestNeoProps) {
     requestType: bestRange ?? 'weekly',
     date,
   });
-  // TODO: add bookmark support
-
-  // TODO: add loading+error handling display
 
   const neosObject = neosResponse?.near_earth_objects;
 
   const bestNeo = useMemo(
-    () => getBestNeo(Object.values(neosObject ?? {}).flat()),
+    () => getBestNeo(Object.values(neosObject ?? {}).flat()) ?? undefined,
     [neosObject]
   );
+
+  const { isBookmarked, handleToggleBookmark } = useNeoBookmark({
+    neo: bestNeo,
+  });
 
   if (!bestNeo)
     // if there is
@@ -46,7 +48,11 @@ export function BestNeo(props: BestNeoProps) {
 
   return (
     <Card className="dark:bg-slate-800 dark:text-white">
-      <NeoShortInfo neo={bestNeo} />
+      <NeoShortInfo
+        neo={bestNeo}
+        isBookmarked={isBookmarked}
+        bookmarkedChanged={handleToggleBookmark}
+      />
     </Card>
   );
 }

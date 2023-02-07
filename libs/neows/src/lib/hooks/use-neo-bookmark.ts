@@ -13,7 +13,7 @@ export const NEOWS_BOOKMARKS_KEY = 'NEOWS_BOOKMARKS';
  * state from localStorage.
  */
 export function useNeoBookmark(params: {
-  neo: LookupResponse;
+  neo?: LookupResponse;
   isBookmarked?: boolean;
 }) {
   const { neo } = params;
@@ -31,7 +31,7 @@ export function useNeoBookmark(params: {
 
   const getCurrentBookmarks = () => {
     const rawData =
-      JSON.parse(localStorage.getItem(NEOWS_BOOKMARKS_KEY) || '') ?? [];
+      JSON.parse(localStorage.getItem(NEOWS_BOOKMARKS_KEY) ?? '[]') ?? [];
     const currentBookmarks: string[] = Array.isArray(rawData)
       ? rawData.filter((el) => typeof el === 'string')
       : [];
@@ -39,7 +39,7 @@ export function useNeoBookmark(params: {
   };
 
   useEffect(() => {
-    if (mounted) {
+    if (mounted && neoId) {
       const currentBookmarks = getCurrentBookmarks();
       setIsBookmarked(currentBookmarks.includes(neoId ?? ''));
     }
