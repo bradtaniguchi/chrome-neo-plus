@@ -1514,11 +1514,20 @@
             },
             {
               "file": "libs/neows/src/index.ts",
-              "hash": "31f81d14b1428a4e8f3911e0e22e4217d68db9cd"
+              "hash": "a3b7dce7b1c1201ac9c840263a4d92fe57f04081"
+            },
+            {
+              "file": "libs/neows/src/lib/components/best-neo/best-neo.stories.tsx",
+              "hash": "4205bf0c4f072743842c4363f84d5855bb792e1e",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6"
+              ]
             },
             {
               "file": "libs/neows/src/lib/components/best-neo/best-neo.tsx",
-              "hash": "806daadc73b3adf71f827a68897f7cf66ec0569a",
+              "hash": "75ac68b5c3573cf16f987b2e072d755fbeb85141",
               "deps": [
                 "npm:flowbite-react",
                 "npm:react"
@@ -1561,7 +1570,7 @@
             },
             {
               "file": "libs/neows/src/lib/hooks/use-neo-bookmark.ts",
-              "hash": "49fee35974b3548db9fb7824278bdbff0cd297a2",
+              "hash": "be82f44da3d5d0d01f82bb9aa2c7d9c48219a2f6",
               "deps": [
                 "common-react",
                 "npm:react"
@@ -1606,6 +1615,10 @@
             {
               "file": "libs/neows/src/lib/models/lookup-response/lookup-response.ts",
               "hash": "a7ebb342140da293d884c6da51e2d18937982e20"
+            },
+            {
+              "file": "libs/neows/src/lib/pages/index.ts",
+              "hash": "e8917cc46902e2a064cdefc2d78949ae32bb29f4"
             },
             {
               "file": "libs/neows/src/lib/pages/overview/common-value-wrapper.tsx",
@@ -1657,6 +1670,17 @@
                 "npm:flowbite-react",
                 "npm:react-router-dom"
               ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-neo/view-neo.stories.tsx",
+              "hash": "eae1bdf1d04664ab07a997a85da5d7a40c7d99a6",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-neo/view-neo.tsx",
+              "hash": "230131b30578ea718963c097f719267ff1ddbdd2"
             },
             {
               "file": "libs/neows/src/lib/utils/combine-monthly-responses.ts",
