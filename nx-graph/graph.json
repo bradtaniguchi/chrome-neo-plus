@@ -1651,7 +1651,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/overview/overview.stories.tsx",
-              "hash": "d8f1107b360617cac2c0e98357d7b18ccd157ef8",
+              "hash": "75973d7a41e4386810c9736dc24a6da8e993e2d0",
               "deps": [
                 "npm:@storybook/react",
                 "npm:luxon",
@@ -1673,7 +1673,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.stories.tsx",
-              "hash": "eae1bdf1d04664ab07a997a85da5d7a40c7d99a6",
+              "hash": "ea5b607daff97e4bb1da8e7076a2dbd7fa222b7c",
               "deps": [
                 "npm:@storybook/react"
               ]
