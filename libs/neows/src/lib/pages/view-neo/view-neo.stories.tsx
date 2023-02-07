@@ -3,7 +3,7 @@ import { ViewNeo } from './view-neo';
 
 export default {
   component: ViewNeo,
-  title: 'components/ViewNeo',
+  title: 'pages/ViewNeo',
 } as Meta;
 
 const Template: Story = (args) => <ViewNeo {...args} />;

@@ -5,7 +5,7 @@ import { Overview, OverviewProps } from './overview';
 
 export default {
   component: Overview,
-  title: 'components/Overview',
+  title: 'pages/Overview',
   decorators: [withRouter],
   argTypes: {
     date: {
