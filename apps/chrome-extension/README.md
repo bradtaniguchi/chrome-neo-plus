@@ -23,4 +23,4 @@ nx run chrome-extension:serve
 ```
 
 For more details on chrome-extension development see:
-https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked
+<https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked>

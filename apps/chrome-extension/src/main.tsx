@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/popup.html">
       <App />
     </BrowserRouter>
   </StrictMode>
