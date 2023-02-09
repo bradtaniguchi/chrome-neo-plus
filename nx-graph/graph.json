@@ -156,12 +156,16 @@
               "hash": "3cdfa7458c33dd575690b0944f8f8350744de5d2"
             },
             {
+              "file": "apps/chrome-extension/postcss.config.js",
+              "hash": "2d6ed243d22b23395afa1833e840071c1ed4c935"
+            },
+            {
               "file": "apps/chrome-extension/project.json",
               "hash": "74518cc1cf67354a479228ea23c1212ddf81d63c"
             },
             {
               "file": "apps/chrome-extension/README.md",
-              "hash": "76c572d01a2926a22f3535fb2c0f0a2343a77b7e"
+              "hash": "22b8831fbda6efe8b7ed5687dcde246b384e1c2f"
             },
             {
               "file": "apps/chrome-extension/scripts/.gitkeep",
@@ -177,7 +181,7 @@
             },
             {
               "file": "apps/chrome-extension/scripts/serve.js",
-              "hash": "1e95882c628aa8482de52b028754f8a1b1888693",
+              "hash": "b4848b941b1c8a418e0cef549c29cfb9e22cca60",
               "deps": [
                 "npm:fs-extra"
               ]
@@ -188,7 +192,7 @@
             },
             {
               "file": "apps/chrome-extension/src/app/app.tsx",
-              "hash": "0ae04dc109e73c8e8ccfdcf6f9e581bac0bceccb",
+              "hash": "a7a190c5a3dc9004a2b981263c49e0eefb952044",
               "deps": [
                 "npm:react-router-dom"
               ]
@@ -227,7 +231,7 @@
             },
             {
               "file": "apps/chrome-extension/src/main.tsx",
-              "hash": "563fabfe03cb3108ae64f0fa4de55e0ba4557b68",
+              "hash": "0a47aa07af8a632bb59c82368d3bc8af19e49095",
               "deps": [
                 "npm:react",
                 "npm:react-dom",
@@ -253,6 +257,15 @@
             {
               "file": "apps/chrome-extension/src/styles.scss",
               "hash": "90d4ee0072ce3fc41812f8af910219f9eea3c3de"
+            },
+            {
+              "file": "apps/chrome-extension/tailwind.config.js",
+              "hash": "c9f7518af4144da9c796011b06d5043fb76cb625",
+              "deps": [
+                "npm:@nrwl/react",
+                "npm:flowbite",
+                "npm:@tailwindcss/typography"
+              ]
             },
             {
               "file": "apps/chrome-extension/tsconfig.app.json",
