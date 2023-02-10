@@ -36,6 +36,7 @@
     "@emotion/styled": "11.10.5",
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.14",
+    "@nrwl/nx-plugin": "^15.2.1",
     "@sentry/nextjs": "^7.22.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
