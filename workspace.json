@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "apod": "libs/apod",
+    "app-bar": "libs/app-bar",
     "chrome-extension": "apps/chrome-extension",
     "common": "libs/common",
     "common-react": "libs/common-react",
