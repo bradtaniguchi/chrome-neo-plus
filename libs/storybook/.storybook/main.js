@@ -34,5 +34,9 @@ module.exports = {
       title: 'neows',
       url: 'neows/',
     },
+    'app-bar': {
+      title: 'app-bar',
+      url: 'app-bar/',
+    },
   },
 };
