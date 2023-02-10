@@ -4,7 +4,7 @@ import {
   QuestionMarkCircleIcon,
   XCircleIcon,
 } from '@heroicons/react/24/solid';
-import { Label, TextInput } from 'flowbite-react';
+import { Label } from 'flowbite-react';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
