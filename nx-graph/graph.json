@@ -1179,6 +1179,211 @@
           ]
         }
       },
+      "app-bar": {
+        "name": "app-bar",
+        "type": "lib",
+        "data": {
+          "root": "libs/app-bar",
+          "name": "app-bar",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/app-bar/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/app-bar",
+                "tsConfig": "libs/app-bar/tsconfig.lib.json",
+                "project": "libs/app-bar/package.json",
+                "entryFile": "libs/app-bar/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/app-bar/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/app-bar/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/app-bar/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            },
+            "storybook": {
+              "executor": "@nrwl/storybook:storybook",
+              "options": {
+                "uiFramework": "@storybook/react",
+                "port": 4400,
+                "config": {
+                  "configFolder": "libs/app-bar/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              }
+            },
+            "build-storybook": {
+              "executor": "@nrwl/storybook:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "uiFramework": "@storybook/react",
+                "outputPath": "dist/storybook/app-bar",
+                "config": {
+                  "configFolder": "libs/app-bar/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/.storybook/**/*"
+              ]
+            }
+          },
+          "files": [
+            {
+              "file": "libs/app-bar/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/app-bar/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/app-bar/.storybook/main.js",
+              "hash": "b17a4cd6ebe5e3b9bf8f3b47328cfa969bc0fef5"
+            },
+            {
+              "file": "libs/app-bar/.storybook/preview.js",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "libs/app-bar/.storybook/tsconfig.json",
+              "hash": "601ae8ff8badf6d62653645f3a6f33a425536efa"
+            },
+            {
+              "file": "libs/app-bar/jest.config.ts",
+              "hash": "227bed12727cad20ed9de1b3296c992999afa2a0"
+            },
+            {
+              "file": "libs/app-bar/package.json",
+              "hash": "d901528a20524808fe1eaf38dc976caff9ed65f3"
+            },
+            {
+              "file": "libs/app-bar/postcss.config.js",
+              "hash": "c72626d6ce70cf11b1867c21b0f878a30e025782"
+            },
+            {
+              "file": "libs/app-bar/project.json",
+              "hash": "c306fd138b7310a3f0fc000b0c50e2c1b844be3c"
+            },
+            {
+              "file": "libs/app-bar/README.md",
+              "hash": "904accf2ef70113d0a13895f54d2574afe2fdc12"
+            },
+            {
+              "file": "libs/app-bar/src/index.ts",
+              "hash": "dceaa86e291d492a6b1084fa29dda4f2e2799a8e"
+            },
+            {
+              "file": "libs/app-bar/src/lib/app-bar.spec.tsx",
+              "hash": "55e85382b196d229a5edf50bfa1f999e1606573f",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/app-bar/src/lib/app-bar.stories.tsx",
+              "hash": "ac522e6bd947f736b52310754e3acf9844c615fe",
+              "deps": [
+                "npm:@storybook/react"
+              ]
+            },
+            {
+              "file": "libs/app-bar/src/lib/app-bar.tsx",
+              "hash": "db1a788ddddd039f3f16c2d66d257c20f3ec984e"
+            },
+            {
+              "file": "libs/app-bar/tailwind.config.js",
+              "hash": "d00839f6ace911abd9926eb93cc12827c8c6d2ac",
+              "deps": [
+                "npm:@nrwl/react"
+              ]
+            },
+            {
+              "file": "libs/app-bar/tsconfig.json",
+              "hash": "9fff9cc2db0cca15bc96bf1cde3e27146d3922f2"
+            },
+            {
+              "file": "libs/app-bar/tsconfig.lib.json",
+              "hash": "2e54c51309bc084f59acb6b55604a4803b3fb238"
+            },
+            {
+              "file": "libs/app-bar/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
       "common": {
         "name": "common",
         "type": "lib",
@@ -2270,6 +2475,7 @@
         }
       ],
       "storybook": [],
+      "app-bar": [],
       "common": [],
       "neows": [
         {
