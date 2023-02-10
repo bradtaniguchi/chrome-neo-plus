@@ -1314,7 +1314,11 @@
             },
             {
               "file": "libs/app-bar/.storybook/preview.js",
-              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+              "hash": "8c8889d1a414d3f6aac36db631cb19fab5756751"
+            },
+            {
+              "file": "libs/app-bar/.storybook/tailwind-imports.css",
+              "hash": "b5c61c956711f981a41e95f7fcf0038436cfbb22"
             },
             {
               "file": "libs/app-bar/.storybook/tsconfig.json",
@@ -1360,7 +1364,7 @@
             },
             {
               "file": "libs/app-bar/src/lib/app-bar.tsx",
-              "hash": "db1a788ddddd039f3f16c2d66d257c20f3ec984e"
+              "hash": "2d76f8c64c6e9152bcf01e45c5294c3c1866d817"
             },
             {
               "file": "libs/app-bar/tailwind.config.js",
