@@ -1,41 +1,44 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
-
-import { Route, Routes, Link, Outlet } from 'react-router-dom';
+import { Route, Routes, Outlet } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { LoadingSpinner } from './core/loading-spinner';
+import { AppBar } from '@chrome-neo-plus/app-bar';
 
 const NotFoundPage = lazy(() => import('./pages/not-found'));
-
+const Overview = lazy(() =>
+  import('@chrome-neo-plus/neows').then(({ Overview }) => ({
+    default: Overview,
+  }))
+);
+const ViewNeo = lazy(() =>
+  import('@chrome-neo-plus/neows').then(({ ViewNeo }) => ({ default: ViewNeo }))
+);
 /**
  * Main app export
  */
 export function App() {
   return (
     <>
-      <div>
-        <h1>Hello World!</h1>
-      </div>
+      <AppBar />
       <Routes>
         <Route path="/" element={<Outlet />}>
           <Route
             index
             element={
-              <div>
-                <div>This is the generated root route.</div>
-                <Link to="/page-2">Click here for page 2.</Link>
-                <Link to="/404">Click here for 404 page</Link>
-              </div>
+              <Suspense fallback={<LoadingSpinner />}>
+                {/* TODO: add APOD */}
+                <Overview />
+              </Suspense>
             }
           />
           <Route
-            path="page-2"
+            path="/neo/:id"
             element={
-              <div>
-                <Link to="/">Click here to go back to root page.</Link>
-              </div>
+              <Suspense fallback={<LoadingSpinner />}>
+                <ViewNeo />
+              </Suspense>
             }
           />
+          {/* TODO: add other routes */}
           <Route
             path="*"
             element={
