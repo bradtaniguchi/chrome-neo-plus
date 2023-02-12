@@ -2,6 +2,10 @@
 import styles from './app.module.scss';
 
 import { Route, Routes, Link, Outlet } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { LoadingSpinner } from './core/loading-spinner';
+
+const NotFoundPage = lazy(() => import('./pages/not-found'));
 
 /**
  * Main app export
@@ -20,6 +24,7 @@ export function App() {
               <div>
                 <div>This is the generated root route.</div>
                 <Link to="/page-2">Click here for page 2.</Link>
+                <Link to="/404">Click here for 404 page</Link>
               </div>
             }
           />
@@ -31,7 +36,14 @@ export function App() {
               </div>
             }
           />
-          <Route path="*" element={<div>Unknown page!</div>} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <NotFoundPage />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
       {/* END: routes */}
