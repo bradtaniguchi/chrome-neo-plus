@@ -7,6 +7,7 @@
     "chrome-extension": "apps/chrome-extension",
     "common": "libs/common",
     "common-react": "libs/common-react",
+    "core": "libs/core",
     "internal-client": "apps/internal-client",
     "neows": "libs/neows",
     "nivl": "libs/nivl",
