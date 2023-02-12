@@ -1,4 +1,5 @@
 import {
+  BugAntIcon,
   Cog6ToothIcon,
   MagnifyingGlassCircleIcon,
   QuestionMarkCircleIcon,
@@ -84,6 +85,14 @@ export function AppBar(props: AppBarProps) {
             <h1>Chrome-NEO</h1>
           </div>
           <div className="flex flex-row gap-1">
+            <Link
+              to="/bug"
+              className="content-center"
+              title="Report a bug"
+              aria-label="report a bug"
+            >
+              <BugAntIcon className="w-6" />
+            </Link>
             <Link
               to="/help"
               className="content-center"
