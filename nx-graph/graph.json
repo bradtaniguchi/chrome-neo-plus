@@ -187,13 +187,27 @@
               ]
             },
             {
-              "file": "apps/chrome-extension/src/app/app.module.scss",
-              "hash": "7b88fbabf87b258bc8a0cc5b78800551134ca195"
+              "file": "apps/chrome-extension/src/app/app.tsx",
+              "hash": "71ae442ceb8fdfbe26d441fd6ea619d34c820562",
+              "deps": [
+                "npm:react-router-dom",
+                "npm:react",
+                "app-bar",
+                "neows"
+              ]
             },
             {
-              "file": "apps/chrome-extension/src/app/app.tsx",
-              "hash": "a7a190c5a3dc9004a2b981263c49e0eefb952044",
+              "file": "apps/chrome-extension/src/app/core/loading-spinner.tsx",
+              "hash": "c07cc302799f2593900c9a45877e4b5ecdcb4e81",
               "deps": [
+                "npm:flowbite-react"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/src/app/pages/not-found.tsx",
+              "hash": "d1e47891983ddae5a31470aa43eee69117bceee3",
+              "deps": [
+                "npm:@heroicons/react",
                 "npm:react-router-dom"
               ]
             },
@@ -256,7 +270,7 @@
             },
             {
               "file": "apps/chrome-extension/src/styles.scss",
-              "hash": "90d4ee0072ce3fc41812f8af910219f9eea3c3de"
+              "hash": "b58c9491cabaa9f616e98027d5ea39b3cbbd37c0"
             },
             {
               "file": "apps/chrome-extension/tailwind.config.js",
@@ -1090,7 +1104,7 @@
             },
             {
               "file": "libs/storybook/.storybook/main.js",
-              "hash": "f09bd62cb5016b9dd6d4e892a647c5103dd4d8b4"
+              "hash": "f8abebf9e7b4f71f9adc8141f4626fba703cbc15"
             },
             {
               "file": "libs/storybook/.storybook/preview.js",
@@ -1357,14 +1371,21 @@
             },
             {
               "file": "libs/app-bar/src/lib/app-bar.stories.tsx",
-              "hash": "ac522e6bd947f736b52310754e3acf9844c615fe",
+              "hash": "12066c46f7d780fa70d4b92030793d46a2a4ef68",
               "deps": [
-                "npm:@storybook/react"
+                "npm:@storybook/react",
+                "npm:storybook-addon-react-router-v6"
               ]
             },
             {
               "file": "libs/app-bar/src/lib/app-bar.tsx",
-              "hash": "2d76f8c64c6e9152bcf01e45c5294c3c1866d817"
+              "hash": "5601c96c4f1d85b6c0567cfd0718d054289a9f1d",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:flowbite-react",
+                "npm:react",
+                "npm:react-router-dom"
+              ]
             },
             {
               "file": "libs/app-bar/tailwind.config.js",
@@ -2308,6 +2329,144 @@
           ]
         }
       },
+      "core": {
+        "name": "core",
+        "type": "lib",
+        "data": {
+          "root": "libs/core",
+          "name": "core",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/core/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/core",
+                "tsConfig": "libs/core/tsconfig.lib.json",
+                "project": "libs/core/package.json",
+                "entryFile": "libs/core/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/core/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ]
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/core/**/*.{ts,tsx,js,jsx}"
+                ]
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "{workspaceRoot}/.eslintrc.json"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "{workspaceRoot}/coverage/{projectRoot}"
+              ],
+              "options": {
+                "jestConfig": "libs/core/jest.config.ts",
+                "passWithNoTests": true
+              },
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "default",
+                "^production",
+                "{workspaceRoot}/jest.preset.js"
+              ]
+            }
+          },
+          "files": [
+            {
+              "file": "libs/core/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/core/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/core/jest.config.ts",
+              "hash": "d162e8fb76b24d316b0df097eca7f89e66a6782d"
+            },
+            {
+              "file": "libs/core/package.json",
+              "hash": "15f9189d1d11225093c2aed0a9837cba5d1d0d40"
+            },
+            {
+              "file": "libs/core/project.json",
+              "hash": "a8f45ed236e582720378cc24b4d06a591570beee"
+            },
+            {
+              "file": "libs/core/README.md",
+              "hash": "eb3ccc16ef05e3608778f53c70fc887e1f968f63"
+            },
+            {
+              "file": "libs/core/src/index.ts",
+              "hash": "e87855f47ea142d7bc8761adcca3ccb7473170b7"
+            },
+            {
+              "file": "libs/core/src/lib/core.module.scss",
+              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+            },
+            {
+              "file": "libs/core/src/lib/core.spec.tsx",
+              "hash": "f50c122db149123796d940b8664bac636427ec0d",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/core/src/lib/core.tsx",
+              "hash": "e0caab1a32c715836b14a0003dd013af2fc130a0"
+            },
+            {
+              "file": "libs/core/tsconfig.json",
+              "hash": "4c089585ed6b0a3c4767aee6a136bb6f47cad2b6"
+            },
+            {
+              "file": "libs/core/tsconfig.lib.json",
+              "hash": "af84f21cfc8066d0302f5772b7c157e81d418617"
+            },
+            {
+              "file": "libs/core/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            }
+          ]
+        }
+      },
       "nivl": {
         "name": "nivl",
         "type": "lib",
@@ -2458,7 +2617,18 @@
       }
     },
     "dependencies": {
-      "chrome-extension": [],
+      "chrome-extension": [
+        {
+          "source": "chrome-extension",
+          "target": "app-bar",
+          "type": "static"
+        },
+        {
+          "source": "chrome-extension",
+          "target": "neows",
+          "type": "static"
+        }
+      ],
       "internal-client": [
         {
           "source": "internal-client",
@@ -2500,6 +2670,7 @@
           "type": "static"
         }
       ],
+      "core": [],
       "nivl": []
     }
   },
