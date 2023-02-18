@@ -22,6 +22,11 @@ export interface NeoShortInfoProps {
    * The value is the new bookmarked state.
    */
   bookmarkedChanged?: (bookmarked: boolean) => void;
+
+  /**
+   * If we are to hide the links to the JPL page and the details stats page.
+   */
+  noLinks?: boolean;
 }
 
 /**
@@ -46,9 +51,9 @@ export interface NeoShortInfoProps {
 export const NeoShortInfo = memo(function NeoShortInfo(
   props: NeoShortInfoProps
 ) {
-  const { neo, isBookmarked, bookmarkedChanged } = props;
+  const { neo, isBookmarked, bookmarkedChanged, noLinks } = props;
 
-  const passDistance = neo.close_approach_data[0].miss_distance.kilometers;
+  const passDistance = neo?.close_approach_data?.[0]?.miss_distance?.kilometers;
 
   /**
    * Handle the on-bookmark click event.
@@ -68,6 +73,8 @@ export const NeoShortInfo = memo(function NeoShortInfo(
     if (typeof num === 'number') return num;
     return 0;
   }, [passDistance]);
+
+  if (!neo) return null;
 
   return (
     <div>
@@ -106,23 +113,23 @@ export const NeoShortInfo = memo(function NeoShortInfo(
             {trimmedPassDistance.toLocaleString()}
           </div>
         </li>
-        <li className="flex flex-row justify-end gap-2">
-          <Link to={`/neo/${neo.id}`} className="flex flex-row gap-1">
-            <ChartBarIcon className="w-4" />
-            <div>detailed stats</div>
-          </Link>
-          <a
-            href={neo.nasa_jpl_url}
-            target="_blank"
-            rel="noreferrer"
-            className="flex flex-row gap-1"
-          >
-            <ArrowTopRightOnSquareIcon className="w-4" />
-            <div>JPL Link</div>
-          </a>
-        </li>
-
-        {/* TODO: add other data and links to external resources such as JPL */}
+        {noLinks ? null : (
+          <li className="flex flex-row justify-end gap-2">
+            <Link to={`/neo/${neo.id}`} className="flex flex-row gap-1">
+              <ChartBarIcon className="w-4" />
+              <div>detailed stats</div>
+            </Link>
+            <a
+              href={neo.nasa_jpl_url}
+              target="_blank"
+              rel="noreferrer"
+              className="flex flex-row gap-1"
+            >
+              <ArrowTopRightOnSquareIcon className="w-4" />
+              <div>JPL Link</div>
+            </a>
+          </li>
+        )}
       </ul>
     </div>
   );
