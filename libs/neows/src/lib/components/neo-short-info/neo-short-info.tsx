@@ -15,16 +15,19 @@ export interface NeoShortInfoProps {
   neo: LookupResponse;
   /**
    * If the NEO is bookmarked.
+   * TODO: should be reversed/generic.
    */
   isBookmarked?: boolean;
   /**
    * Callback that is called when the user clicks on the bookmark.
    * The value is the new bookmarked state.
+   * TODO: should be reversed/generic.
    */
   bookmarkedChanged?: (bookmarked: boolean) => void;
 
   /**
    * If we are to hide the links to the JPL page and the details stats page.
+   * TODO: should be reversed/generic.
    */
   noLinks?: boolean;
 }
