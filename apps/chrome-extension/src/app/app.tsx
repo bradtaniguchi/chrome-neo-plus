@@ -14,6 +14,7 @@ const ViewNeo = lazy(() =>
 );
 const BugPage = lazy(() => import('./pages/bug-page'));
 const HelpPage = lazy(() => import('./pages/help-page'));
+const SettingsPage = lazy(() => import('./pages/settings-page'));
 /**
  * Main app export
  */
@@ -53,6 +54,14 @@ export function App() {
             element={
               <Suspense>
                 <HelpPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <Suspense>
+                <SettingsPage />
               </Suspense>
             }
           />
