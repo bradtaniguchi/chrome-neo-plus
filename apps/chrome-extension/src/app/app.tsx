@@ -12,6 +12,7 @@ const Overview = lazy(() =>
 const ViewNeo = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ ViewNeo }) => ({ default: ViewNeo }))
 );
+const BugPage = lazy(() => import('./pages/bug'));
 /**
  * Main app export
  */
@@ -35,6 +36,14 @@ export function App() {
             element={
               <Suspense fallback={<LoadingSpinner />}>
                 <ViewNeo />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/bug"
+            element={
+              <Suspense>
+                <BugPage />
               </Suspense>
             }
           />
