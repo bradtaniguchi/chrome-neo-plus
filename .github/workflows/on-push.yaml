@@ -90,7 +90,7 @@ jobs:
   # together via composition. Or at least thats the plan.
   # All of these together will be deployed within the gh-page job.
   internal-storybooks:
-    timeout-minutes: 5
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
