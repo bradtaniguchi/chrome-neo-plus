@@ -12,7 +12,7 @@ const Overview = lazy(() =>
 const ViewNeo = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ ViewNeo }) => ({ default: ViewNeo }))
 );
-const BugPage = lazy(() => import('./pages/bug'));
+const BugPage = lazy(() => import('./pages/bug-page'));
 /**
  * Main app export
  */
