@@ -22,7 +22,8 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "node libs/common/scripts/build.js"
-      }
+      },
+      "outputs": ["{projectRoot}/src/lib/constants/build-config.ts"]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",

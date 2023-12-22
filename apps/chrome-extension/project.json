@@ -48,13 +48,13 @@
       }
     },
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "node apps/chrome-extension/scripts/build.js"
       }
     },
     "serve": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "node apps/chrome-extension/scripts/serve.js"
       }
@@ -92,7 +92,7 @@
       }
     },
     "typedoc": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx typedoc --options apps/chrome-extension/typedoc.js"
       }
