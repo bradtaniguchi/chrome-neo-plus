@@ -67,7 +67,11 @@ export function useApod(params: object): unknown {
         return Promise.reject(new Error('Unknown params provided'));
       })()
         .then((res) => setApodResponse(res))
-        .catch((err) => setError(err))
+        .catch((err) => {
+          // eslint-disable-next-line no-debugger
+          debugger;
+          setError(err);
+        })
         .finally(() => setLoading(false));
       mounted = true;
     }

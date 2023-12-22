@@ -1,6 +1,6 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithDateParams } from '../models/apod-request-params';
-import { API_KEY } from '@chrome-neo-plus/common';
+import { getApiConfig } from '@chrome-neo-plus/common';
 import { apodCache } from './apod-cache';
 
 /**
@@ -13,7 +13,9 @@ export async function getApodForDate(
 ): Promise<ApodResponse | undefined> {
   const { date, thumbs, noCache } = params;
   const url = new URL('https://api.nasa.gov/planetary/apod');
-  url.searchParams.append('api_key', API_KEY);
+  const { apiKey } = await getApiConfig();
+
+  url.searchParams.append('api_key', apiKey);
   url.searchParams.append('date', date);
 
   if (thumbs) url.searchParams.append('thumbs', 'true');

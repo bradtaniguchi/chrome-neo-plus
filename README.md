@@ -17,6 +17,28 @@ All projects will use the following APIs:
 - [Partial re-write, used as a starting point](https://github.com/bradtaniguchi/chrome-neo2)
 - [secondary Partial re-write, tried to use firebase](https://github.com/bradtaniguchi/chrome-neo-plus-legacy)
 
+## Development
+
+Provide an API_KEY in `.env` with format:
+
+```bash
+API_KEY=123
+```
+
+Then build a config file with, this only needs to be done initially.
+
+```bash
+npm run build:api-Config
+```
+
+Finally run the app in "chrome-extension mode" with:
+
+```bash
+npx nx run chrome-extension:serve
+```
+
+The build should be done and auto-updates, from here load the extension in the browser.
+
 ## License
 
 [MIT](./LICENSE.md)

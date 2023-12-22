@@ -15,7 +15,14 @@ const { copy } = require('fs-extra');
     // **Note** this is the internal nx-focus "build" command
     await exec('nx run chrome-extension:_build:production');
 
-    console.log('>> done building chrome-extension, moving manifest');
+    console.log(
+      '>> done building chrome-extension, moving manifest and api-config.json'
+    );
+
+    await copy(
+      'dist/api-config.json',
+      'dist/apps/chrome-extension/api-config.json'
+    );
 
     await copy(
       'apps/chrome-extension/src/manifest.json',

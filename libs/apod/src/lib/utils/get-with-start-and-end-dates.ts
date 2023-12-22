@@ -1,6 +1,6 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithStartAndEndDatesParams } from '../models/apod-request-params';
-import { API_KEY } from '@chrome-neo-plus/common';
+import { getApiConfig } from '@chrome-neo-plus/common';
 import { apodCache } from './apod-cache';
 import { DateTime } from 'luxon';
 
@@ -17,7 +17,8 @@ export async function getWithStartAndEndDates(
 ): Promise<ApodResponse[]> {
   const { start_date, end_date, thumbs } = params;
   const url = new URL('https://api.nasa.gov/planetary/apod');
-  url.searchParams.append('api_key', API_KEY);
+  const { apiKey } = await getApiConfig();
+  url.searchParams.append('api_key', apiKey);
   url.searchParams.append('start_date', start_date);
 
   url.searchParams.append(

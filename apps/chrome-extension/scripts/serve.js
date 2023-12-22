@@ -24,7 +24,15 @@ const { copy } = require('fs-extra');
       console.log(output);
       if (output.includes('webpack compiled') && !initialBuildDone) {
         initialBuildDone = true;
-        console.log('>> done building chrome-extension, moving manifest');
+        console.log(
+          '>> done building chrome-extension, moving manifest and api-config.json'
+        );
+
+        await copy(
+          'dist/api-config.json',
+          'dist/apps/chrome-extension/api-config.json'
+        );
+
         await copy(
           'apps/chrome-extension/src/manifest.json',
           'dist/apps/chrome-extension/manifest.json'

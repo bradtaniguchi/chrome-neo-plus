@@ -1,4 +1,4 @@
-import { API_KEY } from '@chrome-neo-plus/common';
+import { getApiConfig } from '@chrome-neo-plus/common';
 import { LookupResponse } from '../models';
 import { neowsCache } from './neows-cache';
 
@@ -18,7 +18,8 @@ export async function getNeows(params: {
   const url = new URL(
     `https://api.nasa.gov/neo/rest/v1/neo/${params.asteroid_id}`
   );
-  url.searchParams.append('api_key', API_KEY);
+  const { apiKey } = await getApiConfig();
+  url.searchParams.append('api_key', apiKey);
 
   const neo = neowsCache.getById(params.asteroid_id);
 
