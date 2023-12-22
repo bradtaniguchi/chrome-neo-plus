@@ -39,6 +39,16 @@ npx nx run chrome-extension:serve
 
 The build should be done and auto-updates, from here load the extension in the browser.
 
+### Alternate serve mode
+
+Use the following to serve the extension like any webapp
+
+```bash
+npm run serve:dist
+```
+
+Then go to `http://localhost:8080/popup.html` to view the app.
+
 ## License
 
 [MIT](./LICENSE.md)
