@@ -5,9 +5,9 @@ import { getNxGraph } from '../utils';
 /**
  * Hook that can can be used to get the nx-graph file.
  *
- * @param params
- * @param params.path
- * @param params.overrides
+ * @param params function params
+ * @param params.path path to nx-graph file
+ * @param params.overrides overrides for the nx-graph file
  * @see getNxGraph
  */
 export function useNxGraph(params?: {
