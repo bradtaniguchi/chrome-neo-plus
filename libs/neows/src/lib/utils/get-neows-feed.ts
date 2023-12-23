@@ -1,10 +1,10 @@
-import { API_KEY } from '@chrome-neo-plus/common';
 import { FeedRequest } from '../models/feed-request';
 import { FeedResponse } from '../models/feed-response';
 import { DateTime } from 'luxon';
 import { neowsCache } from './neows-cache';
 import { getWeeklyBlocks } from './get-weekly-blocks';
 import { combineMonthlyResponses } from './combine-monthly-responses';
+import { getApiConfig } from '@chrome-neo-plus/common';
 
 /**
  * Returns the feed of NEOWs for the given date range.
@@ -16,7 +16,8 @@ export async function getNeowsFeed(
   params: FeedRequest & { noCache?: boolean }
 ): Promise<FeedResponse> {
   const url = new URL('https://api.nasa.gov/neo/rest/v1/feed');
-  url.searchParams.append('api_key', API_KEY);
+  const { apiKey } = await getApiConfig();
+  url.searchParams.append('api_key', apiKey);
 
   if (params.start_date)
     url.searchParams.append('start_date', params.start_date);

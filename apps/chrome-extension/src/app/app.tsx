@@ -12,6 +12,10 @@ const Overview = lazy(() =>
 const ViewNeo = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ ViewNeo }) => ({ default: ViewNeo }))
 );
+const BugPage = lazy(() => import('./pages/bug-page'));
+const HelpPage = lazy(() => import('./pages/help-page'));
+const SettingsPage = lazy(() => import('./pages/settings-page'));
+
 /**
  * Main app export
  */
@@ -35,6 +39,54 @@ export function App() {
             element={
               <Suspense fallback={<LoadingSpinner />}>
                 <ViewNeo />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/daily"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <div> daily overview </div>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/weekly"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <div> weekly overview </div>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/monthly"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <div> monthly overview </div>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/bug"
+            element={
+              <Suspense>
+                <BugPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/help"
+            element={
+              <Suspense>
+                <HelpPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <Suspense>
+                <SettingsPage />
               </Suspense>
             }
           />

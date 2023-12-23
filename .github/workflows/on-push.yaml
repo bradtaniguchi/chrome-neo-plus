@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
@@ -32,7 +32,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
@@ -50,7 +50,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       - uses: mansagroup/nrwl-nx-action@v3
@@ -66,7 +66,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       # directly call, as we don't care about leveraging NX here. We always
@@ -97,7 +97,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       # this needs to be ran so the build-config.ts is generated
@@ -123,7 +123,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/init-job
-      - run: npx nx run common:build
+      - run: npm run build:api-config
         env:
           API_KEY: ${{ secrets.API_KEY }}
       - run: npx nx graph --file=dist/nx-graph/index.html

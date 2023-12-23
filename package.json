@@ -27,8 +27,10 @@
     "clean": "npx rimraf dist node_modules/.cache/nx *.logs .eslintcache .lighthouserc.js coverage .lighthouseci tmp",
     "prepare": "husky install",
     "build:config": "node ./tools/build-config",
+    "build:api-config": "node ./tools/build-api-config",
     "build:nx-graph": "npx nx graph --file=dist/nx-graph/graph.json",
-    "get:affected": "node ./tools/get-affected"
+    "get:affected": "node ./tools/get-affected",
+    "serve:dist": "http-server dist/apps/chrome-extension"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +45,7 @@
     "@types/luxon": "^3.2.0",
     "autoprefixer": "10.4.12",
     "axios": "^0.27.2",
+    "browserslist": "^4.22.2",
     "core-js": "^3.6.5",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
@@ -71,7 +74,7 @@
     "@commitlint/config-conventional": "^17.3.0",
     "@lhci/cli": "^0.10.0",
     "@next/bundle-analyzer": "^13.1.1",
-    "@nrwl/cli": "14.4.0",
+    "@nrwl/cli": "15.2.1",
     "@nrwl/eslint-plugin-nx": "15.2.1",
     "@nrwl/jest": "15.2.1",
     "@nrwl/js": "15.2.1",
