@@ -2,6 +2,7 @@ import { CalendarIcon } from '@heroicons/react/24/solid';
 import { Card } from 'flowbite-react';
 import { useNeos } from '../../hooks/use-neos';
 import { CommonValueWrapper } from './common-value-wrapper';
+import { Link } from 'react-router-dom';
 
 /**
  * The monthly overview component is shown within the
@@ -18,16 +19,18 @@ export function MonthlyOverview(props: { date?: string }) {
     date,
   });
   return (
-    <Card className="dark:bg-slate-800 dark:text-white">
-      <div className="flex flex-row justify-between text-center">
-        <div className="flex flex-row gap-1">
-          <CalendarIcon className="w-5" />
-          <h3>Monthly</h3>
+    <Link to={'neows/weekly'}>
+      <Card className="dark:bg-slate-800 dark:text-white">
+        <div className="flex flex-row justify-between text-center">
+          <div className="flex flex-row gap-1">
+            <CalendarIcon className="w-5" />
+            <h3>Monthly</h3>
+          </div>
+          <CommonValueWrapper loading={loading} error={error}>
+            <div>{neosResponse?.element_count ?? '???'}</div>
+          </CommonValueWrapper>
         </div>
-        <CommonValueWrapper loading={loading} error={error}>
-          <div>{neosResponse?.element_count ?? '???'}</div>
-        </CommonValueWrapper>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 }
