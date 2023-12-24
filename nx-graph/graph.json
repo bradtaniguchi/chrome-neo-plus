@@ -59,7 +59,7 @@
               }
             },
             "build": {
-              "executor": "@nrwl/workspace:run-commands",
+              "executor": "nx:run-commands",
               "options": {
                 "command": "node apps/chrome-extension/scripts/build.js"
               },
@@ -72,7 +72,7 @@
               ]
             },
             "serve": {
-              "executor": "@nrwl/workspace:run-commands",
+              "executor": "nx:run-commands",
               "options": {
                 "command": "node apps/chrome-extension/scripts/serve.js"
               }
@@ -131,7 +131,7 @@
               ]
             },
             "typedoc": {
-              "executor": "@nrwl/workspace:run-commands",
+              "executor": "nx:run-commands",
               "options": {
                 "command": "npx typedoc --options apps/chrome-extension/typedoc.js"
               }
@@ -161,7 +161,7 @@
             },
             {
               "file": "apps/chrome-extension/project.json",
-              "hash": "74518cc1cf67354a479228ea23c1212ddf81d63c"
+              "hash": "a68d9c35c2b5dea16dcc0587c59523bbf02c1a27"
             },
             {
               "file": "apps/chrome-extension/README.md",
@@ -173,7 +173,7 @@
             },
             {
               "file": "apps/chrome-extension/scripts/build.js",
-              "hash": "4cb297e0497f5d6c2eef3547e099ac142e67794c",
+              "hash": "ff506d06b0010a8b853f33ae027f0c00830963bf",
               "deps": [
                 "npm:util",
                 "npm:fs-extra"
@@ -181,20 +181,24 @@
             },
             {
               "file": "apps/chrome-extension/scripts/serve.js",
-              "hash": "b4848b941b1c8a418e0cef549c29cfb9e22cca60",
+              "hash": "e9398ed2fb808a7cbfbc202ff9b04d2b8acc8ac7",
               "deps": [
                 "npm:fs-extra"
               ]
             },
             {
               "file": "apps/chrome-extension/src/app/app.tsx",
-              "hash": "71ae442ceb8fdfbe26d441fd6ea619d34c820562",
+              "hash": "acf6765d2e5a7dcafebf0e2dfd065422e3063f1e",
               "deps": [
                 "npm:react-router-dom",
                 "npm:react",
                 "app-bar",
                 "neows"
               ]
+            },
+            {
+              "file": "apps/chrome-extension/src/app/constants/github-issue-url.ts",
+              "hash": "77e7cc1ab55d0e7c3fca44c3816479b088daf2e1"
             },
             {
               "file": "apps/chrome-extension/src/app/core/loading-spinner.tsx",
@@ -204,12 +208,24 @@
               ]
             },
             {
+              "file": "apps/chrome-extension/src/app/pages/bug-page.tsx",
+              "hash": "d981255260608d990a6714bff3f3f9297516b8a4"
+            },
+            {
+              "file": "apps/chrome-extension/src/app/pages/help-page.tsx",
+              "hash": "ee500c25de485c99ea11d8488cebc05cde4b4c1e"
+            },
+            {
               "file": "apps/chrome-extension/src/app/pages/not-found.tsx",
               "hash": "d1e47891983ddae5a31470aa43eee69117bceee3",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:react-router-dom"
               ]
+            },
+            {
+              "file": "apps/chrome-extension/src/app/pages/settings-page.tsx",
+              "hash": "a38c1d686b1322a395de3ef19bbd564840bd326b"
             },
             {
               "file": "apps/chrome-extension/src/assets/.gitkeep",
@@ -270,7 +286,7 @@
             },
             {
               "file": "apps/chrome-extension/src/styles.scss",
-              "hash": "b58c9491cabaa9f616e98027d5ea39b3cbbd37c0"
+              "hash": "fd48a768763862faa099bfdf19f6fc940c972e72"
             },
             {
               "file": "apps/chrome-extension/tailwind.config.js",
@@ -871,7 +887,7 @@
             },
             {
               "file": "libs/common-react/src/lib/hooks/use-nx-graph.ts",
-              "hash": "44d36742d503f052830bc86eeefd0689827310d9",
+              "hash": "451b7a5935998936f29c0ef7a57e641ae0041b44",
               "deps": [
                 "npm:@nrwl/devkit",
                 "npm:react"
@@ -1364,9 +1380,10 @@
             },
             {
               "file": "libs/app-bar/src/lib/app-bar.spec.tsx",
-              "hash": "55e85382b196d229a5edf50bfa1f999e1606573f",
+              "hash": "edaac2b3c2178bffa80a39c2372e74a64dadffdc",
               "deps": [
-                "npm:@testing-library/react"
+                "npm:@testing-library/react",
+                "npm:react-router-dom"
               ]
             },
             {
@@ -1419,7 +1436,7 @@
           "sourceRoot": "libs/common/src",
           "projectType": "library",
           "targets": {
-            "_build": {
+            "build": {
               "executor": "@nrwl/js:tsc",
               "outputs": [
                 "{options.outputPath}",
@@ -1433,12 +1450,6 @@
                 "assets": [
                   "libs/common/*.md"
                 ]
-              }
-            },
-            "build": {
-              "executor": "nx:run-commands",
-              "options": {
-                "command": "node libs/common/scripts/build.js"
               },
               "dependsOn": [
                 "^build"
@@ -1511,7 +1522,7 @@
             },
             {
               "file": "libs/common/project.json",
-              "hash": "3a85ef364bd785ca8c6dbcb630cbbe1cd7f77dfd"
+              "hash": "e2f4d8b4675dbe0a4d9b568fcb4f637b801edc64"
             },
             {
               "file": "libs/common/README.md",
@@ -1527,15 +1538,7 @@
             },
             {
               "file": "libs/common/src/index.ts",
-              "hash": "099cda88e624a82a89926c3f0aac324102e3eb7d"
-            },
-            {
-              "file": "libs/common/src/lib/constants/api-key.ts",
-              "hash": "18c722e353d0505a75666490c7798daa458751a3"
-            },
-            {
-              "file": "libs/common/src/lib/constants/build-config-example.ts",
-              "hash": "9de3372be4a8892f331b12d98a95ad40c9106f50"
+              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
             },
             {
               "file": "libs/common/src/lib/models/document-with-id.ts",
@@ -1554,6 +1557,10 @@
               "hash": "0d791323ce4e5c124301b0cf238278371a7ae60a"
             },
             {
+              "file": "libs/common/src/lib/utils/get-api-config.ts",
+              "hash": "fc74e89c6d45088438014e9d4bfb43db885c7a6f"
+            },
+            {
               "file": "libs/common/src/lib/utils/get-id.spec.ts",
               "hash": "1a131e1c17bf5f523d6530d9058974b596800eaa"
             },
@@ -1563,7 +1570,7 @@
             },
             {
               "file": "libs/common/src/lib/utils/index.ts",
-              "hash": "2c5250e0749b07a09903b23cede950e91baf8ce2"
+              "hash": "b93b778b84969aff0d5a63a799dd51e16771e105"
             },
             {
               "file": "libs/common/tsconfig.json",
@@ -1778,11 +1785,11 @@
             },
             {
               "file": "libs/neows/src/lib/components/index.ts",
-              "hash": "a51aab320176712396e14d83fc04921ff9c3839a"
+              "hash": "4736a283257c211d571a54e8df9ec6378987cf01"
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.stories.tsx",
-              "hash": "fea05c1bd4718c4fc9852c8cb8cbcf972d717602",
+              "hash": "732ac95ccee72a0f3b298ffaddc5c8c5c3bf191c",
               "deps": [
                 "npm:@storybook/react",
                 "npm:flowbite-react",
@@ -1791,7 +1798,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.tsx",
-              "hash": "afe65696451cc64f0b9178fb9ca36ff9c99417cf",
+              "hash": "81a48b8b2f8994686ff010dac4e07ce3b7a8ac34",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react",
@@ -1886,10 +1893,11 @@
             },
             {
               "file": "libs/neows/src/lib/pages/overview/monthly-overview.tsx",
-              "hash": "4f586d3ae408bad3e57486d24ef390fccbbe1caf",
+              "hash": "f008ab8396d1234f84e7105984db0b82458ccd94",
               "deps": [
                 "npm:@heroicons/react",
-                "npm:flowbite-react"
+                "npm:flowbite-react",
+                "npm:react-router-dom"
               ]
             },
             {
@@ -1923,7 +1931,10 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.tsx",
-              "hash": "230131b30578ea718963c097f719267ff1ddbdd2"
+              "hash": "362b599d56fa455219077937c06ac739ee2985d9",
+              "deps": [
+                "npm:flowbite-react"
+              ]
             },
             {
               "file": "libs/neows/src/lib/utils/combine-monthly-responses.ts",
@@ -1939,15 +1950,15 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
-              "hash": "959abaee801b1b52f9dcbfe7ec9d5bbb105d0888",
+              "hash": "1bd6cf5a2244a9c8075d2046da62f16503328197",
               "deps": [
-                "common",
-                "npm:luxon"
+                "npm:luxon",
+                "common"
               ]
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows.ts",
-              "hash": "f4164cc63be1de96de348c7ef6c4bd3d979dd566",
+              "hash": "0b8ff3ed4cd1d82eaf0b54f0f7038a30e8059d43",
               "deps": [
                 "common"
               ]
@@ -2206,7 +2217,7 @@
             },
             {
               "file": "libs/apod/src/lib/hooks/use-apod.ts",
-              "hash": "9d9e8debd6d68813b24bf36652583f9e43652312",
+              "hash": "8cf65326f22506ef8e75cfa8eb49d58aac3dcdfa",
               "deps": [
                 "npm:react"
               ]
@@ -2277,21 +2288,21 @@
             },
             {
               "file": "libs/apod/src/lib/utils/get-apod-for-date.ts",
-              "hash": "534cf05ca4154d29f5a901e842ca2ed93f8097ea",
+              "hash": "b02ff0361fc22b2759e7d91539b7513407c2e36d",
               "deps": [
                 "common"
               ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-count.ts",
-              "hash": "f8f8c073acfb9e1368e550906afb340ff7c7c676",
+              "hash": "caa511123b41558161d4ec8c2f3fd048030bcc24",
               "deps": [
                 "common"
               ]
             },
             {
               "file": "libs/apod/src/lib/utils/get-with-start-and-end-dates.ts",
-              "hash": "2b5a1de0aa1ff361fa9a365d79e87969e000aaa9",
+              "hash": "137c5213adb8548967501a74dd1ff4a59a6a286b",
               "deps": [
                 "common",
                 "npm:luxon"
