@@ -1,3 +1,4 @@
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 import { DateTime } from 'luxon';
 
 export interface WeeklyBlock {
@@ -83,7 +84,7 @@ export function formatBlocksToStrings(
   blocks: WeeklyBlock[]
 ): WeeklyBlockStrings[] {
   return blocks.map(({ start_date, end_date }) => ({
-    start_date: start_date.toFormat('yyyy-MM-dd'),
-    end_date: end_date.toFormat('yyyy-MM-dd'),
+    start_date: start_date.toFormat(DATE_FORMAT),
+    end_date: end_date.toFormat(DATE_FORMAT),
   })) as WeeklyBlockStrings[];
 }

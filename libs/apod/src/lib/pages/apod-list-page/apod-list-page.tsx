@@ -5,6 +5,7 @@ import ApodImage from '../../components/apod-image/apod-image';
 import { useApod } from '../../hooks/use-apod';
 import { usePageDates } from '../../hooks/use-page-dates';
 import { GetWithStartAndEndDatesParams } from '../../models/apod-request-params';
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 
 /**
  * Page that shows the entire list of APODs
@@ -30,8 +31,8 @@ export function ApodListPage() {
   const apodRequest = useMemo(
     () =>
       ({
-        start_date: startDateTime.toFormat('yyyy-MM-dd'),
-        end_date: endDateTime.toFormat('yyyy-MM-dd'),
+        start_date: startDateTime.toFormat(DATE_FORMAT),
+        end_date: endDateTime.toFormat(DATE_FORMAT),
       } as GetWithStartAndEndDatesParams),
     [startDateTime, endDateTime]
   );

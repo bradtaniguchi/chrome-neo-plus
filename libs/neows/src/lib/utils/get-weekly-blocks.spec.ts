@@ -1,3 +1,4 @@
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 import {
   formatBlocksToStrings,
   getWeeklyBlocks,
@@ -7,7 +8,7 @@ import { DateTime } from 'luxon';
 
 describe('getWeeklyBlocks', () => {
   test('returns 5 weekly blocks for 1st-day-of-month-sunday', () => {
-    const today = DateTime.fromFormat('2023-01-01', 'yyyy-MM-dd');
+    const today = DateTime.fromFormat('2023-01-01', DATE_FORMAT);
     const blocks = getWeeklyBlocks(today);
     expect(formatBlocksToStrings(blocks)).toEqual([
       {
@@ -33,7 +34,7 @@ describe('getWeeklyBlocks', () => {
     ]);
   });
   test('returns 4 weekly blocks for feb-2021 ', () => {
-    const today = DateTime.fromFormat('2021-02-05', 'yyyy-MM-dd');
+    const today = DateTime.fromFormat('2021-02-05', DATE_FORMAT);
     const blocks = getWeeklyBlocks(today);
     expect(formatBlocksToStrings(blocks)).toEqual([
       {
@@ -58,12 +59,12 @@ describe('getWeeklyBlocks', () => {
 
 describe('getWeeksInMonth', () => {
   test('returns 5 for Jan-2023', () => {
-    const today = DateTime.fromFormat('2023-01-01', 'yyyy-MM-dd');
+    const today = DateTime.fromFormat('2023-01-01', DATE_FORMAT);
     expect(getWeeksInMonth(today)).toBe(5);
   });
 
   test('returns 4 in Feb-2020 (leap-year)', () => {
-    const today = DateTime.fromFormat('2021-02-01', 'yyyy-MM-dd');
+    const today = DateTime.fromFormat('2021-02-01', DATE_FORMAT);
     expect(getWeeksInMonth(today)).toBe(4);
   });
 });

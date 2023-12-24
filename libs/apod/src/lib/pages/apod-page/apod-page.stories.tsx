@@ -2,6 +2,7 @@ import { Meta, Story } from '@storybook/react';
 import { DateTime } from 'luxon';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { ApodPage } from './apod-page';
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 
 export default {
   component: ApodPage,
@@ -22,7 +23,7 @@ RoutedDate.args = {};
 
 export const PropOverrideDate = Template.bind({});
 PropOverrideDate.args = {
-  date: DateTime.local().toFormat('yyyy-MM-dd'),
+  date: DateTime.local().toFormat(DATE_FORMAT),
 };
 
 export const InvalidDate = Template.bind({});
@@ -33,5 +34,5 @@ InvalidDate.args = {
 export const ErrorDate = Template.bind({});
 ErrorDate.args = {
   // Sorry developer a thousand years in the future.
-  date: DateTime.fromFormat('3022-01-01', 'yyyy-MM-dd').toFormat('yyyy-MM-dd'),
+  date: DateTime.fromFormat('3022-01-01', DATE_FORMAT).toFormat(DATE_FORMAT),
 };

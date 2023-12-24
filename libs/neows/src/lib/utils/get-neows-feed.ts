@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { neowsCache } from './neows-cache';
 import { getWeeklyBlocks } from './get-weekly-blocks';
 import { combineMonthlyResponses } from './combine-monthly-responses';
-import { getApiConfig } from '@chrome-neo-plus/common';
+import { DATE_FORMAT, getApiConfig } from '@chrome-neo-plus/common';
 
 /**
  * Returns the feed of NEOWs for the given date range.
@@ -47,11 +47,11 @@ export async function getDailyNeowsFeed(params?: {
 }): Promise<FeedResponse> {
   const date = params?.date;
   const dateTime =
-    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
-      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+    date && DateTime.fromFormat(date, DATE_FORMAT).isValid
+      ? DateTime.fromFormat(date, DATE_FORMAT)
       : DateTime.now();
 
-  const dateTimeStr = dateTime.toFormat('yyyy-MM-dd');
+  const dateTimeStr = dateTime.toFormat(DATE_FORMAT);
   const cachedDaily = neowsCache.getDaily(dateTimeStr);
 
   if (cachedDaily && !params?.noCache) return cachedDaily;
@@ -91,8 +91,8 @@ export async function getThisWeekNeowsFeed(params?: {
   const date = params?.date;
 
   const dateTime =
-    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
-      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+    date && DateTime.fromFormat(date, DATE_FORMAT).isValid
+      ? DateTime.fromFormat(date, DATE_FORMAT)
       : DateTime.now();
 
   const cachedWeekly = neowsCache.getWeekly(dateTime.weekNumber, dateTime.year);
@@ -107,8 +107,8 @@ export async function getThisWeekNeowsFeed(params?: {
   const res = await (cachedWeeklyRequest
     ? cachedWeeklyRequest
     : getNeowsFeed({
-        start_date: dateTime.startOf('week').toFormat('yyyy-MM-dd'),
-        end_date: dateTime.endOf('week').toFormat('yyyy-MM-dd'),
+        start_date: dateTime.startOf('week').toFormat(DATE_FORMAT),
+        end_date: dateTime.endOf('week').toFormat(DATE_FORMAT),
       }));
 
   neowsCache.setWeekly({
@@ -136,8 +136,8 @@ export async function getMonthlyNeowsFeed(params?: {
 }): Promise<Omit<FeedResponse, 'links'>> {
   const date = params?.date;
   const dateTime =
-    date && DateTime.fromFormat(date, 'yyyy-MM-dd').isValid
-      ? DateTime.fromFormat(date, 'yyyy-MM-dd')
+    date && DateTime.fromFormat(date, DATE_FORMAT).isValid
+      ? DateTime.fromFormat(date, DATE_FORMAT)
       : DateTime.now();
 
   const cachedMonthly = neowsCache.getMonthly(dateTime.month, dateTime.year);
@@ -166,8 +166,8 @@ export async function getMonthlyNeowsFeed(params?: {
   const responses = await Promise.all(
     weeklyBlocks.map(({ start_date, end_date }) =>
       getNeowsFeed({
-        start_date: start_date.toFormat('yyyy-MM-dd'),
-        end_date: end_date.toFormat('yyyy-MM-dd'),
+        start_date: start_date.toFormat(DATE_FORMAT),
+        end_date: end_date.toFormat(DATE_FORMAT),
       })
     )
   );

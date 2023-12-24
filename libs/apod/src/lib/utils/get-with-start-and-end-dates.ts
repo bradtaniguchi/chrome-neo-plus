@@ -1,6 +1,6 @@
 import { ApodResponse } from '../models/apod-response';
 import { GetWithStartAndEndDatesParams } from '../models/apod-request-params';
-import { getApiConfig } from '@chrome-neo-plus/common';
+import { DATE_FORMAT, getApiConfig } from '@chrome-neo-plus/common';
 import { apodCache } from './apod-cache';
 import { DateTime } from 'luxon';
 
@@ -23,13 +23,13 @@ export async function getWithStartAndEndDates(
 
   url.searchParams.append(
     'end_date',
-    end_date ?? DateTime.now().toFormat('yyyy-MM-dd')
+    end_date ?? DateTime.now().toFormat(DATE_FORMAT)
   );
   if (thumbs) url.searchParams.append('thumbs', 'true');
 
   const preExistingRange = apodCache.getRange(
     start_date,
-    end_date ?? DateTime.now().toFormat('yyyy-MM-dd')
+    end_date ?? DateTime.now().toFormat(DATE_FORMAT)
   );
 
   // if we already have this range, return it directly.

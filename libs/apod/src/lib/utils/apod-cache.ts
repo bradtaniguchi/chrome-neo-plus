@@ -1,5 +1,6 @@
 import { DateTime, Interval } from 'luxon';
 import { ApodResponse } from '../models/apod-response';
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 
 /**
  * Map used to cache APOD responses by their date.
@@ -48,7 +49,7 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
    * @param value The value of the element to add.
    */
   public override set(key: ApodResponse['date'], value: ApodResponse): this {
-    if (!DateTime.fromFormat(key, 'yyyy-MM-dd').isValid)
+    if (!DateTime.fromFormat(key, DATE_FORMAT).isValid)
       throw new Error('Invalid date format');
     super.set(key, value);
     this.cacheToStorage();
@@ -83,8 +84,8 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
     apods: Array<ApodResponse | undefined>;
     hasGaps: boolean;
   } {
-    const start = DateTime.fromFormat(startDate, 'yyyy-MM-dd');
-    const end = DateTime.fromFormat(endDate, 'yyyy-MM-dd');
+    const start = DateTime.fromFormat(startDate, DATE_FORMAT);
+    const end = DateTime.fromFormat(endDate, DATE_FORMAT);
     const interval = Interval.fromDateTimes(start, end);
 
     const days: string[] = [];
@@ -92,7 +93,7 @@ export class ApodCache extends Map<ApodResponse['date'], ApodResponse> {
 
     // TODO: verify end is included!
     while (cursor < interval.end) {
-      days.push(cursor.toFormat('yyyy-MM-dd'));
+      days.push(cursor.toFormat(DATE_FORMAT));
       cursor = cursor.plus({ days: 1 });
     }
 
