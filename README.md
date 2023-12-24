@@ -37,7 +37,8 @@ Finally run the app in "chrome-extension mode" with:
 npx nx run chrome-extension:serve
 ```
 
-The build should be done and auto-updates, from here load the extension in the browser.
+The build should be done and auto-updates, from here load the extension in the browser
+using the chrome extension page `chrome://extensions`
 
 ### Alternate serve mode
 
@@ -48,6 +49,20 @@ npm run serve:dist
 ```
 
 Then go to `http://localhost:8080/popup.html` to view the app.
+
+### production build
+
+Within github-actions, the following commands are done in order to validate the production build:
+
+- `npm run build:api-config`
+- `npx nx run internal-client:export`
+- `npx nx run internal-client:lighthouse`
+- `npx nx run internal-client:analyze`
+
+To directly perform the build use the following:
+
+- `npm run build:api-config`
+- `npx nx run internal-client:export`
 
 ## License
 
