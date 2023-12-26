@@ -64,6 +64,14 @@ To directly perform the build use the following:
 - `npm run build:api-config`
 - `npx nx run internal-client:export`
 
+## Issue with node 18 ssl on WSL 2
+
+Use the following to force legacy providers for node:
+
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
 ## License
 
 [MIT](./LICENSE.md)
