@@ -5,8 +5,15 @@ import { useNeoBookmark } from '../../hooks';
 /**
  * The view-neo component shows detailed information for
  * the given neo.
+ *
+ * TODO: leverage react-charts here
+ * TODO: provide table with extended stats here
+ * TODO: setup this page to be served in the main-client
  */
 export function ViewNeo() {
+  // TODO: use the id from the route, or use a query param
+  // TODO: make http call to get information for the NEO
+  // TODO: update get to utilize caching
   const neo: any = undefined;
 
   const { isBookmarked, handleToggleBookmark } = useNeoBookmark({
