@@ -1,3 +1,4 @@
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 
@@ -21,7 +22,7 @@ export function usePageDates(params: {
   return useMemo(() => {
     // calculate the end date first.
     let endDateTime = initEndDate
-      ? DateTime.fromFormat(initEndDate, 'yyyy-MM-dd')
+      ? DateTime.fromFormat(initEndDate, DATE_FORMAT)
       : DateTime.local();
     if (!endDateTime.isValid || endDateTime > DateTime.local()) {
       endDateTime = DateTime.local();
@@ -29,7 +30,7 @@ export function usePageDates(params: {
 
     // calculate the start date relative to the end-date.
     let startDateTime = initStartDate
-      ? DateTime.fromFormat(initStartDate, 'yyyy-MM-dd')
+      ? DateTime.fromFormat(initStartDate, DATE_FORMAT)
       : endDateTime.minus({ days: 5 });
     if (!startDateTime.isValid || startDateTime > endDateTime) {
       startDateTime = endDateTime.minus({ days: 5 });
@@ -47,31 +48,29 @@ export function usePageDates(params: {
       /**
        * The end-date in the format yyyy-MM-dd
        */
-      endDate: endDateTime.toFormat('yyyy-MM-dd'),
+      endDate: endDateTime.toFormat(DATE_FORMAT),
       /**
        * The start-date in the format yyyy-MM-dd
        */
-      startDate: startDateTime.toFormat('yyyy-MM-dd'),
+      startDate: startDateTime.toFormat(DATE_FORMAT),
 
       /**
        * The previous end-date that should be used for "previous"
        */
-      previousEndDate: endDateTime.minus({ days: 5 }).toFormat('yyyy-MM-dd'),
+      previousEndDate: endDateTime.minus({ days: 5 }).toFormat(DATE_FORMAT),
       /**
        * The next end-date that should be used for "next"
        */
-      nextEndDate: endDateTime.plus({ days: 5 }).toFormat('yyyy-MM-dd'),
+      nextEndDate: endDateTime.plus({ days: 5 }).toFormat(DATE_FORMAT),
 
       /**
        * The previous start-date that should be used for "previous"
        */
-      previousStartDate: startDateTime
-        .minus({ days: 5 })
-        .toFormat('yyyy-MM-dd'),
+      previousStartDate: startDateTime.minus({ days: 5 }).toFormat(DATE_FORMAT),
       /**
        * The next start-date that should be used for "next"
        */
-      nextStartDate: startDateTime.plus({ days: 5 }).toFormat('yyyy-MM-dd'),
+      nextStartDate: startDateTime.plus({ days: 5 }).toFormat(DATE_FORMAT),
     };
   }, [initStartDate, initEndDate]);
 }

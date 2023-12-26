@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import ApodImage from '../../components/apod-image/apod-image';
 import { useApod } from '../../hooks';
 import { GetWithDateParams } from '../../models/apod-request-params';
+import { DATE_FORMAT } from '@chrome-neo-plus/common';
 
 export interface ApodPageProps {
   /**
@@ -32,7 +33,7 @@ export function ApodPage(props: ApodPageProps) {
   const date = propDate ?? paramDate ?? '';
 
   const dateTime = useMemo(
-    () => DateTime.fromFormat(date, 'yyyy-MM-dd'),
+    () => DateTime.fromFormat(date, DATE_FORMAT),
     [date]
   );
   const apodRequest = useMemo(
@@ -40,7 +41,7 @@ export function ApodPage(props: ApodPageProps) {
       ({
         // not passing a date will error out as it isn't a valid param,
         // this is expected
-        date: dateTime.isValid ? dateTime.toFormat('yyyy-MM-dd') : undefined,
+        date: dateTime.isValid ? dateTime.toFormat(DATE_FORMAT) : undefined,
       } as GetWithDateParams),
     [dateTime]
   );
@@ -80,7 +81,7 @@ export function ApodPage(props: ApodPageProps) {
     return (
       <div className="flex flex-col items-center justify-center">
         <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
-          <div>No APOD found for date "{dateTime.toFormat('yyyy-MM-dd')}"</div>
+          <div>No APOD found for date "{dateTime.toFormat(DATE_FORMAT)}"</div>
         </Card>
       </div>
     );
