@@ -1,3 +1,6 @@
+import { Card, Spinner } from 'flowbite-react';
+import { useViewDaily } from './use-view-daily';
+
 /**
  * Page that shows the daily NEOs.
  *
@@ -6,6 +9,27 @@
  * The bottom is the list of NEOs and high level data.
  */
 export function ViewDaily() {
-  // TODO:
+  const { error, loading, neosResponse, dailyResponse } = useViewDaily();
+
+  if (loading) {
+    return (
+      <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+        <Spinner color="info" aria-label="Info spinner example" />
+      </Card>
+    );
+  }
+
+  if (error) {
+    // TODO: improve
+    return <div>Error: {(error as Error).message}</div>;
+  }
+
+  if (!neosResponse) {
+    // TODO: update
+    return <div>No NEO found</div>;
+  }
+
+  // TODO: add chart here
+  // TODO: add table of all the NEOs here
   return <div> view daily </div>;
 }
