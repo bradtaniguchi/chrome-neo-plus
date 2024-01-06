@@ -55,13 +55,31 @@ export function useViewDaily() {
       ['thursday', neosResponse.near_earth_objects[thursday.toISODate()]],
       ['friday', neosResponse.near_earth_objects[friday.toISODate()]],
       ['saturday', neosResponse.near_earth_objects[saturday.toISODate()]],
-    ];
+    ] as const;
   }, [neosResponse, date]);
 
   return {
+    /**
+     * If there is an error with loading neo data
+     */
     error,
+    /**
+     * If we are loading neo data
+     */
     loading,
+    /**
+     * The raw response of data from the useNeos hook.
+     */
     neosResponse,
+    /**
+     * Calculated breakdown of data by day of the week.
+     */
     dailyResponse,
+    /**
+     * The current selected day, used as key within `dailyResponse` to highlight this day
+     *
+     * TODO: verify format
+     */
+    today: date,
   };
 }

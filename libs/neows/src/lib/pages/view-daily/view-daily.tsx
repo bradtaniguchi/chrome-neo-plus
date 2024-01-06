@@ -1,5 +1,6 @@
 import { Card, Spinner } from 'flowbite-react';
 import { useViewDaily } from './use-view-daily';
+import { ViewDailyChart } from './view-daily-chart';
 
 /**
  * Page that shows the daily NEOs.
@@ -31,5 +32,9 @@ export function ViewDaily() {
 
   // TODO: add chart here
   // TODO: add table of all the NEOs here
-  return <div> view daily </div>;
+  return <div>
+    <h1>View Daily</h1>
+    <ViewDailyChart />
+    <div>table of data goes here</div>
+  </div>;
 }
