@@ -3,9 +3,6 @@
   "remoteEnv": {
     "DEV_ENV": "codespaces"
   },
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
   "extensions": [
     "aaron-bond.better-comments",
     "christian-kohler.path-intellisense",
