@@ -1,8 +1,9 @@
 import { getToday } from '@chrome-neo-plus/common';
-import { Card, Spinner } from 'flowbite-react';
+import { Card, Dropdown, Spinner } from 'flowbite-react';
 import { Chart } from 'react-charts';
 import { useParams } from 'react-router-dom';
 import { useViewDaily } from './use-view-daily';
+import { useState } from 'react';
 
 export interface ViewDailyProps {
   /**
@@ -34,10 +35,15 @@ export function ViewDaily(props: ViewDailyProps) {
   const { date: propsDate, mode: propsMode } = props;
   const { date: paramsDate, mode: paramsMode } = useParams();
 
+  const [stateMode, setStateMode] = useState<'size' | 'distance' | undefined>(
+    'size'
+  );
+
   const date = propsDate ?? paramsDate ?? getToday();
 
   const mode =
-    propsMode ||
+    stateMode ??
+    propsMode ??
     (paramsMode && ['size', 'distance'].includes(paramsMode)
       ? (paramsMode as 'size' | 'distance')
       : 'size');
@@ -77,6 +83,34 @@ export function ViewDaily(props: ViewDailyProps) {
   return (
     <div>
       <h1>View Daily ({date})</h1>
+      <div>
+        <Dropdown
+          label={(() => {
+            if (mode === 'distance') {
+              return 'View by Distance';
+            }
+            if (mode === 'size') {
+              return 'View by Size';
+            }
+            return 'View by';
+          })()}
+        >
+          <Dropdown.Item
+            onClick={() => {
+              setStateMode('size');
+            }}
+          >
+            View by Size
+          </Dropdown.Item>
+          <Dropdown.Item
+            onClick={() => {
+              setStateMode('distance');
+            }}
+          >
+            View by Distance
+          </Dropdown.Item>
+        </Dropdown>
+      </div>
       <div
         style={{
           width: '400px',
