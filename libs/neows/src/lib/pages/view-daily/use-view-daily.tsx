@@ -32,9 +32,11 @@ export type ChartData = {
  * This primarily provides more separated data based
  * around the given day to make it easier to display
  * within a chart and table.
+ * @param params The parameters for the hook.
+ * @param params.date The date to lookup, in yyyy-MM-dd format.
  */
-export function useViewDaily() {
-  const { date } = useParams();
+export function useViewDaily(params: { date: string }) {
+  const { date } = params;
   const { error, loading, neosResponse } = useNeos({
     requestType: 'daily',
     date,

@@ -24,7 +24,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "clean": "npx rimraf dist node_modules/.cache/nx *.logs .eslintcache .lighthouserc.js coverage .lighthouseci tmp",
+    "clean": "npx rimraf dist node_modules/.cache/nx *.logs .eslintcache .lighthouserc.js coverage .lighthouseci tmp storybook-public",
     "prepare": "husky install",
     "build:config": "node ./tools/build-config",
     "build:api-config": "node ./tools/build-api-config",

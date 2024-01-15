@@ -4,29 +4,43 @@ const { writeFile, stat, mkdir } = fs;
 
 (async () => {
   try {
-    console.log('writing to dist/apps/chrome-extension/api-config.json');
-    await stat('dist')
-      .then((fsStat) => {
-        if (!fsStat.isDirectory())
-          throw new Error(
-            'dist is not a folder, cannot continue, run npm run clean'
-          );
-        return true;
-      })
-      .catch((err) => {
-        if (err.code === 'ENOENT') return mkdir('dist');
-        throw err;
-      });
-    await writeFile(
-      'dist/api-config.json',
-      JSON.stringify(
-        {
-          apiKey: process.env.API_KEY ?? '',
-        },
-        null,
-        2
-      )
+    console.log(
+      'writing to dist/apps/chrome-extension/api-config.json and storybook-public/api-config.json'
     );
+
+    const createFolder = (folder) =>
+      stat(folder)
+        .then((fsStat) => {
+          if (!fsStat.isDirectory())
+            throw new Error(
+              'dist is not a folder, cannot continue, run npm run clean'
+            );
+          return true;
+        })
+        .catch((err) => {
+          if (err.code === 'ENOENT') return mkdir(folder);
+          throw err;
+        });
+
+    await Promise.all([createFolder('dist'), createFolder('storybook-public')]);
+
+    const writeJsonFile = (file) =>
+      writeFile(
+        file,
+        JSON.stringify(
+          {
+            apiKey: process.env.API_KEY ?? '',
+          },
+          null,
+          2
+        )
+      );
+
+    await Promise.all([
+      writeJsonFile('dist/api-config.json'),
+      writeJsonFile('storybook-public/api-config.json'),
+    ]);
+
     console.log('done!');
     process.exit(0);
   } catch (err) {

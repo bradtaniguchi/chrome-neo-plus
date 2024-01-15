@@ -2,15 +2,30 @@ import { Card, Spinner } from 'flowbite-react';
 import { useViewDaily } from './use-view-daily';
 import { AxisOptions, Chart, Series } from 'react-charts';
 import { LookupResponse } from '../../models';
+import { useParams } from 'react-router-dom';
+import { getToday } from '@chrome-neo-plus/common';
 
+export interface ViewDailyProps {
+  /**
+   * The day we are to display for. All metrics will be relative
+   * to this day.
+   *
+   * Should be in format yyyy-MM-dd
+   */
+  date?: string;
+}
 /**
  * Page that shows the daily NEOs.
  *
  * Page should be split in half, the top is the chart display.
  *
  * The bottom is the list of NEOs and high level data.
+ *
+ * @param props The props for the view daily page.
  */
-export function ViewDaily() {
+export function ViewDaily(props: ViewDailyProps) {
+  const { date: propsDate } = props;
+  const { date: paramsDate } = useParams();
   const {
     error,
     loading,
@@ -18,7 +33,7 @@ export function ViewDaily() {
     chartData,
     primaryAxis,
     secondaryAxes,
-  } = useViewDaily();
+  } = useViewDaily({ date: propsDate ?? paramsDate ?? getToday() });
 
   if (loading) {
     return (
