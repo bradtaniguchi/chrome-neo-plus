@@ -12,10 +12,10 @@ export interface ViewWeeklyProps {
    * Should be in format yyyy-MM-dd
    */
   date?: string;
-  /**
-   * The mode to display the data in, defaults to day
-   */
-  mode?: 'day' | 'size' | 'distance';
+  // TODO maybe add filtering?
+  // - threat?
+  // - size?
+  // - distance?
 }
 
 /**

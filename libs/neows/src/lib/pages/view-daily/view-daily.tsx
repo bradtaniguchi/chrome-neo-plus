@@ -12,6 +12,14 @@ export interface ViewDailyProps {
    * Should be in format yyyy-MM-dd
    */
   date?: string;
+  /**
+   * The mode to display the data in, defaults to size
+   *
+   * TODO: I think the old version also had "danger"?
+   *
+   * Maybe also do this alphabetically.
+   */
+  mode?: 'size' | 'distance';
 }
 /**
  * Page that shows the daily NEOs.
