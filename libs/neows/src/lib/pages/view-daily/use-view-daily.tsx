@@ -1,6 +1,5 @@
-import { DATE_FORMAT, Day } from '@chrome-neo-plus/common';
-import { DateTime } from 'luxon';
-import { useMemo } from 'react';
+import { Day } from '@chrome-neo-plus/common';
+import { useCallback, useDebugValue, useMemo } from 'react';
 import { AxisOptions, UserSerie } from 'react-charts';
 import { useNeos } from '../../hooks';
 import { LookupResponse } from '../../models';
@@ -21,9 +20,10 @@ export type DailyResponse = {
 };
 
 export type ChartData = {
-  day: Day;
-  date: string;
-  count: number;
+  name: string;
+  size: number;
+  // **Note** this is a string due to large floating point values
+  distance: number;
 };
 
 /**
@@ -35,101 +35,94 @@ export type ChartData = {
  *
  * @param params The parameters for the hook.
  * @param params.date The date to lookup, in yyyy-MM-dd format.
+ * @param params.mode The mode to display the data in, defaults to size.
  */
-export function useViewDaily(params: { date: string }) {
-  const { date } = params;
+export function useViewDaily(params: {
+  date?: string;
+  mode?: 'size' | 'distance';
+}) {
+  const { date, mode } = params;
   const { error, loading, neosResponse } = useNeos({
-    requestType: 'weekly',
+    requestType: 'daily',
     date,
   });
+  // helper function
+  const mapSorted = useCallback(
+    (data: LookupResponse) => ({
+      name: data.name,
+      size: data.estimated_diameter.meters.estimated_diameter_max,
+      distance: Number(data.close_approach_data[0].miss_distance.kilometers),
+    }),
+    []
+  );
 
-  // TODO: this is actually weekly!
-  const dailyResponse = useMemo(() => {
-    if (!neosResponse || !date) return [];
+  const sortedBySizeData = useMemo(() => {
+    // sort dailyResponses by their size
+    const sorted = [
+      ...(neosResponse?.near_earth_objects[date ?? ''] ?? []),
+    ]?.sort((a, b) => {
+      const aSize = a.estimated_diameter.meters.estimated_diameter_max;
+      const bSize = b.estimated_diameter.meters.estimated_diameter_max;
 
-    // using luxon to get the day of the week
-    const startDate = DateTime.fromISO(date);
-    const sunday = startDate.startOf('week');
-    const monday = sunday.plus({ days: 1 });
-    const tuesday = monday.plus({ days: 1 });
-    const wednesday = tuesday.plus({ days: 1 });
-    const thursday = wednesday.plus({ days: 1 });
-    const friday = thursday.plus({ days: 1 });
-    const saturday = friday.plus({ days: 1 });
+      return aSize - bSize;
+    });
+    return sorted.map(mapSorted);
+  }, [neosResponse, date, mapSorted]);
 
-    return [
-      [
-        'sunday',
-        sunday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[sunday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'monday',
-        monday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[monday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'tuesday',
-        tuesday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[tuesday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'wednesday',
-        wednesday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[wednesday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'thursday',
-        thursday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[thursday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'friday',
-        friday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[friday.toFormat(DATE_FORMAT)],
-      ],
-      [
-        'saturday',
-        saturday.toFormat(DATE_FORMAT),
-        neosResponse.near_earth_objects[saturday.toFormat(DATE_FORMAT)],
-      ],
-    ] as const;
-  }, [neosResponse, date]);
+  const sortedByDistanceData = useMemo(() => {
+    // sort dailyResponses by their distance
+    const sorted = [
+      ...(neosResponse?.near_earth_objects[date ?? ''] ?? []),
+    ]?.sort((a, b) => {
+      const aDistance = Number(
+        a.close_approach_data[0].miss_distance.kilometers
+      );
+      const bDistance = Number(
+        b.close_approach_data[0].miss_distance.kilometers
+      );
+      return aDistance < bDistance ? -1 : aDistance > bDistance ? 1 : 0;
+    });
+    return sorted.map(mapSorted);
+  }, [neosResponse, date, mapSorted]);
 
   const chartData: UserSerie<ChartData>[] = useMemo(() => {
-    return dailyResponse.map(([day, date, lookupResponse]) => {
-      return {
-        label: day,
-        data: [
-          {
-            day,
-            date,
-            count: lookupResponse?.length ?? 0,
-          },
-        ],
-      };
-    });
-  }, [dailyResponse]);
+    if (mode === 'distance') {
+      return [
+        {
+          label: 'distance',
+          data: sortedByDistanceData,
+        },
+      ];
+    }
+    return [
+      {
+        label: 'size',
+        data: sortedBySizeData,
+      },
+    ];
+  }, [mode, sortedByDistanceData, sortedBySizeData]);
 
   const primaryAxis = useMemo(
     (): AxisOptions<ChartData> => ({
-      getValue: (datum) => datum.date,
+      getValue: (datum) => datum.name,
       elementType: 'bar',
     }),
-
     []
   );
 
   const secondaryAxes = useMemo(
     (): AxisOptions<ChartData>[] => [
       {
-        getValue: (datum) => datum.count,
+        // getValue: (datum) => datum.name,
+        getValue: (datum) =>
+          mode === 'distance' ? datum.distance : datum.size,
+        elementType: 'bar',
       },
     ],
-    []
+    [mode]
   );
 
-  return {
+  const value = {
     /**
      * If there is an error with loading neo data
      */
@@ -147,4 +140,8 @@ export function useViewDaily(params: { date: string }) {
     primaryAxis,
     secondaryAxes,
   };
+
+  useDebugValue({ ...value, sortedBySizeData, sortedByDistanceData });
+
+  return value;
 }

@@ -25,3 +25,17 @@ export const Today = Template.bind({
     date: DateTime.now().toFormat(DATE_FORMAT),
   },
 });
+
+export const TodayBySize = Template.bind({});
+
+TodayBySize.args = {
+  date: DateTime.now().toFormat(DATE_FORMAT),
+  mode: 'size',
+};
+
+export const TodayByDistance = Template.bind({});
+
+TodayByDistance.args = {
+  date: DateTime.now().toFormat(DATE_FORMAT),
+  mode: 'distance',
+};

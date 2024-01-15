@@ -31,8 +31,17 @@ export interface ViewDailyProps {
  * @param props The props for the view daily page.
  */
 export function ViewDaily(props: ViewDailyProps) {
-  const { date: propsDate } = props;
-  const { date: paramsDate } = useParams();
+  const { date: propsDate, mode: propsMode } = props;
+  const { date: paramsDate, mode: paramsMode } = useParams();
+
+  const date = propsDate ?? paramsDate ?? getToday();
+
+  const mode =
+    propsMode ||
+    (paramsMode && ['size', 'distance'].includes(paramsMode)
+      ? (paramsMode as 'size' | 'distance')
+      : 'size');
+
   const {
     error,
     loading,
@@ -40,7 +49,10 @@ export function ViewDaily(props: ViewDailyProps) {
     chartData,
     primaryAxis,
     secondaryAxes,
-  } = useViewDaily({ date: propsDate ?? paramsDate ?? getToday() });
+  } = useViewDaily({
+    date,
+    mode,
+  });
 
   if (loading) {
     return (
@@ -64,7 +76,7 @@ export function ViewDaily(props: ViewDailyProps) {
   // TODO: add table of all the NEOs here
   return (
     <div>
-      <h1>View Daily</h1>
+      <h1>View Daily ({date})</h1>
       <div
         style={{
           width: '400px',

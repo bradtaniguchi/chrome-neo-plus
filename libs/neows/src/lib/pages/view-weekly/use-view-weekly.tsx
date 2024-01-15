@@ -3,7 +3,12 @@ import { useNeos } from '../../hooks/use-neos';
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { UserSerie, AxisOptions } from 'react-charts';
-import { ChartData } from '../view-daily';
+
+export interface ChartData {
+  day: string;
+  date: string;
+  count: number;
+}
 
 /**
  * Custom hook that handles the current week for NEO lookups.
