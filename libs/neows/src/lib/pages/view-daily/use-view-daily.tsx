@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useNeos } from '../../hooks';
-import { DATE_FORMAT, DAYS, Day } from '@chrome-neo-plus/common';
+import { DATE_FORMAT, Day } from '@chrome-neo-plus/common';
 import { LookupResponse } from '../../models';
 import { useMemo } from 'react';
 import { DateTime } from 'luxon';
+import { AxisOptions, UserSerie } from 'react-charts';
 
 /**
  * The daily breakdown of neosResponses by day.
@@ -18,6 +19,11 @@ export type DailyResponse = {
    * @see {@link Day}
    */
   dailyResponse: [Day, LookupResponse][];
+};
+
+export type ChartData = {
+  date: Date;
+  count: number;
 };
 
 /**
@@ -49,19 +55,65 @@ export function useViewDaily() {
 
     return [
       ['sunday', neosResponse.near_earth_objects[sunday.toFormat(DATE_FORMAT)]],
-      ['monday', neosResponse.near_earth_objects[monday.toISODate()]],
-      ['tuesday', neosResponse.near_earth_objects[tuesday.toISODate()]],
-      ['wednesday', neosResponse.near_earth_objects[wednesday.toISODate()]],
-      ['thursday', neosResponse.near_earth_objects[thursday.toISODate()]],
-      ['friday', neosResponse.near_earth_objects[friday.toISODate()]],
-      ['saturday', neosResponse.near_earth_objects[saturday.toISODate()]],
-    ];
+      ['monday', neosResponse.near_earth_objects[monday.toFormat(DATE_FORMAT)]],
+      [
+        'tuesday',
+        neosResponse.near_earth_objects[tuesday.toFormat(DATE_FORMAT)],
+      ],
+      [
+        'wednesday',
+        neosResponse.near_earth_objects[wednesday.toFormat(DATE_FORMAT)],
+      ],
+      [
+        'thursday',
+        neosResponse.near_earth_objects[thursday.toFormat(DATE_FORMAT)],
+      ],
+      ['friday', neosResponse.near_earth_objects[friday.toFormat(DATE_FORMAT)]],
+      [
+        'saturday',
+        neosResponse.near_earth_objects[saturday.toFormat(DATE_FORMAT)],
+      ],
+    ] as const;
   }, [neosResponse, date]);
+
+  const chartData: UserSerie<ChartData>[] = useMemo(() => {
+    return dailyResponse.map(([day, lookupResponse]) => {
+      return {
+        label: day,
+        data: [
+          {
+            date: new Date(),
+            count: lookupResponse.length,
+          },
+        ],
+      };
+    });
+  }, [dailyResponse]);
+
+  const primaryAxis = useMemo(
+    (): AxisOptions<ChartData> => ({
+      getValue: (datum) => datum.date,
+    }),
+
+    []
+  );
+
+  const secondaryAxes = useMemo(
+    (): AxisOptions<ChartData>[] => [
+      {
+        getValue: (datum) => datum.count,
+      },
+    ],
+    []
+  );
 
   return {
     error,
     loading,
     neosResponse,
-    dailyResponse,
+
+    chartData,
+    primaryAxis,
+    secondaryAxes,
   };
 }

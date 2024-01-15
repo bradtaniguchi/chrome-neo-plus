@@ -1,5 +1,7 @@
 import { Card, Spinner } from 'flowbite-react';
 import { useViewDaily } from './use-view-daily';
+import { AxisOptions, Chart, Series } from 'react-charts';
+import { LookupResponse } from '../../models';
 
 /**
  * Page that shows the daily NEOs.
@@ -9,7 +11,14 @@ import { useViewDaily } from './use-view-daily';
  * The bottom is the list of NEOs and high level data.
  */
 export function ViewDaily() {
-  const { error, loading, neosResponse, dailyResponse } = useViewDaily();
+  const {
+    error,
+    loading,
+    neosResponse,
+    chartData,
+    primaryAxis,
+    secondaryAxes,
+  } = useViewDaily();
 
   if (loading) {
     return (
@@ -26,10 +35,22 @@ export function ViewDaily() {
 
   if (!neosResponse) {
     // TODO: update
-    return <div>No NEO found</div>;
+    return <div>No NEOs found</div>;
   }
 
   // TODO: add chart here
   // TODO: add table of all the NEOs here
-  return <div> view daily </div>;
+  return (
+    <div>
+      <h1>View Daily</h1>
+      {/* <pre>{JSON.stringify(dailyResponse, null, 2)}</pre> */}
+      <Chart
+        options={{
+          data: chartData,
+          primaryAxis,
+          secondaryAxes,
+        }}
+      />
+    </div>
+  );
 }
