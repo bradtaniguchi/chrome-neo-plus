@@ -1538,11 +1538,15 @@
             },
             {
               "file": "libs/common/src/index.ts",
-              "hash": "6415e79e852277b16bd57c0cb3fad819c985587e"
+              "hash": "d94edb480e88a1ffc92ee752f132f5edea0a4be8"
             },
             {
               "file": "libs/common/src/lib/constants/date-format.ts",
               "hash": "0d19ce2edeac52e4df7d47b805228df13d60cec9"
+            },
+            {
+              "file": "libs/common/src/lib/constants/days.ts",
+              "hash": "529078b4907ceb206050cf335e0e1699bbbd9bcc"
             },
             {
               "file": "libs/common/src/lib/models/document-with-id.ts",
@@ -1571,6 +1575,13 @@
             {
               "file": "libs/common/src/lib/utils/get-id.ts",
               "hash": "ce37f1cbb7a75164db89a0b44bfb5a16a485beb5"
+            },
+            {
+              "file": "libs/common/src/lib/utils/get-today.ts",
+              "hash": "19b45eebf548f48b54cd314a4ff1a4e72366bb20",
+              "deps": [
+                "npm:luxon"
+              ]
             },
             {
               "file": "libs/common/src/lib/utils/index.ts",
@@ -1873,7 +1884,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/index.ts",
-              "hash": "e8917cc46902e2a064cdefc2d78949ae32bb29f4"
+              "hash": "9969a217b577eceaeb3faa4281389266880e5339"
             },
             {
               "file": "libs/neows/src/lib/pages/overview/common-value-wrapper.tsx",
@@ -1929,6 +1940,40 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/pages/view-daily/index.ts",
+              "hash": "0824a93f718ebb0ff81d4a49497a37fe12eeee29"
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-daily/use-view-daily.tsx",
+              "hash": "1116b5099d3a8a597d3c1ccfbe142ab0f0f8bb42",
+              "deps": [
+                "common",
+                "npm:react",
+                "npm:react-charts"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-daily/view-daily.stories.tsx",
+              "hash": "6f1f54e0c9e1a405b45c752332b188cd3feaf3c2",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6",
+                "common"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-daily/view-daily.tsx",
+              "hash": "d495651c4e6cfa99fcb05c0f8979f8e37691fc37",
+              "deps": [
+                "common",
+                "npm:flowbite-react",
+                "npm:react-charts",
+                "npm:react-router-dom",
+                "npm:react"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.stories.tsx",
               "hash": "ea5b607daff97e4bb1da8e7076a2dbd7fa222b7c",
               "deps": [
@@ -1937,9 +1982,39 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.tsx",
-              "hash": "362b599d56fa455219077937c06ac739ee2985d9",
+              "hash": "1fc8612de00b3db60dc64800930e689e7b47ca81",
               "deps": [
                 "npm:flowbite-react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-weekly/use-view-weekly.tsx",
+              "hash": "fb1323ff82381e857e3802d555d39041443bb8ca",
+              "deps": [
+                "common",
+                "npm:luxon",
+                "npm:react",
+                "npm:react-charts"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-weekly/view-weekly.stories.tsx",
+              "hash": "9d171ab9962986c903c5088d39fe74737a99a5ad",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6",
+                "common"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-weekly/view-weekly.tsx",
+              "hash": "4361b40ac524fb69d66401905cf01f720339505f",
+              "deps": [
+                "common",
+                "npm:flowbite-react",
+                "npm:react-charts",
+                "npm:react-router-dom"
               ]
             },
             {
