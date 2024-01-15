@@ -20,7 +20,8 @@ export default {
 
 const Template: Story = (args) => <ViewDaily {...args} />;
 
-export const Today = Template.bind({});
-Today.args = {
-  date: DateTime.now().toFormat(DATE_FORMAT),
-};
+export const Today = Template.bind({
+  args: {
+    date: DateTime.now().toFormat(DATE_FORMAT),
+  },
+});

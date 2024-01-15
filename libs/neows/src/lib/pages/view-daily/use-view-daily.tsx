@@ -21,7 +21,8 @@ export type DailyResponse = {
 };
 
 export type ChartData = {
-  date: Date;
+  day: Day;
+  date: string;
   count: number;
 };
 
@@ -38,10 +39,11 @@ export type ChartData = {
 export function useViewDaily(params: { date: string }) {
   const { date } = params;
   const { error, loading, neosResponse } = useNeos({
-    requestType: 'daily',
+    requestType: 'weekly',
     date,
   });
 
+  // TODO: this is actually weekly!
   const dailyResponse = useMemo(() => {
     if (!neosResponse || !date) return [];
 
@@ -56,36 +58,53 @@ export function useViewDaily(params: { date: string }) {
     const saturday = friday.plus({ days: 1 });
 
     return [
-      ['sunday', neosResponse.near_earth_objects[sunday.toFormat(DATE_FORMAT)]],
-      ['monday', neosResponse.near_earth_objects[monday.toFormat(DATE_FORMAT)]],
+      [
+        'sunday',
+        sunday.toFormat(DATE_FORMAT),
+        neosResponse.near_earth_objects[sunday.toFormat(DATE_FORMAT)],
+      ],
+      [
+        'monday',
+        monday.toFormat(DATE_FORMAT),
+        neosResponse.near_earth_objects[monday.toFormat(DATE_FORMAT)],
+      ],
       [
         'tuesday',
+        tuesday.toFormat(DATE_FORMAT),
         neosResponse.near_earth_objects[tuesday.toFormat(DATE_FORMAT)],
       ],
       [
         'wednesday',
+        wednesday.toFormat(DATE_FORMAT),
         neosResponse.near_earth_objects[wednesday.toFormat(DATE_FORMAT)],
       ],
       [
         'thursday',
+        thursday.toFormat(DATE_FORMAT),
         neosResponse.near_earth_objects[thursday.toFormat(DATE_FORMAT)],
       ],
-      ['friday', neosResponse.near_earth_objects[friday.toFormat(DATE_FORMAT)]],
+      [
+        'friday',
+        friday.toFormat(DATE_FORMAT),
+        neosResponse.near_earth_objects[friday.toFormat(DATE_FORMAT)],
+      ],
       [
         'saturday',
+        saturday.toFormat(DATE_FORMAT),
         neosResponse.near_earth_objects[saturday.toFormat(DATE_FORMAT)],
       ],
     ] as const;
   }, [neosResponse, date]);
 
   const chartData: UserSerie<ChartData>[] = useMemo(() => {
-    return dailyResponse.map(([day, lookupResponse]) => {
+    return dailyResponse.map(([day, date, lookupResponse]) => {
       return {
         label: day,
         data: [
           {
-            date: new Date(),
-            count: lookupResponse.length,
+            day,
+            date,
+            count: lookupResponse?.length ?? 0,
           },
         ],
       };
@@ -95,6 +114,7 @@ export function useViewDaily(params: { date: string }) {
   const primaryAxis = useMemo(
     (): AxisOptions<ChartData> => ({
       getValue: (datum) => datum.date,
+      elementType: 'bar',
     }),
 
     []

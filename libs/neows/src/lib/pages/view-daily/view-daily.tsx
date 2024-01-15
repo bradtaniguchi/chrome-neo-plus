@@ -57,14 +57,20 @@ export function ViewDaily(props: ViewDailyProps) {
   return (
     <div>
       <h1>View Daily</h1>
-      {/* <pre>{JSON.stringify(dailyResponse, null, 2)}</pre> */}
-      <Chart
-        options={{
-          data: chartData,
-          primaryAxis,
-          secondaryAxes,
+      <div
+        style={{
+          width: '400px',
+          height: '300px',
         }}
-      />
+      >
+        <Chart
+          options={{
+            data: chartData,
+            primaryAxis,
+            secondaryAxes,
+          }}
+        />
+      </div>
     </div>
   );
 }
