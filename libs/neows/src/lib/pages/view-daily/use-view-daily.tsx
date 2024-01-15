@@ -1,10 +1,9 @@
-import { useParams } from 'react-router-dom';
-import { useNeos } from '../../hooks';
 import { DATE_FORMAT, Day } from '@chrome-neo-plus/common';
-import { LookupResponse } from '../../models';
-import { useMemo } from 'react';
 import { DateTime } from 'luxon';
+import { useMemo } from 'react';
 import { AxisOptions, UserSerie } from 'react-charts';
+import { useNeos } from '../../hooks';
+import { LookupResponse } from '../../models';
 
 /**
  * The daily breakdown of neosResponses by day.
@@ -32,6 +31,7 @@ export type ChartData = {
  * This primarily provides more separated data based
  * around the given day to make it easier to display
  * within a chart and table.
+ *
  * @param params The parameters for the hook.
  * @param params.date The date to lookup, in yyyy-MM-dd format.
  */
