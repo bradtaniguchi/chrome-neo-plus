@@ -110,8 +110,17 @@ export function useViewDaily(params: { date: string }) {
   );
 
   return {
+    /**
+     * If there is an error with loading neo data
+     */
     error,
+    /**
+     * If we are loading neo data
+     */
     loading,
+    /**
+     * The raw response of data from the useNeos hook.
+     */
     neosResponse,
 
     chartData,

@@ -1,9 +1,8 @@
-import { Card, Spinner } from 'flowbite-react';
-import { useViewDaily } from './use-view-daily';
-import { AxisOptions, Chart, Series } from 'react-charts';
-import { LookupResponse } from '../../models';
-import { useParams } from 'react-router-dom';
 import { getToday } from '@chrome-neo-plus/common';
+import { Card, Spinner } from 'flowbite-react';
+import { Chart } from 'react-charts';
+import { useParams } from 'react-router-dom';
+import { useViewDaily } from './use-view-daily';
 
 export interface ViewDailyProps {
   /**
