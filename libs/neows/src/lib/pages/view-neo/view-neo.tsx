@@ -1,17 +1,50 @@
-import { Card } from 'flowbite-react';
+import { Card, Spinner } from 'flowbite-react';
 import { NeoShortInfo } from '../../components';
-import { useNeoBookmark } from '../../hooks';
+import { useGetNeos, useNeoBookmark } from '../../hooks';
+import { LookupResponse } from '../../models/lookup-response/lookup-response';
 
 /**
  * The view-neo component shows detailed information for
  * the given neo.
+ *
+ * TODO: leverage react-charts here
+ * TODO: provide table with extended stats here
+ * TODO: setup this page to be served in the main-client
  */
 export function ViewNeo() {
-  const neo: any = undefined;
+  // TODO: use the id from the route, or use a query param
+  // TODO: make http call to get information for the NEO
+  // TODO: update get to utilize caching
+  // const neo: LookupResponse = undefined;
+  const {
+    error,
+    loading,
+    neoResponse: neo,
+  } = useGetNeos({
+    asteroid_id: '3542519',
+  });
 
   const { isBookmarked, handleToggleBookmark } = useNeoBookmark({
     neo,
   });
+
+  if (loading) {
+    return (
+      <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white">
+        <Spinner color="info" aria-label="Info spinner example" />
+      </Card>
+    );
+  }
+
+  if (error) {
+    // TODO: improve
+    return <div>Error: {(error as Error).message}</div>;
+  }
+
+  if (!neo) {
+    // TODO: update
+    return <div>No NEO found</div>;
+  }
 
   return (
     <div>

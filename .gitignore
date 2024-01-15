@@ -52,3 +52,6 @@ C:*
 # build config, used to load/use the api key.
 # should be placed within the `common` lib manually.
 build-config.ts
+
+# for storybook builds
+storybook-public
