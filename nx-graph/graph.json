@@ -181,7 +181,7 @@
             },
             {
               "file": "apps/chrome-extension/scripts/serve.js",
-              "hash": "e9398ed2fb808a7cbfbc202ff9b04d2b8acc8ac7",
+              "hash": "62d768989f128bbe78db07c2efdc958721191b8e",
               "deps": [
                 "npm:fs-extra"
               ]
