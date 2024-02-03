@@ -74,6 +74,8 @@ export async function getDailyNeowsFeed(params?: {
     res,
   });
 
+  neowsCache.saveToCache();
+
   return res;
 }
 
@@ -159,6 +161,8 @@ export async function getMonthlyNeowsFeed(params?: {
       year: DateTime.now().year,
       res,
     });
+
+    neowsCache.saveToCache();
 
     return res;
   }

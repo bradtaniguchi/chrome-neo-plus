@@ -159,7 +159,6 @@ export class NeowsCache {
     const { date, res } = params;
     this.dailyCache.set(date, res);
     this.setMultipleById(this.collapseNeowsResponse(res));
-    this.saveToCache();
     return this;
   }
 
@@ -213,7 +212,6 @@ export class NeowsCache {
     const { week, year, res } = params;
     this.weeklyCache.set(`${year}-${week}`, res);
     this.setMultipleById(this.collapseNeowsResponse(res));
-    this.saveToCache();
     return this;
   }
 
@@ -277,7 +275,6 @@ export class NeowsCache {
     const { month, year, res } = params;
     this.monthlyCache.set(`${year}-${month}`, res);
     this.setMultipleById(this.collapseNeowsResponse(res));
-    this.saveToCache();
     return this;
   }
 
@@ -337,7 +334,6 @@ export class NeowsCache {
    */
   public setById(res: LookupResponse) {
     this.idCache.set(res.id, res);
-    this.saveToCache();
     return this;
   }
 

@@ -32,5 +32,7 @@ export async function getNeows(params: {
 
   neowsCache.setById(res);
 
+  neowsCache.saveToCache();
+
   return res;
 }
