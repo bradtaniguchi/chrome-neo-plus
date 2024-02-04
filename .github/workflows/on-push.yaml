@@ -105,7 +105,7 @@ jobs:
         with:
           targets: build-storybook
           all: true
-          parallel: 3
+          parallel: 1
       - run: mv dist/storybook/storybook/** dist/storybook/
       - uses: actions/upload-artifact@v2
         with:
