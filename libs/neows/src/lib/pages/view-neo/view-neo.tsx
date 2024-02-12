@@ -1,7 +1,7 @@
 import { Card, Spinner } from 'flowbite-react';
 import { NeoShortInfo } from '../../components';
 import { useGetNeos, useNeoBookmark } from '../../hooks';
-import { LookupResponse } from '../../models/lookup-response/lookup-response';
+import { NeoShortInfoBookmark } from '../../components/neo-short-info/neo-short-info-bookmark';
 
 /**
  * The view-neo component shows detailed information for
@@ -56,9 +56,12 @@ export function ViewNeo() {
           <Card className="dark:bg-slate-800 dark:text-white">
             <NeoShortInfo
               neo={neo}
-              isBookmarked={isBookmarked}
-              bookmarkedChanged={handleToggleBookmark}
-              noLinks={true}
+              bookmark={
+                <NeoShortInfoBookmark
+                  bookmarkedChanged={handleToggleBookmark}
+                  isBookmarked={isBookmarked}
+                />
+              }
             />
           </Card>
         </li>

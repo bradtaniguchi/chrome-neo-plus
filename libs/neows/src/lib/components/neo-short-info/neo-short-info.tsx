@@ -1,11 +1,4 @@
-import {
-  ArrowTopRightOnSquareIcon,
-  BookOpenIcon,
-  ChartBarIcon,
-} from '@heroicons/react/24/solid';
-import { Button } from 'flowbite-react';
-import React, { memo, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { memo, useMemo } from 'react';
 import { LookupResponse } from '../../models';
 
 export interface NeoShortInfoProps {
