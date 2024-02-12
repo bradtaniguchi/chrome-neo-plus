@@ -4,6 +4,8 @@ import { useNeoBookmark } from '../../hooks/use-neo-bookmark';
 import { useNeos } from '../../hooks/use-neos';
 import { getBestNeo } from '../../utils';
 import { NeoShortInfo } from '../neo-short-info/neo-short-info';
+import { NeoShortInfoBookmark } from '../neo-short-info/neo-short-info-bookmark';
+import { NeoShortInfoLinks } from '../neo-short-info/neo-short-info-links';
 
 export interface BestNeoProps {
   /**
@@ -50,8 +52,13 @@ export function BestNeo(props: BestNeoProps) {
     <Card className="dark:bg-slate-800 dark:text-white">
       <NeoShortInfo
         neo={bestNeo}
-        isBookmarked={isBookmarked}
-        bookmarkedChanged={handleToggleBookmark}
+        bookmark={
+          <NeoShortInfoBookmark
+            bookmarkedChanged={handleToggleBookmark}
+            isBookmarked={isBookmarked}
+          />
+        }
+        footer={<NeoShortInfoLinks neo={bestNeo} />}
       />
     </Card>
   );

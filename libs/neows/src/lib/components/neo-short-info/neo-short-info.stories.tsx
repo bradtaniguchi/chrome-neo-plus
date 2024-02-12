@@ -3,6 +3,8 @@ import { Card } from 'flowbite-react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { LookupResponse } from '../../models';
 import { NeoShortInfo, NeoShortInfoProps } from './neo-short-info';
+import { NeoShortInfoBookmark } from './neo-short-info-bookmark';
+import { NeoShortInfoLinks } from './neo-short-info-links';
 
 export default {
   component: NeoShortInfo,
@@ -67,6 +69,12 @@ const neo: LookupResponse = {
   is_sentry_object: false,
 };
 
+const bookmark = (
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  <NeoShortInfoBookmark bookmarkedChanged={() => {}} isBookmarked={false} />
+);
+const footer = <NeoShortInfoLinks neo={neo} />;
+
 export const NoNeo = Template.bind({});
 NoNeo.args = {
   neo: undefined,
@@ -75,10 +83,17 @@ NoNeo.args = {
 export const Default = Template.bind({});
 Default.args = {
   neo,
+  bookmark,
+  footer,
 };
 
-export const NoLinks = Template.bind({});
-NoLinks.args = {
+export const NoFooter = Template.bind({});
+NoFooter.args = {
   neo,
-  noLinks: true,
+  bookmark,
+};
+
+export const NoFooterOrBookmark = Template.bind({});
+NoFooterOrBookmark.args = {
+  neo,
 };

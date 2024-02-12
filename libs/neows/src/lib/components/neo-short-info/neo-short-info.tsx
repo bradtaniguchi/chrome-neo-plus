@@ -4,7 +4,7 @@ import {
   ChartBarIcon,
 } from '@heroicons/react/24/solid';
 import { Button } from 'flowbite-react';
-import { memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { LookupResponse } from '../../models';
 
@@ -14,22 +14,14 @@ export interface NeoShortInfoProps {
    */
   neo: LookupResponse;
   /**
-   * If the NEO is bookmarked.
-   * TODO: should be reversed/generic.
+   * Bookmark component that is shown to the right of the title.
    */
-  isBookmarked?: boolean;
+  bookmark?: JSX.Element;
   /**
-   * Callback that is called when the user clicks on the bookmark.
-   * The value is the new bookmarked state.
-   * TODO: should be reversed/generic.
+   * Footer component that is shown at the bottom of this component,
+   * could show links
    */
-  bookmarkedChanged?: (bookmarked: boolean) => void;
-
-  /**
-   * If we are to hide the links to the JPL page and the details stats page.
-   * TODO: should be reversed/generic.
-   */
-  noLinks?: boolean;
+  footer?: JSX.Element;
 }
 
 /**
@@ -54,17 +46,9 @@ export interface NeoShortInfoProps {
 export const NeoShortInfo = memo(function NeoShortInfo(
   props: NeoShortInfoProps
 ) {
-  const { neo, isBookmarked, bookmarkedChanged, noLinks } = props;
+  const { neo, bookmark, footer } = props;
 
   const passDistance = neo?.close_approach_data?.[0]?.miss_distance?.kilometers;
-
-  /**
-   * Handle the on-bookmark click event.
-   */
-  const handleOnBookmark = () => {
-    if (typeof bookmarkedChanged === 'function')
-      bookmarkedChanged(!isBookmarked);
-  };
 
   /**
    * The trimmed-pass-distance is calculated based on the kilometers pass distance
@@ -83,15 +67,7 @@ export const NeoShortInfo = memo(function NeoShortInfo(
     <div>
       <div className="flex flex-row justify-between">
         <h1 className="text-lg">{neo.name}</h1>
-        <div>
-          <Button
-            pill={true}
-            outline={!isBookmarked}
-            onClick={handleOnBookmark}
-          >
-            <BookOpenIcon className="w-4" />
-          </Button>
-        </div>
+        {bookmark ? <div>{bookmark}</div> : null}
       </div>
       <ul>
         <li className="flex flex-row justify-between">
@@ -116,23 +92,7 @@ export const NeoShortInfo = memo(function NeoShortInfo(
             {trimmedPassDistance.toLocaleString()}
           </div>
         </li>
-        {noLinks ? null : (
-          <li className="flex flex-row justify-end gap-2">
-            <Link to={`/neo/${neo.id}`} className="flex flex-row gap-1">
-              <ChartBarIcon className="w-4" />
-              <div>detailed stats</div>
-            </Link>
-            <a
-              href={neo.nasa_jpl_url}
-              target="_blank"
-              rel="noreferrer"
-              className="flex flex-row gap-1"
-            >
-              <ArrowTopRightOnSquareIcon className="w-4" />
-              <div>JPL Link</div>
-            </a>
-          </li>
-        )}
+        {footer}
       </ul>
     </div>
   );
