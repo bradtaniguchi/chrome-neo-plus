@@ -1793,7 +1793,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/best-neo/best-neo.tsx",
-              "hash": "75ac68b5c3573cf16f987b2e072d755fbeb85141",
+              "hash": "d4ddc9c7dd50ffac689c4c0b2a7f36b6a1427d41",
               "deps": [
                 "npm:flowbite-react",
                 "npm:react"
@@ -1804,8 +1804,26 @@
               "hash": "4736a283257c211d571a54e8df9ec6378987cf01"
             },
             {
+              "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-bookmark.tsx",
+              "hash": "9d24e03abdd45d87bbe739cc0d8d5fb63b595984",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:flowbite-react",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-links.tsx",
+              "hash": "26f3effca2704c1c15663d8f9080c30c252feede",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.stories.tsx",
-              "hash": "732ac95ccee72a0f3b298ffaddc5c8c5c3bf191c",
+              "hash": "80983c4ec67c14afebae23da7f62ce47b8bf78ba",
               "deps": [
                 "npm:@storybook/react",
                 "npm:flowbite-react",
@@ -1814,12 +1832,9 @@
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.tsx",
-              "hash": "81a48b8b2f8994686ff010dac4e07ce3b7a8ac34",
+              "hash": "a6137fa42f5123f622d2a6aafaf8a9fa7d27e6bb",
               "deps": [
-                "npm:@heroicons/react",
-                "npm:flowbite-react",
-                "npm:react",
-                "npm:react-router-dom"
+                "npm:react"
               ]
             },
             {
@@ -1982,7 +1997,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.tsx",
-              "hash": "1fc8612de00b3db60dc64800930e689e7b47ca81",
+              "hash": "fdc98555de0ed41ebad8dc111f28b1fa111d9827",
               "deps": [
                 "npm:flowbite-react"
               ]
