@@ -1,7 +1,0 @@
-**What changes did you make? (Give an overview)**
-
-- optimized calls to localStorage to be done at the end of any batched call, rather than for each nested individual action. This should dramatically improve initial load performance. This should allow the app to keep the monthly call
-
-**Which issue (if any) does this pull request address?**
-
-Closes #17
