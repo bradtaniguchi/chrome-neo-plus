@@ -93,6 +93,39 @@ export class NeowsCache {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
     return this;
   }
+  /**
+   * Returns the 2 sizes, the current in-memory size, and the size within
+   * localStorage.
+   */
+  public size() {
+    const totalInMemorySize =
+      this.dailyCache.size +
+      this.weeklyCache.size +
+      this.monthlyCache.size +
+      this.idCache.size;
+    const localStorageSize =
+      localStorage.getItem(this.STORAGE_KEY)?.length ?? 0;
+    return {
+      totalInMemorySize,
+      localStorageSize,
+      dailyCacheSize: this.dailyCache.size,
+      weeklyCacheSize: this.weeklyCache.size,
+      monthlyCacheSize: this.monthlyCache.size,
+      rawIdsCacheSize: this.idCache.size,
+    };
+  }
+
+  /**
+   * Clears all data in memory and localStorage
+   */
+  public clear() {
+    this.dailyCache.clear();
+    this.weeklyCache.clear();
+    this.monthlyCache.clear();
+    this.idCache.clear();
+    localStorage.removeItem(this.STORAGE_KEY);
+    return this;
+  }
 
   /**
    * Loads data from local storage into the cache.
