@@ -201,6 +201,13 @@
               "hash": "77e7cc1ab55d0e7c3fca44c3816479b088daf2e1"
             },
             {
+              "file": "apps/chrome-extension/src/app/core/consolidated-help-entries.tsx",
+              "hash": "683e6ee91f865efbd8702cbfabad5e2ee6946a0f",
+              "deps": [
+                "neows"
+              ]
+            },
+            {
               "file": "apps/chrome-extension/src/app/core/loading-spinner.tsx",
               "hash": "c07cc302799f2593900c9a45877e4b5ecdcb4e81",
               "deps": [
@@ -213,7 +220,11 @@
             },
             {
               "file": "apps/chrome-extension/src/app/pages/help-page.tsx",
-              "hash": "ee500c25de485c99ea11d8488cebc05cde4b4c1e"
+              "hash": "d548020023255af8e0fcfb920df1c31c2d6e3fc7",
+              "deps": [
+                "npm:flowbite-react",
+                "npm:react"
+              ]
             },
             {
               "file": "apps/chrome-extension/src/app/pages/not-found.tsx",
@@ -1553,8 +1564,12 @@
               "hash": "2e9e79933c5773b6e0422aff32ac7b94acbbac43"
             },
             {
+              "file": "libs/common/src/lib/models/help-entry.ts",
+              "hash": "1f4c95fa448e24dd79208e766293434bc2165227"
+            },
+            {
               "file": "libs/common/src/lib/models/index.ts",
-              "hash": "dbc33d1d2e816fe7dcb1493604af1b4d9f597b7f"
+              "hash": "5b467db83288148ce9ec6f2c3c5f192842b235ec"
             },
             {
               "file": "libs/common/src/lib/utils/common-logger.spec.ts",
@@ -1874,8 +1889,15 @@
               "hash": "08ec0146273de067e15ad154254746a869688bd7"
             },
             {
+              "file": "libs/neows/src/lib/models/help-entries.ts",
+              "hash": "606c770a050e09ce262b3dc78a9a78407b43ecd9",
+              "deps": [
+                "common"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/models/index.ts",
-              "hash": "b0d77d9f31522a960ef7bba4a699c78b8e765d4e"
+              "hash": "f48b5b7c5a85e061749c99375368d133ae09fc71"
             },
             {
               "file": "libs/neows/src/lib/models/lookup-response/index.ts",
