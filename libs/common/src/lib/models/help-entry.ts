@@ -14,6 +14,7 @@ export interface HelpEntry {
   description: string;
   /**
    * The data type of the help entry.
+   * Undefined if not sure.
    */
-  dataType: 'string' | 'number';
+  dataType?: 'string' | 'number' | 'date';
 }
