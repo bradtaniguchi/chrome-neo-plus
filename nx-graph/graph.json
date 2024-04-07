@@ -236,7 +236,12 @@
             },
             {
               "file": "apps/chrome-extension/src/app/pages/settings-page.tsx",
-              "hash": "a38c1d686b1322a395de3ef19bbd564840bd326b"
+              "hash": "5cf39ee49e18d4ad383be9f7bad6478a2366e2d0",
+              "deps": [
+                "neows",
+                "npm:flowbite-react",
+                "npm:react"
+              ]
             },
             {
               "file": "apps/chrome-extension/src/assets/.gitkeep",
@@ -2103,7 +2108,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "d10ffe83b523280f38e732e2a69dd1a8ec94ef5d"
+              "hash": "3cfdfbe46576759eeba977e44df3819ba6f90945"
             },
             {
               "file": "libs/neows/tailwind.config.js",
