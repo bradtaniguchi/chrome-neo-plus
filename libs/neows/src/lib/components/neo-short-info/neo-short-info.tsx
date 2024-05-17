@@ -1,11 +1,11 @@
 import { memo, useMemo } from 'react';
-import { LookupResponse } from '../../models';
+import { NeowsResponse } from '../../models';
 
 export interface NeoShortInfoProps {
   /**
    * A single NEO response.
    */
-  neo: LookupResponse;
+  neo: NeowsResponse;
   /**
    * Bookmark component that is shown to the right of the title.
    */

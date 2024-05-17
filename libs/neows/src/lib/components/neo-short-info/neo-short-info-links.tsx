@@ -4,13 +4,13 @@ import {
 } from '@heroicons/react/24/solid';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import { LookupResponse } from '../../models';
+import { NeowsResponse } from '../../models';
 
 export interface NeoShortFormProps {
   /**
    * The NEO to show the links for.
    */
-  neo: Pick<LookupResponse, 'id' | 'nasa_jpl_url'>;
+  neo: Pick<NeowsResponse, 'id' | 'nasa_jpl_url'>;
 }
 
 /**

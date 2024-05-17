@@ -1,4 +1,4 @@
-import { LookupResponse } from '../models';
+import { NeowsResponse } from '../models';
 
 /**
  * Returns the "best" NEO for the given list of NEOS.
@@ -8,7 +8,7 @@ import { LookupResponse } from '../models';
  * @param neos List of NEOS
  * @returns The "best" NEO, or null if one isn't found for some reason
  */
-export function getBestNeo(neos: LookupResponse[]): LookupResponse | null {
+export function getBestNeo(neos: NeowsResponse[]): NeowsResponse | null {
   if (!neos || neos.length === 0) return null;
   return neos.reduce((acc, neo) => {
     if (

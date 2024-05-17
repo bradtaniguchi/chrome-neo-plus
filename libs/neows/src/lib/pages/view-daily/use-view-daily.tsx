@@ -2,7 +2,7 @@ import { Day } from '@chrome-neo-plus/common';
 import { useCallback, useDebugValue, useMemo, useState } from 'react';
 import { AxisOptions, UserSerie } from 'react-charts';
 import { useNeos } from '../../hooks';
-import { LookupResponse } from '../../models';
+import { NeowsResponse } from '../../models';
 
 /**
  * The daily breakdown of neosResponses by day.
@@ -16,7 +16,7 @@ export type DailyResponse = {
    *
    * @see {@link Day}
    */
-  dailyResponse: [Day, LookupResponse][];
+  dailyResponse: [Day, NeowsResponse][];
 };
 
 export type ChartData = {
@@ -49,7 +49,7 @@ export function useViewDaily(params: {
 
   // helper function
   const mapSorted = useCallback(
-    (data: LookupResponse) => ({
+    (data: NeowsResponse) => ({
       name: data.name,
       size: data.estimated_diameter.meters.estimated_diameter_max,
       distance: Number(data.close_approach_data[0].miss_distance.kilometers),
