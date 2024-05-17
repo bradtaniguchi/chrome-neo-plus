@@ -1,5 +1,5 @@
 import { FeedResponse } from '../models/feed-response';
-import { LookupResponse } from '../models/lookup-response/lookup-response';
+import { NeowsResponse } from '../models/neows-response/neows-response';
 
 /**
  * Map used to cache NEOWs responses by their date-range.
@@ -44,7 +44,7 @@ export class NeowsCache {
   /**
    * The public underlying data for the id-cache.
    */
-  public readonly idCache = new Map<string, LookupResponse>();
+  public readonly idCache = new Map<string, NeowsResponse>();
 
   constructor(params: {
     /**
@@ -157,7 +157,7 @@ export class NeowsCache {
       const ids = data[this.ID_KEY] ?? [];
       if (ids && typeof ids === 'object')
         Object.entries(ids).forEach(([key, value]) =>
-          this.idCache.set(key, value as LookupResponse)
+          this.idCache.set(key, value as NeowsResponse)
         );
     }
     return this;
@@ -172,13 +172,13 @@ export class NeowsCache {
    */
   private collapseNeowsResponse(
     res: Pick<FeedResponse, 'near_earth_objects'>
-  ): LookupResponse[] {
+  ): NeowsResponse[] {
     return Object.values(res.near_earth_objects).reduce((acc, neos) => {
       neos.forEach((neo) => {
         acc.push(neo);
       });
       return acc;
-    }, [] as LookupResponse[]);
+    }, [] as NeowsResponse[]);
   }
 
   /**
@@ -365,7 +365,7 @@ export class NeowsCache {
    *
    * @param res The neo data to save to cache
    */
-  public setById(res: LookupResponse) {
+  public setById(res: NeowsResponse) {
     this.idCache.set(res.id, res);
     return this;
   }
@@ -375,7 +375,7 @@ export class NeowsCache {
    *
    * @param res The NEOs to save data for
    */
-  public setMultipleById(res: LookupResponse[]) {
+  public setMultipleById(res: NeowsResponse[]) {
     res.forEach((neo) => this.setById(neo));
     return this;
   }
@@ -385,7 +385,7 @@ export class NeowsCache {
    *
    * @param id The id to get the NEO data for
    */
-  public getById(id: string): LookupResponse | undefined {
+  public getById(id: string): NeowsResponse | undefined {
     return this.idCache.get(id);
   }
 }

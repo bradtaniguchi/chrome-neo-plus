@@ -1,6 +1,6 @@
 import { useHasMounted } from '@chrome-neo-plus/common-react';
 import { useEffect, useState } from 'react';
-import { LookupResponse } from '../models/lookup-response';
+import { NeowsResponse } from '../models/neows-response';
 import { getNeows } from '../utils/get-neows';
 import { neowsCache } from '../utils/neows-cache';
 
@@ -18,7 +18,7 @@ export function useGetNeos(params: { asteroid_id: string; noCache?: boolean }) {
   const mounted = useHasMounted();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>();
-  const [neoResponse, setNeoResponse] = useState<LookupResponse>();
+  const [neoResponse, setNeoResponse] = useState<NeowsResponse>();
 
   /**
    * Load the cache on mount automatically.

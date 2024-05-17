@@ -1,6 +1,6 @@
 import { useHasMounted } from '@chrome-neo-plus/common-react';
 import { useCallback, useEffect, useState } from 'react';
-import { LookupResponse } from '../models';
+import { NeowsResponse } from '../models';
 
 export const NEOWS_BOOKMARKS_KEY = 'NEOWS_BOOKMARKS';
 
@@ -13,7 +13,7 @@ export const NEOWS_BOOKMARKS_KEY = 'NEOWS_BOOKMARKS';
  * state from localStorage.
  */
 export function useNeoBookmark(params: {
-  neo?: LookupResponse;
+  neo?: NeowsResponse;
   isBookmarked?: boolean;
 }) {
   const { neo } = params;

@@ -5,7 +5,7 @@ import { LookupOrbitalData } from './lookup-orbital-data';
 /**
  * The type definition for the lookup endpoint response.
  */
-export interface LookupResponse {
+export interface NeowsResponse {
   links: {
     /**
      * The api called, with key.

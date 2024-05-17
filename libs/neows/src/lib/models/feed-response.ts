@@ -1,4 +1,4 @@
-import { LookupResponse } from './lookup-response/lookup-response';
+import { NeowsResponse } from './neows-response/neows-response';
 
 /**
  * The top level response from the feed.
@@ -33,5 +33,5 @@ export interface FeedResponse {
    * A record, where the key is the day in format:
    * YYYY-MM-DD with the array of lookups
    */
-  near_earth_objects: Record<string, Array<LookupResponse>>;
+  near_earth_objects: Record<string, Array<NeowsResponse>>;
 }
