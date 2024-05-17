@@ -1834,7 +1834,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-links.tsx",
-              "hash": "26f3effca2704c1c15663d8f9080c30c252feede",
+              "hash": "2782760fd3db9ffd87589c56e2480469876ea841",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:react",
@@ -1852,7 +1852,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info.tsx",
-              "hash": "a6137fa42f5123f622d2a6aafaf8a9fa7d27e6bb",
+              "hash": "1efefc1bc22f68e2fe0b6da22deacb91a20a5b96",
               "deps": [
                 "npm:react"
               ]
@@ -1863,7 +1863,7 @@
             },
             {
               "file": "libs/neows/src/lib/hooks/use-get-neos.ts",
-              "hash": "71d2133f7d621426a81826c56ecf99f86a0f37a2",
+              "hash": "90545d1adf37009a550ec21ceac0bda6cb799f7b",
               "deps": [
                 "common-react",
                 "npm:react"
@@ -1871,7 +1871,7 @@
             },
             {
               "file": "libs/neows/src/lib/hooks/use-neo-bookmark.ts",
-              "hash": "be82f44da3d5d0d01f82bb9aa2c7d9c48219a2f6",
+              "hash": "d70d42d67f6f825b675ea42694e92f6a4acf5ae2",
               "deps": [
                 "common-react",
                 "npm:react"
@@ -1891,7 +1891,7 @@
             },
             {
               "file": "libs/neows/src/lib/models/feed-response.ts",
-              "hash": "08ec0146273de067e15ad154254746a869688bd7"
+              "hash": "2a04c8f98b8cb97500b74bbf2852bdb439f4f55b"
             },
             {
               "file": "libs/neows/src/lib/models/help-entries.ts",
@@ -1902,27 +1902,27 @@
             },
             {
               "file": "libs/neows/src/lib/models/index.ts",
-              "hash": "f48b5b7c5a85e061749c99375368d133ae09fc71"
+              "hash": "363b92c911d21e6ddb46af45b623506e8d8f0356"
             },
             {
-              "file": "libs/neows/src/lib/models/lookup-response/index.ts",
-              "hash": "6d3526684ed429a991a10cd5d3722c04968cc349"
+              "file": "libs/neows/src/lib/models/neows-response/index.ts",
+              "hash": "7253cdb7c229765cb17490a33e9c94e88a49086b"
             },
             {
-              "file": "libs/neows/src/lib/models/lookup-response/lookup-close-approach-data.ts",
+              "file": "libs/neows/src/lib/models/neows-response/lookup-close-approach-data.ts",
               "hash": "be5a9e63e3ba3f8c4180af40ed73a10d03ed48cc"
             },
             {
-              "file": "libs/neows/src/lib/models/lookup-response/lookup-estimated-diameter.ts",
+              "file": "libs/neows/src/lib/models/neows-response/lookup-estimated-diameter.ts",
               "hash": "d71be30e69c0b536712d2373cabe8fbce1c77d4b"
             },
             {
-              "file": "libs/neows/src/lib/models/lookup-response/lookup-orbital-data.ts",
+              "file": "libs/neows/src/lib/models/neows-response/lookup-orbital-data.ts",
               "hash": "47130c15bdc322870b77a04a9c4ccbd56c0b52e0"
             },
             {
-              "file": "libs/neows/src/lib/models/lookup-response/lookup-response.ts",
-              "hash": "a7ebb342140da293d884c6da51e2d18937982e20"
+              "file": "libs/neows/src/lib/models/neows-response/neows-response.ts",
+              "hash": "13bd275bc29fa50da8329b44d2f46510619d40fd"
             },
             {
               "file": "libs/neows/src/lib/pages/index.ts",
@@ -1987,7 +1987,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-daily/use-view-daily.tsx",
-              "hash": "1116b5099d3a8a597d3c1ccfbe142ab0f0f8bb42",
+              "hash": "e00b72feb69bfc1b8bb8f846cbb40d75d4c23805",
               "deps": [
                 "common",
                 "npm:react",
@@ -2065,7 +2065,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-best-neo.ts",
-              "hash": "e3e05b0fa9af34fa149fc16aa9607a80b9d762e2"
+              "hash": "39a91b0f410d535ad9066094e2e582c494c77f3f"
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-browse.ts",
@@ -2081,7 +2081,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows.ts",
-              "hash": "238552c277ee22d500d73baf84e41972c5cc8ed4",
+              "hash": "95bb7a78ccffb1fca9610011c432bbd2e205ed96",
               "deps": [
                 "common"
               ]
@@ -2108,7 +2108,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
-              "hash": "3cfdfbe46576759eeba977e44df3819ba6f90945"
+              "hash": "6b4b5bde049fd2c85657614d10f922f08ab62697"
             },
             {
               "file": "libs/neows/tailwind.config.js",
