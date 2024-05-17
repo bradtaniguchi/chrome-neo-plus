@@ -1,6 +1,6 @@
-import { LookupCloseApproachData } from './lookup-close-approach-data';
-import { LookupEstimatedDiameter } from './lookup-estimated-diameter';
-import { LookupOrbitalData } from './lookup-orbital-data';
+import { NeowsCloseApproachData } from './neows-close-approach-data';
+import { NeowsEstimatedDiameter } from './neows-estimated-diameter';
+import { NeowsOrbitalData } from './neows-orbital-data';
 
 /**
  * The type definition for the lookup endpoint response.
@@ -37,10 +37,10 @@ export interface NeowsResponse {
    */
   absolute_magnitude_h: number;
   estimated_diameter: {
-    kilometers: LookupEstimatedDiameter;
-    meters: LookupEstimatedDiameter;
-    miles: LookupEstimatedDiameter;
-    feet: LookupEstimatedDiameter;
+    kilometers: NeowsEstimatedDiameter;
+    meters: NeowsEstimatedDiameter;
+    miles: NeowsEstimatedDiameter;
+    feet: NeowsEstimatedDiameter;
   };
   /**
    * If the asteroid is potentially hazardous
@@ -49,11 +49,11 @@ export interface NeowsResponse {
   /**
    * Close orbital approach data for NEO's
    */
-  close_approach_data: Array<LookupCloseApproachData>;
+  close_approach_data: Array<NeowsCloseApproachData>;
   /**
    * Advanced orbital data
    */
-  orbitalData?: LookupOrbitalData;
+  orbitalData?: NeowsOrbitalData;
   /**
    * ???
    */

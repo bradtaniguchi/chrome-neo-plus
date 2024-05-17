@@ -1,4 +1,4 @@
-export interface LookupOrbitalData {
+export interface NeowsOrbitalData {
   /**
    * ???
    */
