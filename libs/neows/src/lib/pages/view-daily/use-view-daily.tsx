@@ -1,5 +1,5 @@
 import { Day } from '@chrome-neo-plus/common';
-import { useCallback, useDebugValue, useMemo, useState } from 'react';
+import { useCallback, useDebugValue, useMemo } from 'react';
 import { AxisOptions, UserSerie } from 'react-charts';
 import { useNeos } from '../../hooks';
 import { NeowsResponse } from '../../models';
