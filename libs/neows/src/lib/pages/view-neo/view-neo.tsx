@@ -2,20 +2,18 @@ import { Card, Spinner } from 'flowbite-react';
 import { NeoShortInfo } from '../../components';
 import { useGetNeos, useNeoBookmark } from '../../hooks';
 import { NeoShortInfoBookmark } from '../../components/neo-short-info/neo-short-info-bookmark';
+import { DetailedStats } from './detailed-stats';
 
 /**
  * The view-neo component shows detailed information for
  * the given neo.
  *
- * TODO: leverage react-charts here
  * TODO: provide table with extended stats here
  * TODO: setup this page to be served in the main-client
  */
 export function ViewNeo() {
   // TODO: use the id from the route, or use a query param
   // TODO: make http call to get information for the NEO
-  // TODO: update get to utilize caching
-  // const neo: LookupResponse = undefined;
   const {
     error,
     loading,
@@ -72,6 +70,7 @@ export function ViewNeo() {
             Previous version showed all the data in a "table-like" view here:
             https://github.com/bradtaniguchi/chrome-neo/blob/b852e58ca487a5d8922c982d31330acc8f53b1ab/app/views/stats/stats.controller.js
             */}
+            <DetailedStats neo={neo} />
           </Card>
         </li>
         {/* TODO: add another view that tries to find any pictures/extra info here */}
