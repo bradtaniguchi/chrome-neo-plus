@@ -1906,23 +1906,23 @@
             },
             {
               "file": "libs/neows/src/lib/models/neows-response/index.ts",
-              "hash": "7253cdb7c229765cb17490a33e9c94e88a49086b"
+              "hash": "c3eb3c25ba2c71c40b1bb30a6d7043454e6db4bb"
             },
             {
-              "file": "libs/neows/src/lib/models/neows-response/lookup-close-approach-data.ts",
-              "hash": "be5a9e63e3ba3f8c4180af40ed73a10d03ed48cc"
+              "file": "libs/neows/src/lib/models/neows-response/neows-close-approach-data.ts",
+              "hash": "f6ee6fc27a457e4a71656b4619c8558ccbbd1f59"
             },
             {
-              "file": "libs/neows/src/lib/models/neows-response/lookup-estimated-diameter.ts",
-              "hash": "d71be30e69c0b536712d2373cabe8fbce1c77d4b"
+              "file": "libs/neows/src/lib/models/neows-response/neows-estimated-diameter.ts",
+              "hash": "9321caaa7d22af2f098d46104d61eb6545e8f0c5"
             },
             {
-              "file": "libs/neows/src/lib/models/neows-response/lookup-orbital-data.ts",
-              "hash": "47130c15bdc322870b77a04a9c4ccbd56c0b52e0"
+              "file": "libs/neows/src/lib/models/neows-response/neows-orbital-data.ts",
+              "hash": "06536c8cf91c3eb36fbc6e5f4448bb0a353367ae"
             },
             {
               "file": "libs/neows/src/lib/models/neows-response/neows-response.ts",
-              "hash": "13bd275bc29fa50da8329b44d2f46510619d40fd"
+              "hash": "37d5386975248ce5bd970327ac16c65f5f5ea89d"
             },
             {
               "file": "libs/neows/src/lib/pages/index.ts",
@@ -2085,6 +2085,10 @@
               "deps": [
                 "common"
               ]
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-next-close-approach.ts",
+              "hash": "b779f8b8ef053a41f46ec5eae4e8b84d6d11b344"
             },
             {
               "file": "libs/neows/src/lib/utils/get-weekly-blocks.spec.ts",
