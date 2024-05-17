@@ -1,4 +1,4 @@
-export * from './lookup-close-approach-data';
-export * from './lookup-estimated-diameter';
-export * from './lookup-orbital-data';
+export * from './neows-close-approach-data';
+export * from './neows-estimated-diameter';
+export * from './neows-orbital-data';
 export * from './neows-response';

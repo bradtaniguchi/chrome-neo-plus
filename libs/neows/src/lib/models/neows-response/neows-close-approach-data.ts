@@ -1,7 +1,7 @@
 /**
  * The close approach data for the given NEO, could be in the past/future
  */
-export interface LookupCloseApproachData {
+export interface NeowsCloseApproachData {
   /**
    * The date of closest approach, in YYYY-MM-DD format
    * example: '1900-06-01'

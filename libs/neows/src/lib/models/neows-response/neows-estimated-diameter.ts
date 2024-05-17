@@ -1,7 +1,7 @@
 /**
  * Type used for multiple different types of estimated diameters
  */
-export interface LookupEstimatedDiameter {
+export interface NeowsEstimatedDiameter {
   /**
    * Float value
    */
