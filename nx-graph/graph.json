@@ -1821,7 +1821,7 @@
             },
             {
               "file": "libs/neows/src/lib/components/index.ts",
-              "hash": "4736a283257c211d571a54e8df9ec6378987cf01"
+              "hash": "c99e70b9b5c2d88143c960688421a10798dcf4d4"
             },
             {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-bookmark.tsx",
@@ -1833,8 +1833,16 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-jpl-link.tsx",
+              "hash": "8b21d632c00f563eb399626db09dd630fc0fb3cd",
+              "deps": [
+                "npm:@heroicons/react",
+                "npm:react"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/components/neo-short-info/neo-short-info-links.tsx",
-              "hash": "2782760fd3db9ffd87589c56e2480469876ea841",
+              "hash": "b40b20890079fe186ee18e938aebdc7f487b0282",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:react",
@@ -1863,7 +1871,7 @@
             },
             {
               "file": "libs/neows/src/lib/hooks/use-get-neos.ts",
-              "hash": "90545d1adf37009a550ec21ceac0bda6cb799f7b",
+              "hash": "ebd34abcfd19b3f0c3da9a5440b7f68eedcd571a",
               "deps": [
                 "common-react",
                 "npm:react"
@@ -1987,7 +1995,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-daily/use-view-daily.tsx",
-              "hash": "e00b72feb69bfc1b8bb8f846cbb40d75d4c23805",
+              "hash": "36f8ad78c6f5de18ad010da8b78a9e7cc2195f93",
               "deps": [
                 "common",
                 "npm:react",
@@ -2016,6 +2024,13 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/pages/view-neo/detailed-stats.tsx",
+              "hash": "c571858f16fdbfadff10e188c8d53e6b50584990",
+              "deps": [
+                "npm:react"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.stories.tsx",
               "hash": "ea5b607daff97e4bb1da8e7076a2dbd7fa222b7c",
               "deps": [
@@ -2024,9 +2039,10 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-neo/view-neo.tsx",
-              "hash": "fdc98555de0ed41ebad8dc111f28b1fa111d9827",
+              "hash": "57768900a54962f85cb24f7219ffcf8c17967260",
               "deps": [
-                "npm:flowbite-react"
+                "npm:flowbite-react",
+                "npm:react-router-dom"
               ]
             },
             {
@@ -2087,8 +2103,26 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/utils/get-next-close-approach.spec.ts",
+              "hash": "82be5f42407309fd79e653c5285293c85ad4376b"
+            },
+            {
               "file": "libs/neows/src/lib/utils/get-next-close-approach.ts",
-              "hash": "b779f8b8ef053a41f46ec5eae4e8b84d6d11b344"
+              "hash": "ce4b9901c473cb899e57a1b3d8ae2ff8b53d9f23",
+              "deps": [
+                "common"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-previous-close-approach.spec.ts",
+              "hash": "8107011a1244510ffed061a489e1a78609dae72a"
+            },
+            {
+              "file": "libs/neows/src/lib/utils/get-previous-close-approach.ts",
+              "hash": "81784e0a4b76e1b006fc7e296b34f60726aed1a4",
+              "deps": [
+                "common"
+              ]
             },
             {
               "file": "libs/neows/src/lib/utils/get-weekly-blocks.spec.ts",
@@ -2108,7 +2142,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/index.ts",
-              "hash": "625f9ca7471124c4266220862d590b21423ef9ed"
+              "hash": "210849316378b0de5c5d2540f74696e7e625a8f1"
             },
             {
               "file": "libs/neows/src/lib/utils/neows-cache.ts",
