@@ -8,7 +8,6 @@ import { DetailedStats } from './detailed-stats';
  * The view-neo component shows detailed information for
  * the given neo.
  *
- * TODO: provide table with extended stats here
  * TODO: setup this page to be served in the main-client
  */
 export function ViewNeo() {
@@ -67,10 +66,13 @@ export function ViewNeo() {
         <li>
           <Card className="dark:bg-slate-800 dark:text-white">
             <h1 className="text-lg">Detailed Stats</h1>
-            {/* TODO
-            Previous version showed all the data in a "table-like" view here:
-            https://github.com/bradtaniguchi/chrome-neo/blob/b852e58ca487a5d8922c982d31330acc8f53b1ab/app/views/stats/stats.controller.js
-            */}
+            {/*
+              Previous version showed all the data in a "table-like" view here:
+              This version is way more cut-down and simplified.
+
+              TODO: add help tooltips, using the help text
+              https://github.com/bradtaniguchi/chrome-neo/blob/b852e58ca487a5d8922c982d31330acc8f53b1ab/app/views/stats/stats.controller.js
+             */}
             <DetailedStats neo={neo} />
           </Card>
         </li>
