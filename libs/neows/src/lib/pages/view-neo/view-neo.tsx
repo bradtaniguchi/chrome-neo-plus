@@ -1,5 +1,5 @@
 import { Card, Spinner } from 'flowbite-react';
-import { NeoShortInfo } from '../../components';
+import { NeoShortInfo, NeoShortInfoJplLink } from '../../components';
 import { useGetNeos, useNeoBookmark } from '../../hooks';
 import { NeoShortInfoBookmark } from '../../components/neo-short-info/neo-short-info-bookmark';
 import { DetailedStats } from './detailed-stats';
@@ -60,6 +60,7 @@ export function ViewNeo() {
                   isBookmarked={isBookmarked}
                 />
               }
+              footer={<NeoShortInfoJplLink neo={neo} />}
             />
           </Card>
         </li>

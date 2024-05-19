@@ -1,4 +1,3 @@
-import { NeowsCloseApproachData } from '../models';
 import { getNextCloseApproach } from './get-next-close-approach';
 
 describe('getNextCloseApproach', () => {
