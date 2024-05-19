@@ -18,52 +18,48 @@ export function DetailedStats(props: { neo: NeowsResponse }) {
     });
   }, [neo]);
 
-  // TODO: improve layout
   return (
-    <div>
-      <h1>Detailed Stats</h1>
-      <table>
-        <tbody>
-          <tr>
-            <td>Name</td>
-            <td>{neo.name}</td>
-          </tr>
+    <table className="w-full">
+      <tbody>
+        <tr className="row-auto flex justify-between">
+          <td>Name</td>
+          <td>{neo.name}</td>
+        </tr>
 
-          <tr>
-            <td>Estimated Diameter</td>
-            <td>{neo.estimated_diameter.meters.estimated_diameter_max}</td>
-          </tr>
+        <tr className="row-auto flex justify-between">
+          <td>Estimated Diameter</td>
+          <td>{neo.estimated_diameter.meters.estimated_diameter_max}</td>
+        </tr>
 
-          <tr>
-            <td>Is Dangerous</td>
-            <td>{neo.is_potentially_hazardous_asteroid}</td>
-          </tr>
+        <tr className="row-auto flex justify-between">
+          <td>Is Dangerous</td>
+          <td>{neo.is_potentially_hazardous_asteroid ? 'yes' : 'no'}</td>
+        </tr>
 
-          {nextCloseApproach ? (
-            <>
-              <tr>
-                <td>Close Approach Date</td>
-                <td>{nextCloseApproach.close_approach_date}</td>
-              </tr>
+        {nextCloseApproach ? (
+          <>
+            <tr className="row-auto flex justify-between">
+              <td>Close Approach Date</td>
+              <td>{nextCloseApproach.close_approach_date}</td>
+            </tr>
 
-              <tr>
-                <td>Miss Distance</td>
+            <tr className="row-auto flex justify-between">
+              <td>Miss Distance</td>
+              {/* TODO: update to a setting */}
+              <td>{nextCloseApproach.miss_distance.kilometers} km</td>
+            </tr>
+
+            <tr className="row-auto flex justify-between">
+              <td>Relative Velocity</td>
+              <td>
                 {/* TODO: update to a setting */}
-                <td>{nextCloseApproach.miss_distance.kilometers} km</td>
-              </tr>
-
-              <tr>
-                <td>Relative Velocity</td>
-                <td>
-                  {/* TODO: update to a setting */}
-                  {/* TODO: add  */}
-                  {nextCloseApproach.relative_velocity.kilometers_per_hour} km/h
-                </td>
-              </tr>
-            </>
-          ) : null}
-        </tbody>
-      </table>
-    </div>
+                {/* TODO: add  */}
+                {nextCloseApproach.relative_velocity.kilometers_per_hour} km/h
+              </td>
+            </tr>
+          </>
+        ) : null}
+      </tbody>
+    </table>
   );
 }

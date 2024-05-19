@@ -65,7 +65,7 @@ export function ViewNeo() {
         </li>
         <li>
           <Card className="dark:bg-slate-800 dark:text-white">
-            Detail stats
+            <h1 className="text-lg">Detailed Stats</h1>
             {/* TODO
             Previous version showed all the data in a "table-like" view here:
             https://github.com/bradtaniguchi/chrome-neo/blob/b852e58ca487a5d8922c982d31330acc8f53b1ab/app/views/stats/stats.controller.js
