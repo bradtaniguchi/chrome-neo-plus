@@ -82,7 +82,9 @@ export function AppBar(props: AppBarProps) {
               <MagnifyingGlassCircleIcon className="w-6" />
             </button>
             {/* TODO: make "home-button" */}
-            <h1>Chrome-NEO</h1>
+            <h1 style={{ lineHeight: '24px' }}>
+              <Link to="/">Chrome-NEO</Link>
+            </h1>
           </div>
           <div className="flex flex-row gap-1">
             <Link
