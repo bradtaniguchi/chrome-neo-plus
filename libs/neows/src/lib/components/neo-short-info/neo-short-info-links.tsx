@@ -1,10 +1,8 @@
-import {
-  ChartBarIcon,
-  ArrowTopRightOnSquareIcon,
-} from '@heroicons/react/24/solid';
+import { ChartBarIcon } from '@heroicons/react/24/solid';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { NeowsResponse } from '../../models';
+import { NeoShortInfoJplLink } from './neo-short-info-jpl-link';
 
 export interface NeoShortFormProps {
   /**
@@ -29,15 +27,7 @@ export const NeoShortInfoLinks = memo(function NeoShortInfoLinks(
         <ChartBarIcon className="w-4" />
         <div>detailed stats</div>
       </Link>
-      <a
-        href={neo.nasa_jpl_url}
-        target="_blank"
-        rel="noreferrer"
-        className="flex flex-row gap-1"
-      >
-        <ArrowTopRightOnSquareIcon className="w-4" />
-        <div>JPL Link</div>
-      </a>
+      <NeoShortInfoJplLink neo={neo} />
     </li>
   );
 });
