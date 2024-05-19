@@ -10,10 +10,14 @@ import { neowsCache } from '../utils/neows-cache';
  *
  * @param params the search param requests
  * @param params.asteroid_id the asteroid id to search for
- * the Asteroid SPK-ID that correlates to the NASA JPL small body
+ * the Asteroid SPK-ID that correlates to the NASA JPL small body. If nothing is given
+ * this will return nothing automatically.
  * @param params.noCache whether to skip the cache
  */
-export function useGetNeos(params: { asteroid_id: string; noCache?: boolean }) {
+export function useGetNeos(params: {
+  asteroid_id?: string;
+  noCache?: boolean;
+}) {
   const { asteroid_id, noCache } = params;
   const mounted = useHasMounted();
   const [loading, setLoading] = useState<boolean>(false);
@@ -30,6 +34,13 @@ export function useGetNeos(params: { asteroid_id: string; noCache?: boolean }) {
   useEffect(() => {
     if (mounted) {
       setLoading(true);
+
+      if (!asteroid_id) {
+        // if nothing is given then return nothing.
+        setLoading(false);
+        return;
+      }
+
       getNeows({
         asteroid_id,
         noCache,

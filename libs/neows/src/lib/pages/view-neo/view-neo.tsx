@@ -3,6 +3,7 @@ import { NeoShortInfo, NeoShortInfoJplLink } from '../../components';
 import { useGetNeos, useNeoBookmark } from '../../hooks';
 import { NeoShortInfoBookmark } from '../../components/neo-short-info/neo-short-info-bookmark';
 import { DetailedStats } from './detailed-stats';
+import { useParams } from 'react-router-dom';
 
 /**
  * The view-neo component shows detailed information for
@@ -11,14 +12,14 @@ import { DetailedStats } from './detailed-stats';
  * TODO: setup this page to be served in the main-client
  */
 export function ViewNeo() {
-  // TODO: use the id from the route, or use a query param
-  // TODO: make http call to get information for the NEO
+  const { id: asteroid_id } = useParams();
+
   const {
     error,
     loading,
     neoResponse: neo,
   } = useGetNeos({
-    asteroid_id: '3542519',
+    asteroid_id,
   });
 
   const { isBookmarked, handleToggleBookmark } = useNeoBookmark({
@@ -40,7 +41,7 @@ export function ViewNeo() {
 
   if (!neo) {
     // TODO: update
-    return <div>No NEO found</div>;
+    return <div>No NEO found {asteroid_id ?? 'no id'}</div>;
   }
 
   return (
