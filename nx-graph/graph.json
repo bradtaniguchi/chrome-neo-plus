@@ -1412,7 +1412,7 @@
             },
             {
               "file": "libs/app-bar/src/lib/app-bar.tsx",
-              "hash": "5601c96c4f1d85b6c0567cfd0718d054289a9f1d",
+              "hash": "ac0e807198073b1cb26f1c6ab21e57c3ec094db1",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react",
