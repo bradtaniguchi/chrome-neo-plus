@@ -74,12 +74,12 @@ jobs:
       - run: npx nx run internal-client:export
       - run: npx nx run internal-client:lighthouse
       - run: npx nx run internal-client:analyze
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-client
           path: dist/apps/internal-client/exported
           retention-days: 3
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-client-analyze
           path: dist/apps/internal-client/.next/analyze
@@ -107,7 +107,7 @@ jobs:
           all: true
           parallel: 1
       - run: mv dist/storybook/storybook/** dist/storybook/
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-storybooks
           path: dist/storybook
@@ -128,7 +128,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
       - run: npx nx graph --file=dist/nx-graph/index.html
       - run: npx nx graph --file=dist/nx-graph/graph.json
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-nx-graph
           path: dist/nx-graph
@@ -138,13 +138,13 @@ jobs:
           targets: typedoc
           all: true
           parallel: 3
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: internal-docs
           path: dist/docs
           retention-days: 3
       - run: npm run build:config
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: config
           path: dist/config.json
@@ -200,7 +200,7 @@ jobs:
           # should make config.json available
           path: dist
       # DEBUG build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: gh-pages-dist
           path: dist
