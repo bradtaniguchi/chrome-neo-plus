@@ -36,6 +36,12 @@ const { writeFile, stat, mkdir } = fs;
         )
       );
 
+    // perform a sanity check
+    if (!process.env.API_KEY) {
+      console.error('API_KEY is not set, cannot continue');
+      process.exit(1);
+    }
+
     await Promise.all([
       writeJsonFile('dist/api-config.json'),
       writeJsonFile('storybook-public/api-config.json'),
