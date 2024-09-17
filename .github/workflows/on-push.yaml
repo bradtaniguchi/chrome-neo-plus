@@ -169,32 +169,32 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/init-job
       - run: mkdir dist
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: internal-client
           # This gets moved to the top-level dist, as it will
           # manage all the other contents.
           path: dist
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: internal-client-analyze
           # This gets moved to the top-level dist, as it will
           # manage all the other contents.
           path: dist/analyze/internal-client
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: internal-storybooks
           # This gets changed to be plural for a cleaner URL
           path: dist/storybooks
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: internal-nx-graph
           path: dist/nx-graph
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: internal-docs
           path: dist/docs
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: config
           # should make config.json available
