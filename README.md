@@ -11,6 +11,10 @@ Leverages the following NASA apis:
 All projects will use the following APIs:
 <https://api.nasa.gov/>
 
+## NOTE
+
+This version is available, but it's missing some core features compared to the original version. This is largely due to me never finishing up on this version before shipping it out due to the older manifest version being deprecated. Looking to get these features back though!
+
 ## Previous Codebases
 
 - [Original extension](https://github.com/bradtaniguchi/chrome-neo)
