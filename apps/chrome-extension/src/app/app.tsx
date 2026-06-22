@@ -12,6 +12,15 @@ const Overview = lazy(() =>
 const ViewNeo = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ ViewNeo }) => ({ default: ViewNeo }))
 );
+const ViewDaily = lazy(() =>
+  import('@chrome-neo-plus/neows').then(({ ViewDaily }) => ({ default: ViewDaily }))
+);
+const ViewWeekly = lazy(() =>
+  import('@chrome-neo-plus/neows').then(({ ViewWeekly }) => ({ default: ViewWeekly }))
+);
+const ViewMonthly = lazy(() =>
+  import('@chrome-neo-plus/neows').then(({ ViewMonthly }) => ({ default: ViewMonthly }))
+);
 const BugPage = lazy(() => import('./pages/bug-page'));
 const HelpPage = lazy(() => import('./pages/help-page'));
 const SettingsPage = lazy(() => import('./pages/settings-page'));
@@ -46,7 +55,15 @@ export function App() {
             path="/neows/daily"
             element={
               <Suspense fallback={<LoadingSpinner />}>
-                <div> daily overview </div>
+                <ViewDaily />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/daily/:date"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ViewDaily />
               </Suspense>
             }
           />
@@ -54,7 +71,15 @@ export function App() {
             path="/neows/weekly"
             element={
               <Suspense fallback={<LoadingSpinner />}>
-                <div> weekly overview </div>
+                <ViewWeekly />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/weekly/:date"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ViewWeekly />
               </Suspense>
             }
           />
@@ -62,7 +87,15 @@ export function App() {
             path="/neows/monthly"
             element={
               <Suspense fallback={<LoadingSpinner />}>
-                <div> monthly overview </div>
+                <ViewMonthly />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/neows/monthly/:date"
+            element={
+              <Suspense fallback={<LoadingSpinner />}>
+                <ViewMonthly />
               </Suspense>
             }
           />
