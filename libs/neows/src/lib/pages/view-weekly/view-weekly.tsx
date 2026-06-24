@@ -198,7 +198,7 @@ export function ViewWeekly(props: ViewWeeklyProps) {
 
       {/* Aggregate Summary */}
       {aggregateSummary && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="flex flex-col gap-4">
           <Card className="dark:bg-slate-800">
             <div>
               <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold">Total NEOs</p>

@@ -3,7 +3,13 @@ import { lazy, Suspense } from 'react';
 import { LoadingSpinner } from './core/loading-spinner';
 import { AppBar } from '@chrome-neo-plus/app-bar';
 
+// Local Pages
 const NotFoundPage = lazy(() => import('./pages/not-found'));
+const BugPage = lazy(() => import('./pages/bug-page'));
+const HelpPage = lazy(() => import('./pages/help-page'));
+const SettingsPage = lazy(() => import('./pages/settings-page'));
+
+// Library Pages
 const Overview = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ Overview }) => ({
     default: Overview,
@@ -21,9 +27,6 @@ const ViewWeekly = lazy(() =>
 const ViewMonthly = lazy(() =>
   import('@chrome-neo-plus/neows').then(({ ViewMonthly }) => ({ default: ViewMonthly }))
 );
-const BugPage = lazy(() => import('./pages/bug-page'));
-const HelpPage = lazy(() => import('./pages/help-page'));
-const SettingsPage = lazy(() => import('./pages/settings-page'));
 
 /**
  * Main app export
