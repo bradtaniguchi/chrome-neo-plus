@@ -2087,7 +2087,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-weekly/use-view-weekly.tsx",
-              "hash": "877f74edd5ffb6e89f4bcd4d62d5de040c476c4e",
+              "hash": "14131d039e47797756e0cc5ca9268215523869b8",
               "deps": [
                 "common",
                 "npm:luxon",
@@ -2177,7 +2177,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-weekly-blocks.spec.ts",
-              "hash": "898ac3c304dc95cb60189cea585d4de2511ab620",
+              "hash": "93c86a93f5884fe53bce8f88279bb48ac61de8e9",
               "deps": [
                 "common",
                 "npm:luxon"
@@ -2185,7 +2185,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-weekly-blocks.ts",
-              "hash": "8b2ce848d3457d9495a812f3caede31bf17e5620",
+              "hash": "2fab7bbeca1679be0d13cda1f1c589b39a4433e7",
               "deps": [
                 "common",
                 "npm:luxon"
