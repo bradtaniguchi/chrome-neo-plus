@@ -9,7 +9,6 @@ import { DATE_FORMAT, getApiConfig } from '@chrome-neo-plus/common';
 /**
  * Returns the feed of NEOWs for the given date range.
  * https://api.nasa.gov/neo/rest/v1/feed?start_date=START_DATE&end_date=END_DATE&api_key=API_KEY
- *
  * @param params the search param requests
  */
 export async function getNeowsFeed(
@@ -36,7 +35,6 @@ export async function getNeowsFeed(
 
 /**
  * Returns the current day's feed of NEOWs.
- *
  * @param params The params to use for the request
  * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
@@ -81,7 +79,6 @@ export async function getDailyNeowsFeed(params?: {
 
 /**
  * Returns the current week's feed of NEOWs.
- *
  * @param params The params to use for the request
  * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
@@ -127,7 +124,6 @@ export async function getThisWeekNeowsFeed(params?: {
  *
  * Due to the API being limited to 7 days, this will make multiple http
  * request calls.
- *
  * @param params The params to use for the request
  * @param params.date The date to fetch the feed for
  * @param params.noCache Whether to skip the cache and fetch from the API
@@ -151,14 +147,14 @@ export async function getMonthlyNeowsFeed(params?: {
     year: dateTime.year,
   });
 
-  const weeklyBlocks = getWeeklyBlocks(DateTime.now());
+  const weeklyBlocks = getWeeklyBlocks(dateTime);
 
   if (cachedMonthlyRequest) {
     const res = await cachedMonthlyRequest;
 
     neowsCache.setMonthly({
-      month: DateTime.now().month,
-      year: DateTime.now().year,
+      month: dateTime.month,
+      year: dateTime.year,
       res,
     });
 
@@ -179,8 +175,8 @@ export async function getMonthlyNeowsFeed(params?: {
   const res = combineMonthlyResponses(responses);
 
   neowsCache.setMonthly({
-    month: DateTime.now().month,
-    year: DateTime.now().year,
+    month: dateTime.month,
+    year: dateTime.year,
     res,
   });
 

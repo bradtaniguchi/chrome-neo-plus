@@ -4,11 +4,11 @@ description: Setups up common node, and caches node-modules
 runs:
   using: 'composite'
   steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: '16.10.0'
         cache: 'npm'
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache
       with:
         path: ./node_modules

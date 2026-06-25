@@ -125,6 +125,7 @@ export function useViewWeekly(params: { date: string }) {
      */
     neosResponse,
 
+    dailyResponse,
     chartData,
     primaryAxis,
     secondaryAxes,

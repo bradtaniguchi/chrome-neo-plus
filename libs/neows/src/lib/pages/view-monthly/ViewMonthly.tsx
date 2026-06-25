@@ -2,15 +2,15 @@ import { DATE_FORMAT, getToday } from '@chrome-neo-plus/common';
 import { Card, Spinner, Table, Button } from 'flowbite-react';
 import { Chart } from 'react-charts';
 import { useParams, Link } from 'react-router-dom';
-import { useViewWeekly } from './use-view-weekly';
+import { useViewMonthly } from './use-view-monthly';
 import { useMemo, useState } from 'react';
 import { DateTime } from 'luxon';
+import { getWeeklyBlocks } from '../../utils/get-weekly-blocks';
 import { ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
 
-export interface ViewWeeklyProps {
+export interface ViewMonthlyProps {
   /**
-   * The day we are to display for. All metrics will be relative
-   * to this day.
+   * The date to display metrics for.
    *
    * Should be in format yyyy-MM-dd
    */
@@ -18,12 +18,11 @@ export interface ViewWeeklyProps {
 }
 
 /**
- * Page that shows the weekly NEOs.
- * Displays a frequency chart for the week, high-level metrics, and a daily list breakdown.
+ * Component that displays the monthly overview of Near Earth Objects.
  *
- * @param props The props for the view weekly page.
+ * @param props The props for the ViewMonthly component.
  */
-export function ViewWeekly(props: ViewWeeklyProps) {
+export function ViewMonthly(props: ViewMonthlyProps) {
   const { date: propsDate } = props;
   const { date: paramsDate } = useParams();
 
@@ -34,25 +33,24 @@ export function ViewWeekly(props: ViewWeeklyProps) {
     error,
     loading,
     neosResponse,
-    dailyResponse,
     chartData,
     primaryAxis,
     secondaryAxes,
-  } = useViewWeekly({ date: currentDate });
+  } = useViewMonthly({ date: currentDate });
 
   const currentDateTime = useMemo(() => {
     return DateTime.fromISO(currentDate);
   }, [currentDate]);
 
-  const handlePrevWeek = () => {
+  const handlePrevMonth = () => {
     setCurrentDate(
-      currentDateTime.minus({ weeks: 1 }).startOf('week').toFormat(DATE_FORMAT)
+      currentDateTime.minus({ months: 1 }).startOf('month').toFormat(DATE_FORMAT)
     );
   };
 
-  const handleNextWeek = () => {
+  const handleNextMonth = () => {
     setCurrentDate(
-      currentDateTime.plus({ weeks: 1 }).startOf('week').toFormat(DATE_FORMAT)
+      currentDateTime.plus({ months: 1 }).startOf('month').toFormat(DATE_FORMAT)
     );
   };
 
@@ -60,7 +58,59 @@ export function ViewWeekly(props: ViewWeeklyProps) {
     setCurrentDate(getToday());
   };
 
-  // Calculate Aggregate Summary for the current week
+  // 1. Calculate Weekly Summary
+  const weeklySummary = useMemo(() => {
+    if (!neosResponse || !currentDate) return [];
+
+    const startOfMonth = currentDateTime.startOf('month');
+    const blocks = getWeeklyBlocks(startOfMonth);
+
+    return blocks.map((block) => {
+      const startStr = block.start_date.toFormat(DATE_FORMAT);
+      const endStr = block.end_date.toFormat(DATE_FORMAT);
+
+      let count = 0;
+      Object.entries(neosResponse.near_earth_objects).forEach(([dateKey, neos]) => {
+        const d = DateTime.fromISO(dateKey);
+        if (d >= block.start_date.startOf('day') && d <= block.end_date.endOf('day')) {
+          count += neos.length;
+        }
+      });
+
+      return {
+        start: startStr,
+        end: endStr,
+        count,
+        link: `/neows/weekly/${startStr}`,
+      };
+    });
+  }, [neosResponse, currentDateTime, currentDate]);
+
+  // 2. Calculate Daily Summary
+  const dailySummary = useMemo(() => {
+    if (!neosResponse || !currentDate) return [];
+
+    const startOfMonth = currentDateTime.startOf('month');
+    const daysInMonth = startOfMonth.daysInMonth ?? 30;
+    const summaries = [];
+
+    for (let i = 0; i < daysInMonth; i++) {
+      const currentDay = startOfMonth.plus({ days: i });
+      const dateStr = currentDay.toFormat(DATE_FORMAT);
+      const count = neosResponse.near_earth_objects[dateStr]?.length ?? 0;
+
+      summaries.push({
+        date: dateStr,
+        dayLabel: currentDay.toFormat('LLL dd'),
+        count,
+        link: `/neows/daily/${dateStr}`,
+      });
+    }
+
+    return summaries;
+  }, [neosResponse, currentDateTime, currentDate]);
+
+  // 3. Calculate Aggregate Summary
   const aggregateSummary = useMemo(() => {
     if (!neosResponse) return null;
 
@@ -107,21 +157,6 @@ export function ViewWeekly(props: ViewWeeklyProps) {
     };
   }, [neosResponse]);
 
-  // Format daily breakdowns list for display
-  const dailySummary = useMemo(() => {
-    if (!dailyResponse) return [];
-    return dailyResponse.map(([dayName, dateStr, lookupResponse]) => {
-      const parsedDay = DateTime.fromISO(dateStr);
-      return {
-        dayLabel: dayName.charAt(0).toUpperCase() + dayName.slice(1),
-        date: dateStr,
-        formattedDate: parsedDay.toFormat('LLL dd'),
-        count: lookupResponse?.length ?? 0,
-        link: `/neows/daily/${dateStr}`,
-      };
-    });
-  }, [dailyResponse]);
-
   if (loading) {
     return (
       <Card className="flex max-w-3xl flex-col items-center justify-center dark:bg-slate-800 dark:text-white mx-auto mt-8">
@@ -157,13 +192,13 @@ export function ViewWeekly(props: ViewWeeklyProps) {
           </span>
         </Link>
         <div className="flex items-center gap-2">
-          <Button size="xs" onClick={handlePrevWeek} color="gray">
+          <Button size="xs" onClick={handlePrevMonth} color="gray">
             <ChevronLeftIcon className="w-4 h-4" />
           </Button>
-          <h2 className="text-xl font-bold text-center">
-            {`Week of ${currentDateTime.startOf('week').toFormat('LLL dd, yyyy')}`}
+          <h2 className="text-xl font-bold">
+            {currentDateTime.toFormat('LLLL yyyy')}
           </h2>
-          <Button size="xs" onClick={handleNextWeek} color="gray">
+          <Button size="xs" onClick={handleNextMonth} color="gray">
             <ChevronRightIcon className="w-4 h-4" />
           </Button>
         </div>
@@ -176,7 +211,7 @@ export function ViewWeekly(props: ViewWeeklyProps) {
       <Card className="dark:bg-slate-800">
         <div>
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            Weekly Near Earth Objects Frequency
+            Monthly Near Earth Objects Frequency
           </h2>
           <div className="w-full h-80 sm:h-96 relative pr-4">
             {chartData && chartData.length > 0 ? (
@@ -230,14 +265,44 @@ export function ViewWeekly(props: ViewWeeklyProps) {
         </div>
       )}
 
-      {/* Daily Breakdown List */}
+      {/* Weekly Summary Period List */}
       <Card className="dark:bg-slate-800">
         <div>
-          <h3 className="text-lg font-bold mb-2">Daily Breakdown</h3>
+          <h3 className="text-lg font-bold mb-2">Weekly Periods</h3>
           <div className="overflow-x-auto">
             <Table hoverable>
               <Table.Head>
-                <Table.HeadCell>Day</Table.HeadCell>
+                <Table.HeadCell>Period</Table.HeadCell>
+                <Table.HeadCell>NEO Count</Table.HeadCell>
+                <Table.HeadCell>Actions</Table.HeadCell>
+              </Table.Head>
+              <Table.Body className="divide-y">
+                {weeklySummary.map((week, idx) => (
+                  <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-slate-800">
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                      {`${week.start} to ${week.end}`}
+                    </Table.Cell>
+                    <Table.Cell>{`${week.count}`}</Table.Cell>
+                    <Table.Cell>
+                      <Link to={week.link} className="font-semibold text-blue-600 dark:text-blue-500 hover:underline">
+                        View Week
+                      </Link>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          </div>
+        </div>
+      </Card>
+
+      {/* Daily list scrollable container */}
+      <Card className="dark:bg-slate-800">
+        <div>
+          <h3 className="text-lg font-bold mb-2">Daily Breakdown</h3>
+          <div className="max-h-72 overflow-y-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+            <Table hoverable>
+              <Table.Head className="sticky top-0 bg-gray-50 dark:bg-slate-700">
                 <Table.HeadCell>Date</Table.HeadCell>
                 <Table.HeadCell>NEO Count</Table.HeadCell>
                 <Table.HeadCell>Actions</Table.HeadCell>
@@ -245,11 +310,8 @@ export function ViewWeekly(props: ViewWeeklyProps) {
               <Table.Body className="divide-y">
                 {dailySummary.map((day, idx) => (
                   <Table.Row key={idx} className="bg-white dark:border-gray-700 dark:bg-slate-800">
-                    <Table.Cell className="whitespace-nowrap font-bold text-gray-900 dark:text-white">
-                      {day.dayLabel}
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap font-medium text-gray-600 dark:text-gray-400">
-                      {`${day.formattedDate} (${day.date})`}
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                      {`${day.dayLabel} (${day.date})`}
                     </Table.Cell>
                     <Table.Cell>
                       <span className={day.count > 0 ? 'font-bold' : 'text-gray-400'}>

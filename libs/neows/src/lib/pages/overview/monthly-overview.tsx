@@ -19,7 +19,7 @@ export function MonthlyOverview(props: { date?: string }) {
     date,
   });
   return (
-    <Link to={'neows/weekly'}>
+    <Link to={'neows/monthly'}>
       <Card className="dark:bg-slate-800 dark:text-white">
         <div className="flex flex-row justify-between text-center">
           <div className="flex flex-row gap-1">

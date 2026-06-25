@@ -32,7 +32,7 @@ API_KEY=123
 Then build a config file with, this only needs to be done initially.
 
 ```bash
-npm run build:api-Config
+npm run build:api-config
 ```
 
 Finally run the app in "chrome-extension mode" with:
@@ -42,7 +42,7 @@ npx nx run chrome-extension:serve
 ```
 
 The build should be done and auto-updates, from here load the extension in the browser
-using the chrome extension page `chrome://extensions`
+using the chrome extension page `chrome://extensions`. Use the "load unpacked" option and select the `dist/chrome-extension` folder.
 
 ### Alternate serve mode
 
