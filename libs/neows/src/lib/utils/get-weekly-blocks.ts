@@ -24,7 +24,6 @@ export interface WeeklyBlockStrings {
 
 /**
  * Returns "weekly blocks" of start/end-dates for the current month.
- *
  * @param date The date to use as the "today" date
  */
 export function getWeeklyBlocks(date: DateTime): WeeklyBlock[] {
@@ -34,30 +33,30 @@ export function getWeeklyBlocks(date: DateTime): WeeklyBlock[] {
   return [
     {
       start_date: startOfMonth,
-      end_date: startOfMonth.plus({ weeks: 1 }),
+      end_date: startOfMonth.plus({ days: 6 }),
     },
     {
-      start_date: startOfMonth.plus({ weeks: 1 }),
-      end_date: startOfMonth.plus({ weeks: 2 }),
+      start_date: startOfMonth.plus({ days: 7 }),
+      end_date: startOfMonth.plus({ days: 13 }),
     },
     {
-      start_date: startOfMonth.plus({ weeks: 2 }),
-      end_date: startOfMonth.plus({ weeks: 3 }),
+      start_date: startOfMonth.plus({ days: 14 }),
+      end_date: startOfMonth.plus({ days: 20 }),
     },
     ...(getWeeksInMonth(date) === 5
       ? [
           {
-            start_date: startOfMonth.plus({ weeks: 3 }),
-            end_date: startOfMonth.plus({ weeks: 4 }),
+            start_date: startOfMonth.plus({ days: 21 }),
+            end_date: startOfMonth.plus({ days: 27 }),
           },
           {
-            start_date: startOfMonth.plus({ weeks: 4 }),
+            start_date: startOfMonth.plus({ days: 28 }),
             end_date: endOfMonth,
           },
         ]
       : [
           {
-            start_date: startOfMonth.plus({ weeks: 3 }),
+            start_date: startOfMonth.plus({ days: 21 }),
             end_date: endOfMonth,
           },
         ]),
@@ -66,7 +65,6 @@ export function getWeeklyBlocks(date: DateTime): WeeklyBlock[] {
 
 /**
  * Returns how many weeks are in the given date's month.
- *
  * @param date The date to use as the relative date.
  */
 export function getWeeksInMonth(date: DateTime): number {
@@ -77,7 +75,6 @@ export function getWeeksInMonth(date: DateTime): number {
 
 /**
  * Formats all the blocks to string versions with format yyyy-MM-dd.
- *
  * @param blocks The blocks to format
  */
 export function formatBlocksToStrings(

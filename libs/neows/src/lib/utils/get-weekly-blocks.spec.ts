@@ -13,19 +13,19 @@ describe('getWeeklyBlocks', () => {
     expect(formatBlocksToStrings(blocks)).toEqual([
       {
         start_date: '2023-01-01',
-        end_date: '2023-01-08',
+        end_date: '2023-01-07',
       },
       {
         start_date: '2023-01-08',
-        end_date: '2023-01-15',
+        end_date: '2023-01-14',
       },
       {
         start_date: '2023-01-15',
-        end_date: '2023-01-22',
+        end_date: '2023-01-21',
       },
       {
         start_date: '2023-01-22',
-        end_date: '2023-01-29',
+        end_date: '2023-01-28',
       },
       {
         start_date: '2023-01-29',
@@ -39,15 +39,15 @@ describe('getWeeklyBlocks', () => {
     expect(formatBlocksToStrings(blocks)).toEqual([
       {
         start_date: '2021-02-01',
-        end_date: '2021-02-08',
+        end_date: '2021-02-07',
       },
       {
         start_date: '2021-02-08',
-        end_date: '2021-02-15',
+        end_date: '2021-02-14',
       },
       {
         start_date: '2021-02-15',
-        end_date: '2021-02-22',
+        end_date: '2021-02-21',
       },
       {
         start_date: '2021-02-22',
