@@ -188,7 +188,7 @@
             },
             {
               "file": "apps/chrome-extension/src/app/app.tsx",
-              "hash": "acf6765d2e5a7dcafebf0e2dfd065422e3063f1e",
+              "hash": "4df690c9c47c07b35528270194cde03886986a7b",
               "deps": [
                 "npm:react-router-dom",
                 "npm:react",
@@ -1934,11 +1934,11 @@
             },
             {
               "file": "libs/neows/src/lib/pages/index.ts",
-              "hash": "9969a217b577eceaeb3faa4281389266880e5339"
+              "hash": "9fe8d83611464d61f280851aaa64b558172ddf67"
             },
             {
               "file": "libs/neows/src/lib/pages/overview/common-value-wrapper.tsx",
-              "hash": "6d440da77071a360a925639485596ccdb62b36be",
+              "hash": "5b995e312586919d8abfc14146e00637bf3bb5e0",
               "deps": [
                 "npm:flowbite-react",
                 "npm:react"
@@ -1959,7 +1959,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/overview/monthly-overview.tsx",
-              "hash": "f008ab8396d1234f84e7105984db0b82458ccd94",
+              "hash": "8f90a2658e1b3e3abaf728e61dc3c5c9375e1fd0",
               "deps": [
                 "npm:@heroicons/react",
                 "npm:flowbite-react",
@@ -2003,6 +2003,14 @@
               ]
             },
             {
+              "file": "libs/neows/src/lib/pages/view-daily/view-daily.spec.tsx",
+              "hash": "4c0ae023b7509c252750d1ff9e135dadc7b6d2db",
+              "deps": [
+                "npm:@testing-library/react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
               "file": "libs/neows/src/lib/pages/view-daily/view-daily.stories.tsx",
               "hash": "6f1f54e0c9e1a405b45c752332b188cd3feaf3c2",
               "deps": [
@@ -2014,13 +2022,45 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-daily/view-daily.tsx",
-              "hash": "d495651c4e6cfa99fcb05c0f8979f8e37691fc37",
+              "hash": "c175805d220ca1f550f69b7bbae47ba2dce99d8a",
               "deps": [
                 "common",
                 "npm:flowbite-react",
                 "npm:react-charts",
                 "npm:react-router-dom",
-                "npm:react"
+                "npm:react",
+                "npm:@heroicons/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-monthly/use-view-monthly.tsx",
+              "hash": "56e55f2a6d891de32d0c339433eb50b3710697f9",
+              "deps": [
+                "common",
+                "npm:luxon",
+                "npm:react",
+                "npm:react-charts"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-monthly/ViewMonthly.spec.tsx",
+              "hash": "ac6d666c85b8211ececb94b53a8c5ef547e87b2e",
+              "deps": [
+                "npm:@testing-library/react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-monthly/ViewMonthly.tsx",
+              "hash": "d5d0e2cba6d620d940f3f92abcf869086c583e92",
+              "deps": [
+                "common",
+                "npm:flowbite-react",
+                "npm:react-charts",
+                "npm:react-router-dom",
+                "npm:react",
+                "npm:luxon",
+                "npm:@heroicons/react"
               ]
             },
             {
@@ -2047,7 +2087,7 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-weekly/use-view-weekly.tsx",
-              "hash": "fb1323ff82381e857e3802d555d39041443bb8ca",
+              "hash": "877f74edd5ffb6e89f4bcd4d62d5de040c476c4e",
               "deps": [
                 "common",
                 "npm:luxon",
@@ -2067,11 +2107,22 @@
             },
             {
               "file": "libs/neows/src/lib/pages/view-weekly/view-weekly.tsx",
-              "hash": "4361b40ac524fb69d66401905cf01f720339505f",
+              "hash": "6a8abcdb83a41a96619037acf364622ecfa0b47d",
               "deps": [
                 "common",
                 "npm:flowbite-react",
                 "npm:react-charts",
+                "npm:react-router-dom",
+                "npm:react",
+                "npm:luxon",
+                "npm:@heroicons/react"
+              ]
+            },
+            {
+              "file": "libs/neows/src/lib/pages/view-weekly/ViewWeekly.spec.tsx",
+              "hash": "3c9ad4b8bd4a0862aa602910d4d588ff2b6d6165",
+              "deps": [
+                "npm:@testing-library/react",
                 "npm:react-router-dom"
               ]
             },
@@ -2089,7 +2140,7 @@
             },
             {
               "file": "libs/neows/src/lib/utils/get-neows-feed.ts",
-              "hash": "a368596def8f063349da85c8ed37cb7fccd5449b",
+              "hash": "d442d1b957d5df540897a90b5bdcf616d3a341f8",
               "deps": [
                 "npm:luxon",
                 "common"
