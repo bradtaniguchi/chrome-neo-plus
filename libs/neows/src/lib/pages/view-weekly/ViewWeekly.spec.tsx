@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { ViewWeekly } from './view-weekly';
-import { useViewWeekly } from './use-view-weekly';
+import { useNeoDashboard } from '../neo-dashboard/use-neo-dashboard';
 import { MemoryRouter } from 'react-router-dom';
 
-jest.mock('./use-view-weekly', () => ({
-  useViewWeekly: jest.fn(),
+jest.mock('../neo-dashboard/use-neo-dashboard', () => ({
+  useNeoDashboard: jest.fn(),
 }));
 
 jest.mock('react-charts', () => ({
@@ -12,18 +12,17 @@ jest.mock('react-charts', () => ({
 }));
 
 describe('ViewWeekly', () => {
-  const mockUseViewWeekly = useViewWeekly as jest.Mock;
+  const mockUseNeoDashboard = useNeoDashboard as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should render loading spinner when loading is true', () => {
-    mockUseViewWeekly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: true,
       error: null,
       neosResponse: null,
-      dailyResponse: [],
       chartData: [],
       primaryAxis: {},
       secondaryAxes: [],
@@ -40,11 +39,10 @@ describe('ViewWeekly', () => {
   });
 
   it('should render error message when error occurs', () => {
-    mockUseViewWeekly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: new Error('Failed to fetch weekly data'),
       neosResponse: null,
-      dailyResponse: [],
       chartData: [],
       primaryAxis: {},
       secondaryAxes: [],
@@ -91,11 +89,20 @@ describe('ViewWeekly', () => {
       },
     };
 
-    mockUseViewWeekly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: null,
       neosResponse: mockNeosResponse,
-      dailyResponse: [
+      aggregateSummary: {
+        totalCount: 1,
+        hazardousCount: 1,
+        hazardousPercentage: '100.0',
+        closestKm: '5,000,000',
+        closestNeoName: 'Asteroid Weekly 1',
+        largestMeters: '20',
+        largestNeoName: 'Asteroid Weekly 1',
+      },
+      dailyResponseWeekly: [
         [
           'sunday',
           '2026-06-21',
@@ -115,11 +122,11 @@ describe('ViewWeekly', () => {
         },
       ],
       primaryAxis: {
-        getValue: (d: { date: string }) => d.date,
+        getValue: (d: any) => d.date,
       },
       secondaryAxes: [
         {
-          getValue: (d: { count: number }) => d.count,
+          getValue: (d: any) => d.count,
         },
       ],
     });
@@ -132,10 +139,11 @@ describe('ViewWeekly', () => {
 
     expect(baseElement).toBeTruthy();
     expect(getAllByText('Sunday').length).toBeGreaterThan(0);
-    expect(getByText('Weekly Near Earth Objects Frequency')).toBeTruthy();
+    expect(getByText('Near-Earth Objects Frequency Distribution')).toBeTruthy(); // updated to consolidated label
     expect(getByTestId('mock-chart')).toBeTruthy();
     // check stats
     expect(getByText('Total NEOs')).toBeTruthy();
     expect(getByText('Hazardous NEOs')).toBeTruthy();
   });
 });
+

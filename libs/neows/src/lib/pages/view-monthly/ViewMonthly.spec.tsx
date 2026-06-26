@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { ViewMonthly } from './ViewMonthly';
-import { useViewMonthly } from './use-view-monthly';
+import { useNeoDashboard } from '../neo-dashboard/use-neo-dashboard';
 import { MemoryRouter } from 'react-router-dom';
 
-jest.mock('./use-view-monthly', () => ({
-  useViewMonthly: jest.fn(),
+jest.mock('../neo-dashboard/use-neo-dashboard', () => ({
+  useNeoDashboard: jest.fn(),
 }));
 
 jest.mock('react-charts', () => ({
@@ -12,14 +12,14 @@ jest.mock('react-charts', () => ({
 }));
 
 describe('ViewMonthly', () => {
-  const mockUseViewMonthly = useViewMonthly as jest.Mock;
+  const mockUseNeoDashboard = useNeoDashboard as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should render loading spinner when loading is true', () => {
-    mockUseViewMonthly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: true,
       error: null,
       neosResponse: null,
@@ -39,7 +39,7 @@ describe('ViewMonthly', () => {
   });
 
   it('should render error message when error occurs', () => {
-    mockUseViewMonthly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: new Error('Failed to fetch monthly data'),
       neosResponse: null,
@@ -89,10 +89,35 @@ describe('ViewMonthly', () => {
       },
     };
 
-    mockUseViewMonthly.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: null,
       neosResponse: mockNeosResponse,
+      aggregateSummary: {
+        totalCount: 1,
+        hazardousCount: 1,
+        hazardousPercentage: '100.0',
+        closestKm: '5,000,000',
+        closestNeoName: 'Asteroid Monthly 1',
+        largestMeters: '20',
+        largestNeoName: 'Asteroid Monthly 1',
+      },
+      weeklySummaryMonthly: [
+        {
+          start: '2026-06-01',
+          end: '2026-06-07',
+          count: 1,
+          link: '/neows/weekly/2026-06-01',
+        },
+      ],
+      dailySummaryMonthly: [
+        {
+          date: '2026-06-01',
+          dayLabel: 'Jun 01',
+          count: 1,
+          link: '/neows/daily/2026-06-01',
+        },
+      ],
       chartData: [
         {
           label: 'NEOs per Day',
@@ -105,11 +130,11 @@ describe('ViewMonthly', () => {
         },
       ],
       primaryAxis: {
-        getValue: (d: { date: string }) => d.date,
+        getValue: (d: any) => d.date,
       },
       secondaryAxes: [
         {
-          getValue: (d: { count: number }) => d.count,
+          getValue: (d: any) => d.count,
         },
       ],
     });
@@ -122,10 +147,11 @@ describe('ViewMonthly', () => {
 
     expect(baseElement).toBeTruthy();
     expect(getAllByText('Asteroid Monthly 1').length).toBeGreaterThan(0);
-    expect(getByText('Monthly Near Earth Objects Frequency')).toBeTruthy();
+    expect(getByText('Near-Earth Objects Frequency Distribution')).toBeTruthy(); // updated label
     expect(getByTestId('mock-chart')).toBeTruthy();
     // check stats
     expect(getByText('Total NEOs')).toBeTruthy();
     expect(getByText('Hazardous NEOs')).toBeTruthy();
   });
 });
+
