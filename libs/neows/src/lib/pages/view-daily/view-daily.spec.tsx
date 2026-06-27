@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { ViewDaily } from './view-daily';
-import { useViewDaily, ChartData } from './use-view-daily';
+import { useNeoDashboard } from '../neo-dashboard/use-neo-dashboard';
 import { MemoryRouter } from 'react-router-dom';
 
-jest.mock('./use-view-daily', () => ({
-  useViewDaily: jest.fn(),
+jest.mock('../neo-dashboard/use-neo-dashboard', () => ({
+  useNeoDashboard: jest.fn(),
 }));
 
 jest.mock('react-charts', () => ({
@@ -12,14 +12,14 @@ jest.mock('react-charts', () => ({
 }));
 
 describe('ViewDaily', () => {
-  const mockUseViewDaily = useViewDaily as jest.Mock;
+  const mockUseNeoDashboard = useNeoDashboard as jest.Mock;
 
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should render loading spinner when loading is true', () => {
-    mockUseViewDaily.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: true,
       error: null,
       neosResponse: null,
@@ -39,7 +39,7 @@ describe('ViewDaily', () => {
   });
 
   it('should render error message when error occurs', () => {
-    mockUseViewDaily.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: new Error('Failed to fetch data'),
       neosResponse: null,
@@ -89,7 +89,7 @@ describe('ViewDaily', () => {
       },
     };
 
-    mockUseViewDaily.mockReturnValue({
+    mockUseNeoDashboard.mockReturnValue({
       loading: false,
       error: null,
       neosResponse: mockNeosResponse,
@@ -106,11 +106,11 @@ describe('ViewDaily', () => {
         },
       ],
       primaryAxis: {
-        getValue: (d: ChartData) => d.name,
+        getValue: (d: any) => d.name,
       },
       secondaryAxes: [
         {
-          getValue: (d: ChartData) => d.size,
+          getValue: (d: any) => d.size,
         },
       ],
     });
@@ -124,9 +124,11 @@ describe('ViewDaily', () => {
     expect(baseElement).toBeTruthy();
     expect(getByText('Asteroid 1')).toBeTruthy();
     expect(getByText('REF-12345')).toBeTruthy();
-    expect(getByText('Hazardous')).toBeTruthy();
+    expect(getByText('Hazardous')).toBeTruthy(); // updated to 'Hazardous' matching our mock data
     expect(getByText('10.0 - 20.0')).toBeTruthy();
     expect(getByText('2026-Jun-21 12:00')).toBeTruthy();
     expect(getByText('5,000,000')).toBeTruthy();
   });
 });
+
+
